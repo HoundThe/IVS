@@ -8,7 +8,7 @@ Autori
 ------
 
 Nazev tymu
-- xlogin01 jmeno prijmeni 
+- xhajek48 Karel Hajek 
 - xlogin02 jmeno prijmeni 
 - xlogin03 jmeno prijmeni 
 - xlogin04 jmeno prijmeni 
