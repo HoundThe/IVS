@@ -1,0 +1,14 @@
+
+# ignore uncessary files
+
+.vs/
+packages/
+
+src/GUICalculator/bin/
+src/GUICalculator/obj/
+
+src/MathLibrary/bin/
+src/MathLibrary/obj/
+
+src/MathLibraryTests/bin/
+src/MathLibraryTests/obj/
