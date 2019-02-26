@@ -47,19 +47,9 @@ namespace GUICalculator.View
             Expression exp = null;
 
             if (e.Key == Key.Left)
-            {
-                Expression tmp = caret.ActiveExpression.MoveLeft(null, true);
-                if (tmp != null)
-                    exp = tmp;
-                //if (exp == null)
-                //    exp = ((MainWindowVM)DataContext).Expression;
-            }
+                exp = caret.ActiveExpression.MoveLeft(null, true);
             else if (e.Key == Key.Right)
-            {
-                Expression tmp = caret.ActiveExpression.MoveRight(null, true);
-                if (tmp != null)
-                    exp = tmp;
-            }
+                exp = caret.ActiveExpression.MoveRight(null, true);
 
             if (exp == null)
                 return;
@@ -70,6 +60,7 @@ namespace GUICalculator.View
 
         protected override void OnPreviewTextInput(TextCompositionEventArgs e)
         {
+            // Check if it an allowed character
             if (regex.IsMatch(e.Text))
             {
                 Console.WriteLine("{0}", e.Text);
@@ -86,14 +77,17 @@ namespace GUICalculator.View
             Expression activeExp = Caret.Instance.ActiveExpression;
             if (activeExp != null)
             {
+                // create new expression and add it to the appropriate parent expression
                 Expression parent = activeExp.ParentExpression;
                 Expression newExpression = new Character(character, parent);
                 parent.AddExpression(newExpression);
-                parent.UpdateLayout();
+
+                // make sure the new expression is displayed and new position is calculated for this element
+                parent.UpdateLayout(); 
+
+                // change the location of caret
                 Caret.Instance.ExpressionSide = ExpressionSide.Right;
                 Caret.Instance.SetActiveExpression(newExpression);
-                //if (Caret.Instance.ExpressionSide == ExpressionSide.Left)
-                //    Caret.Instance.FlipSide();
             }
         }
     }
