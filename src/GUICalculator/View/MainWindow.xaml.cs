@@ -32,20 +32,6 @@ namespace GUICalculator.View
             PreviewKeyDown += WhenKeyDown;
         }
 
-        protected override void OnPreviewTextInput(TextCompositionEventArgs e)
-        {
-            if (!regex.IsMatch(e.Text))
-                e.Handled = true;
-            base.OnPreviewTextInput(e);
-        }
-
-        protected override void OnTextInput(TextCompositionEventArgs e)
-        {
-            Console.WriteLine("{0}", e.Text);
-
-            base.OnTextInput(e);
-        }
-
         private void WhenKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Left || e.Key == Key.Right)
@@ -59,7 +45,6 @@ namespace GUICalculator.View
         {
             Caret caret = Caret.Instance;
             Expression exp = null;
-            Point position = default(Point);
 
             if (e.Key == Key.Left)
             {
@@ -79,19 +64,37 @@ namespace GUICalculator.View
             if (exp == null)
                 return;
 
-            caret.ActiveExpression = exp;
-
-            if (caret.ExpressionSide == ExpressionSide.Left)
-                position = exp.LeftPositionOf();
-            else
-                position = exp.RightPositionOf();
-
-            caret.Left = position.X;
-            caret.Top = position.Y;
-            caret.CaretHeight = exp.ActualHeight;
-
+            caret.SetActiveExpression(exp);
             caret.RestartBlinking();
         }
+
+        protected override void OnPreviewTextInput(TextCompositionEventArgs e)
+        {
+            if (regex.IsMatch(e.Text))
+            {
+                Console.WriteLine("{0}", e.Text);
+                if (e.Text.Length != 1)
+                    throw new Exception("Input text should have length of 1 character.");
+                AddNewExpression(e.Text[0]);
+            }
+            e.Handled = true;
+            base.OnPreviewTextInput(e);
+        }
         
+        private void AddNewExpression(char character)
+        {
+            Expression activeExp = Caret.Instance.ActiveExpression;
+            if (activeExp != null)
+            {
+                Expression parent = activeExp.ParentExpression;
+                Expression newExpression = new Character(character, parent);
+                parent.AddExpression(newExpression);
+                parent.UpdateLayout();
+                Caret.Instance.ExpressionSide = ExpressionSide.Right;
+                Caret.Instance.SetActiveExpression(newExpression);
+                //if (Caret.Instance.ExpressionSide == ExpressionSide.Left)
+                //    Caret.Instance.FlipSide();
+            }
+        }
     }
 }

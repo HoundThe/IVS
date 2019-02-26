@@ -55,5 +55,10 @@ namespace GUICalculator.View
                 return null;
             return ParentExpression.MoveRight(this, false);
         }
+
+        public override void AddExpression(Expression expression)
+        {
+            return;
+        }
     }
 }

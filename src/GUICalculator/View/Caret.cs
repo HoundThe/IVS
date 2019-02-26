@@ -32,7 +32,7 @@ namespace GUICalculator.View
 
         public static Caret Instance { get; } = new Caret();
         public double CaretHeight { get; set; }
-        public Expression ActiveExpression { get; set; }
+        public Expression ActiveExpression { get; private set; }
         public ExpressionSide ExpressionSide { get; set; } // defines on which side of the ActiveExpression the Caret lies
         public Point DefaultPosition { get; } = new Point(0, 10);
         public double DefaultHeight { get; } = 18;
@@ -93,10 +93,42 @@ namespace GUICalculator.View
             return timer.Change(0, blinkPeriod);
         }
 
+        public void FlipSide()
+        {
+            ExpressionSide = ExpressionSide == ExpressionSide.Left ? 
+                ExpressionSide.Right : ExpressionSide.Left;
+
+            if (ActiveExpression == null)
+                return;
+
+            Point position;
+            if (ExpressionSide == ExpressionSide.Left)
+                position = ActiveExpression.RightPositionOf();
+            else
+                position = ActiveExpression.LeftPositionOf();
+            Left = position.X;
+        }
+
+        public void SetActiveExpression(Expression exp)
+        {
+            ActiveExpression = exp;
+            Point position = default(Point);
+
+            if (ExpressionSide == ExpressionSide.Left)
+                position = exp.LeftPositionOf();
+            else
+                position = exp.RightPositionOf();
+
+            Left = position.X;
+            Top = position.Y;
+            CaretHeight = exp.ActualHeight;
+            RestartBlinking();
+        }
+
         private void BlinkCaret(Object state)
         {
             Dispatcher.Invoke(new Action(delegate { Visible = !Visible; }));
         }
-
+        
     }
 }

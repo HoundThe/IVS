@@ -59,14 +59,16 @@ namespace GUICalculator.View
                 caret.ExpressionSide = ExpressionSide.Right;
             }
 
-            caret.ActiveExpression = this;
-            caret.Left = locationFromWindow.X;
-            caret.Top = locationFromWindow.Y;
-            caret.CaretHeight = control.ActualHeight;
+            caret.SetActiveExpression(this);
+            //caret.ActiveExpression = this;
+            //caret.Left = locationFromWindow.X;
+            //caret.Top = locationFromWindow.Y;
+            //caret.CaretHeight = control.ActualHeight;
             caret.RestartBlinking();
             e.Handled = true;
         }
-        
+
+        public abstract void AddExpression(Expression expression);
         public abstract Expression PreviousChild(Expression currentChild);
         public abstract Expression NextChild(Expression currentChild);
         public abstract Expression LastChild();

@@ -21,6 +21,21 @@ namespace GUICalculator.View
 
         public ObservableCollection<Expression> Items { get; set; } = new ObservableCollection<Expression>();
 
+        public override void AddExpression(Expression expression)
+        {
+            Expression activeExpression = Caret.Instance.ActiveExpression;
+            int activeIndex = Items.IndexOf(activeExpression);
+            if (activeIndex >= 0)
+            {
+                if (Caret.Instance.ExpressionSide == ExpressionSide.Right)
+                    activeIndex++;
+                Items.Insert(activeIndex, expression);
+                return;
+            }
+            throw new KeyNotFoundException("Active expression wasn't found therefore a new expression couldn't be added.");
+
+        }
+
         public override Expression NextChild(Expression currentChild)
         {
             for (int i = 0; i < Items.Count; i++)
@@ -147,6 +162,6 @@ namespace GUICalculator.View
             }
             return LastChild();
         }
-        
+
     }
 }
