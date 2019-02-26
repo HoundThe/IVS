@@ -4,6 +4,14 @@
              xmlns:local="clr-namespace:GUICalculator"
              StartupUri="View/MainWindow.xaml">
     <Application.Resources>
-         
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="View/SquareRoot.xaml"/>
+                <ResourceDictionary Source="View/CustomTextBoxStyle.xaml"/>
+                <ResourceDictionary Source="View/Styles/Expression.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        
     </Application.Resources>
 </Application>
