@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,6 +22,8 @@ namespace GUICalculator.View
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly Regex regex = new Regex("^[0123456789+\\-*/()!.]+$");
+
         public MainWindow()
         {
             InitializeComponent();
@@ -29,17 +32,38 @@ namespace GUICalculator.View
             PreviewKeyDown += WhenKeyDown;
         }
 
+        protected override void OnPreviewTextInput(TextCompositionEventArgs e)
+        {
+            if (!regex.IsMatch(e.Text))
+                e.Handled = true;
+            base.OnPreviewTextInput(e);
+        }
+
+        protected override void OnTextInput(TextCompositionEventArgs e)
+        {
+            Console.WriteLine("{0}", e.Text);
+
+            base.OnTextInput(e);
+        }
 
         private void WhenKeyDown(object sender, KeyEventArgs e)
         {
+            if (e.Key == Key.Left || e.Key == Key.Right)
+            {
+                MoveCaret(e);
+                e.Handled = true;
+            }
+        }
+
+        private void MoveCaret(KeyEventArgs e)
+        {
             Caret caret = Caret.Instance;
-            Expression currentExpression = caret.ActiveExpression;
             Expression exp = null;
             Point position = default(Point);
 
             if (e.Key == Key.Left)
             {
-                Expression tmp = currentExpression.MoveLeft(null, true);
+                Expression tmp = caret.ActiveExpression.MoveLeft(null, true);
                 if (tmp != null)
                     exp = tmp;
                 //if (exp == null)
@@ -47,7 +71,7 @@ namespace GUICalculator.View
             }
             else if (e.Key == Key.Right)
             {
-                Expression tmp = currentExpression.MoveRight(null, true);
+                Expression tmp = caret.ActiveExpression.MoveRight(null, true);
                 if (tmp != null)
                     exp = tmp;
             }
@@ -57,23 +81,16 @@ namespace GUICalculator.View
 
             caret.ActiveExpression = exp;
 
-            if (exp == null)
-                position = caret.DefaultPosition;
-            else if (caret.ExpressionSide == ExpressionSide.Left)
+            if (caret.ExpressionSide == ExpressionSide.Left)
                 position = exp.LeftPositionOf();
             else
                 position = exp.RightPositionOf();
 
             caret.Left = position.X;
             caret.Top = position.Y;
-
-            if (exp == null)
-                caret.CaretHeight = caret.DefaultHeight;
-            else
-                caret.CaretHeight = exp.ActualHeight;
+            caret.CaretHeight = exp.ActualHeight;
 
             caret.RestartBlinking();
-            e.Handled = true;
         }
         
     }
