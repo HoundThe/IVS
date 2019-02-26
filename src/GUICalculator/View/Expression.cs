@@ -66,46 +66,12 @@ namespace GUICalculator.View
             caret.RestartBlinking();
             e.Handled = true;
         }
-
-        //private void WhenKeyDown(object sender, KeyEventArgs e)
-        //{
-        //    Expression exp = null;
-        //    Point position = default(Point);
-
-        //    if (e.Key == Key.Left)
-        //    {
-        //        exp = parentExpression.PreviousChild(this);
-        //        if (exp == null)
-        //            exp = parentExpression.parentExpression;
-        //        if (exp != null)
-        //        position = LeftPositionOf(exp);
-        //    }
-        //    else if (e.Key == Key.Right)
-        //    {
-        //        if (parentExpression == null)
-        //            return;
-        //        exp = parentExpression.NextChild(this);
-        //        if (exp == null)
-        //            exp = parentExpression.parentExpression;
-        //        if (exp != null)
-        //            position = RightPositionOf(exp);
-        //    }
-
-        //    if (exp == null)
-        //        return;
-
-        //    caret.Left = position.X;
-        //    caret.Top = position.Y;
-        //    caret.CaretHeight = exp.ActualHeight;
-        //    caret.RestartBlinking();
-        //    e.Handled = true;
-        //}
-
-
+        
         public abstract Expression PreviousChild(Expression currentChild);
         public abstract Expression NextChild(Expression currentChild);
         public abstract Expression LastChild();
         public abstract Expression FirstChild();
         public abstract Expression MoveLeft(Expression child, bool jumpIn);
+        public abstract Expression MoveRight(Expression child, bool jumpIn);
     }
 }

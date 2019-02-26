@@ -39,15 +39,22 @@ namespace GUICalculator.View
 
             if (e.Key == Key.Left)
             {
-                exp = currentExpression.MoveLeft(null, true);
-                if (exp == null)
-                    exp = ((MainWindowVM)DataContext).Expression;
+                Expression tmp = currentExpression.MoveLeft(null, true);
+                if (tmp != null)
+                    exp = tmp;
+                //if (exp == null)
+                //    exp = ((MainWindowVM)DataContext).Expression;
             }
             else if (e.Key == Key.Right)
             {
-                
+                Expression tmp = currentExpression.MoveRight(null, true);
+                if (tmp != null)
+                    exp = tmp;
             }
-            
+
+            if (exp == null)
+                return;
+
             caret.ActiveExpression = exp;
 
             if (exp == null)

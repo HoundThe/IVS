@@ -48,5 +48,12 @@ namespace GUICalculator.View
                 return null;
             return ParentExpression.MoveLeft(this, false);
         }
+
+        public override Expression MoveRight(Expression child, bool jumpIn)
+        {
+            if (ParentExpression == null)
+                return null;
+            return ParentExpression.MoveRight(this, false);
+        }
     }
 }

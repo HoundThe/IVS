@@ -81,9 +81,10 @@ namespace GUICalculator.View
                 }
                 else
                 {
-                    Caret.Instance.ExpressionSide = ExpressionSide.Right;
-                    if (ParentExpression != null && ParentExpression.MoveLeft(this, false) != null)
-                        return ParentExpression.MoveLeft(this, false);
+                    //Caret.Instance.ExpressionSide = ExpressionSide.Right;
+                    Expression tmp;
+                    if (ParentExpression != null && (tmp = ParentExpression.MoveLeft(this, false)) != null)
+                        return tmp;
                 }
             }
             else // Right
@@ -104,7 +105,50 @@ namespace GUICalculator.View
                     return child;
                 }
             }
-            return null;
+            return FirstChild();
+        }
+
+        public override Expression MoveRight(Expression child, bool jumpIn)
+        {
+            if (Caret.Instance.ExpressionSide == ExpressionSide.Right)
+            {
+                if (child != null && NextChild(child) != null)
+                {
+                    Expression lastChild = NextChild(child).FirstChild();
+                    if (lastChild != null)
+                    {
+                        Caret.Instance.ExpressionSide = ExpressionSide.Left;
+                        return lastChild;
+                    }
+                    return NextChild(child); // leave Left
+                }
+                else
+                {
+                    //Caret.Instance.ExpressionSide = ExpressionSide.Left;
+                    Expression tmp;
+                    if (ParentExpression != null && (tmp = ParentExpression.MoveRight(this, false)) != null)
+                        return tmp;
+                }
+            }
+            else // Right
+            {
+                // jump in from right
+                if (jumpIn && FirstChild() != null)
+                {
+                    return FirstChild(); // leave right
+                }
+
+                if (child != null && NextChild(child) != null)
+                {
+                    return NextChild(child); // leave right
+                }
+                else
+                {
+                    Caret.Instance.ExpressionSide = ExpressionSide.Right;
+                    return child;
+                }
+            }
+            return LastChild();
         }
     }
 }
