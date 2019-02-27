@@ -12,7 +12,7 @@ namespace MathLibrary
         private IExpression subtrahend;
 
         /// <summary>
-        /// Takes two number and return their difference in order (Minuend - Subtrahend)
+        /// Inicializing the minuend and subtrahend
         /// </summary>
         /// <param name="a">Minuend</param>
         /// <param name="b">Subtrahend</param>
@@ -22,6 +22,10 @@ namespace MathLibrary
             this.subtrahend = minuend;
         }
 
+        /// <summary>
+        /// Subtract two number inicialized by Constructor
+        /// </summary>
+        /// <returns>Difference of Minuend and Subtrahend (in order)</returns>
         public double Evaluate()
         {
             return minuend.Evaluate() - subtrahend.Evaluate();
