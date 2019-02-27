@@ -46,7 +46,9 @@
     <Compile Include="IExpression.cs" />
     <Compile Include="MultiplicationExp.cs" />
     <Compile Include="Number.cs" />
+    <Compile Include="Power.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Root.cs" />
     <Compile Include="SubtractionExp.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
