@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdditionExp.cs" />
+    <Compile Include="Cosinus.cs" />
     <Compile Include="DivisionExp.cs" />
     <Compile Include="FactorialExp.cs" />
     <Compile Include="IExpression.cs" />
@@ -49,7 +50,9 @@
     <Compile Include="Power.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Root.cs" />
+    <Compile Include="Sinus.cs" />
     <Compile Include="SubtractionExp.cs" />
+    <Compile Include="Tangens.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
