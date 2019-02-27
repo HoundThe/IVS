@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MathLibrary
 {
-    class AddExp
+    class DivisionExp : IExpression
     {
     }
 }
