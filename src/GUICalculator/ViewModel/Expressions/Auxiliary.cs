@@ -8,20 +8,14 @@ using System.Windows.Controls;
 
 namespace GUICalculator.View
 {
-    class Character : Expression
+    internal class Auxiliary : Expression
     {
-
-        public Character(char value, Expression parent)
-            : base(parent)
+        public Auxiliary()
         {
-            Value = value;
-            this.Template = Application.Current.FindResource("CharacterExpressionTemplate") as ControlTemplate;
+            this.Template = Application.Current.FindResource("AuxiliaryExpressionTemplate") as ControlTemplate;
             this.DataContext = this;
         }
-
-
-        public char Value { get; set; }
-
+        
         public override Expression FirstChild()
         {
             return null;
@@ -56,9 +50,19 @@ namespace GUICalculator.View
             return ParentExpression.MoveRight(this, false);
         }
 
-        public override void AddExpression(Expression expression)
+        public override void AddExpression(Expression activeExpression, Expression expression)
         {
             return;
+        }
+
+        public override bool DeleteChild(Expression child)
+        {
+            throw new NotSupportedException("Not supported operation");
+        }
+
+        public override Expression AddAuxiliary()
+        {
+            throw new NotSupportedException("Not supported operation");
         }
     }
 }

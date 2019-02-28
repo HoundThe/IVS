@@ -111,22 +111,35 @@ namespace GUICalculator.View
 
         public void SetActiveExpression(Expression exp)
         {
+            if (exp == null)
+                return;
             ActiveExpression = exp;
+            UpdateActiveExpression();
+            RestartBlinking();
+        }
+
+        public void UpdateActiveExpression()
+        {
             Point position = default(Point);
 
             if (ExpressionSide == ExpressionSide.Left)
-                position = exp.LeftPositionOf();
+                position = ActiveExpression.LeftPositionOf();
             else
-                position = exp.RightPositionOf();
+                position = ActiveExpression.RightPositionOf();
 
             Left = position.X;
             Top = position.Y;
-            CaretHeight = exp.ActualHeight;
-            RestartBlinking();
+            CaretHeight = ActiveExpression.ActualHeight;
+
+            // If the active expression's height is zero (most probably not available at this moment
+            // or not calculated) set the caret height to nonzero number just so that the Caret is visible.
+            if (CaretHeight == 0)
+                CaretHeight = 18;
         }
 
         private void BlinkCaret(Object state)
         {
+            Console.WriteLine("Left {0}, Top {1}, Height {2}", Left, Top, CaretHeight);
             Dispatcher.Invoke(new Action(delegate { Visible = !Visible; }));
         }
         

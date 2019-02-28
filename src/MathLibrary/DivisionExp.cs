@@ -8,5 +8,9 @@ namespace MathLibrary
 {
     class DivisionExp : IExpression
     {
+        public double Evaluate()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

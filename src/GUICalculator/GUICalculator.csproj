@@ -60,11 +60,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="View\Caret.cs" />
-    <Compile Include="View\ExpressionSide.cs" />
+    <Compile Include="ViewModel\Direction.cs" />
+    <Compile Include="ViewModel\Expressions\Auxiliary.cs" />
+    <Compile Include="ViewModel\RootVM.cs" />
+    <Compile Include="View\CustomControls\Caret.cs" />
+    <Compile Include="ViewModel\Expressions\ExpressionSide.cs" />
     <Compile Include="View\FrameworkElementExtension.cs" />
-    <Compile Include="View\Character.cs" />
-    <Page Include="View\CustomTextBoxStyle.xaml">
+    <Compile Include="ViewModel\Expressions\Character.cs" />
+    <Page Include="View\Styles\CustomTextBoxStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -81,17 +84,13 @@
     <Compile Include="ViewModel\Command\RelayCommand.cs" />
     <Compile Include="ViewModel\MainWindowVM.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
-    <Compile Include="View\Basic.cs" />
-    <Compile Include="View\CustomTextBox.cs" />
-    <Compile Include="View\Expression.cs" />
+    <Compile Include="ViewModel\Expressions\Basic.cs" />
+    <Compile Include="View\CustomControls\CustomTextBox.cs" />
+    <Compile Include="ViewModel\Expressions\Expression.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\SquareRoot.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\Styles\Expression.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -130,7 +129,7 @@
     <Folder Include="View\Converter\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="View\Root.cs" />
+    <Compile Include="ViewModel\Expressions\Root.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

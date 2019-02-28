@@ -23,41 +23,36 @@ namespace GUICalculator.View
     public partial class MainWindow : Window
     {
         private readonly Regex regex = new Regex("^[0123456789+\\-*/()!.]+$");
+        private readonly MainWindowVM dataContext;
 
         public MainWindow()
         {
             InitializeComponent();
+            dataContext = DataContext as MainWindowVM;
 
             CustomTextBoxContainer.Children.Add(Caret.Instance);
             PreviewKeyDown += WhenKeyDown;
+            Loaded += WhenInitialized;
         }
 
         private void WhenKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Left || e.Key == Key.Right)
             {
-                MoveCaret(e);
+                Direction direction = e.Key == Key.Left ? Direction.Left : Direction.Right;
+                dataContext.MoveCaret(direction);
                 e.Handled = true;
             }
+            else if (e.Key == Key.Back)
+            {
+                dataContext.DeleteExpression(Direction.Left);
+            }
+            else if (e.Key == Key.Delete)
+            {
+                dataContext.DeleteExpression(Direction.Right);
+            }
         }
-
-        private void MoveCaret(KeyEventArgs e)
-        {
-            Caret caret = Caret.Instance;
-            Expression exp = null;
-
-            if (e.Key == Key.Left)
-                exp = caret.ActiveExpression.MoveLeft(null, true);
-            else if (e.Key == Key.Right)
-                exp = caret.ActiveExpression.MoveRight(null, true);
-
-            if (exp == null)
-                return;
-
-            caret.SetActiveExpression(exp);
-            caret.RestartBlinking();
-        }
-
+        
         protected override void OnPreviewTextInput(TextCompositionEventArgs e)
         {
             // Check if it an allowed character
@@ -66,29 +61,20 @@ namespace GUICalculator.View
                 Console.WriteLine("{0}", e.Text);
                 if (e.Text.Length != 1)
                     throw new Exception("Input text should have length of 1 character.");
-                AddNewExpression(e.Text[0]);
+                dataContext.AddCharacterExpression(e.Text[0]);
             }
             e.Handled = true;
             base.OnPreviewTextInput(e);
         }
-        
-        private void AddNewExpression(char character)
+
+        private void WhenInitialized(object sender, EventArgs e)
         {
-            Expression activeExp = Caret.Instance.ActiveExpression;
-            if (activeExp != null)
-            {
-                // create new expression and add it to the appropriate parent expression
-                Expression parent = activeExp.ParentExpression;
-                Expression newExpression = new Character(character, parent);
-                parent.AddExpression(newExpression);
-
-                // make sure the new expression is displayed and new position is calculated for this element
-                parent.UpdateLayout(); 
-
-                // change the location of caret
-                Caret.Instance.ExpressionSide = ExpressionSide.Right;
-                Caret.Instance.SetActiveExpression(newExpression);
-            }
+            // Make sure the Caret is displayed in the middle.
+            // The Caret instance doesn't know where it should render itself
+            // until the window is loaded and control's sizes are calculated.
+            // At this moment, we can update the Caret's position.
+            Caret.Instance.UpdateActiveExpression();
         }
+
     }
 }

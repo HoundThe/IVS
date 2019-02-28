@@ -7,39 +7,33 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-
 namespace GUICalculator.View
 {
-    class Root : Expression
+    class Basic : Expression
     {
-        public Root(Expression parent)
-            : base(parent)
+
+        public Basic()
         {
-            this.Template = Application.Current.FindResource("RootExpressionTemplate") as ControlTemplate;
+            this.Template = Application.Current.FindResource("BasicExpressionTemplate") as ControlTemplate;
             this.DataContext = this;
+            this.AddAuxiliary();
         }
 
-        public ObservableCollection<Expression> OuterExpression { get; set; } = new ObservableCollection<Expression>();
-        public ObservableCollection<Expression> InnerExpression { get; set; } = new ObservableCollection<Expression>();
+        public ObservableCollection<Expression> Items { get; set; } = new ObservableCollection<Expression>();
 
-        public override void AddExpression(Expression expression)
+        public override void AddExpression(Expression activeExpression, Expression expression)
         {
-            Expression activeExpression = Caret.Instance.ActiveExpression;
-            int activeIndex = InnerExpression.IndexOf(activeExpression);
+            //Expression activeExpression = Caret.Instance.ActiveExpression;
+            int activeIndex = Items.IndexOf(activeExpression);
             if (activeIndex >= 0)
             {
                 if (Caret.Instance.ExpressionSide == ExpressionSide.Right)
                     activeIndex++;
-                InnerExpression.Insert(activeIndex, expression);
-                return;
-            }
+                Items.Insert(activeIndex, expression);
 
-            activeIndex = OuterExpression.IndexOf(activeExpression);
-            if (activeIndex >= 0)
-            {
-                if (Caret.Instance.ExpressionSide == ExpressionSide.Right)
-                    activeIndex++;
-                InnerExpression.Insert(activeIndex, expression);
+                // remove auxiliary
+                if (activeExpression is Auxiliary)
+                    Items.Remove(activeExpression);
                 return;
             }
             throw new KeyNotFoundException("Active expression wasn't found therefore a new expression couldn't be added.");
@@ -47,13 +41,13 @@ namespace GUICalculator.View
 
         public override Expression NextChild(Expression currentChild)
         {
-            for (int i = 0; i < InnerExpression.Count; i++)
+            for (int i = 0; i < Items.Count; i++)
             {
-                if (currentChild == InnerExpression[i])
+                if (currentChild == Items[i])
                 {
-                    if (i + 1 == InnerExpression.Count)
+                    if (i + 1 == Items.Count)
                         return null;
-                    return InnerExpression[i + 1];
+                    return Items[i + 1];
                 }
             }
             throw new KeyNotFoundException("Expression not found.");
@@ -61,33 +55,31 @@ namespace GUICalculator.View
 
         public override Expression PreviousChild(Expression currentChild)
         {
-            for (int i = 0; i < InnerExpression.Count; i++)
+            for (int i = 0; i < Items.Count; i++)
             {
-                if (currentChild == InnerExpression[i])
+                if (currentChild == Items[i])
                 {
                     if (i == 0)
                         return null;
-                    return InnerExpression[i - 1];
+                    return Items[i - 1];
                 }
             }
             throw new KeyNotFoundException("Expression not found.");
         }
 
-
         public override Expression LastChild()
         {
-            if (InnerExpression.Count > 0)
-                return InnerExpression[InnerExpression.Count - 1];
+            if (Items.Count > 0)
+                return Items[Items.Count - 1];
             return null;
         }
 
         public override Expression FirstChild()
         {
-            if (InnerExpression.Count > 0)
-                return InnerExpression[0];
+            if (Items.Count > 0)
+                return Items[0];
             return null;
         }
-
         public override Expression MoveLeft(Expression child, bool jumpIn)
         {
             if (Caret.Instance.ExpressionSide == ExpressionSide.Left)
@@ -100,6 +92,7 @@ namespace GUICalculator.View
                         Caret.Instance.ExpressionSide = ExpressionSide.Right;
                         return lastChild;
                     }
+                    Caret.Instance.ExpressionSide = ExpressionSide.Right;
                     return PreviousChild(child); // leave Left
                 }
                 else
@@ -143,6 +136,7 @@ namespace GUICalculator.View
                         Caret.Instance.ExpressionSide = ExpressionSide.Left;
                         return lastChild;
                     }
+                    Caret.Instance.ExpressionSide = ExpressionSide.Left;
                     return NextChild(child); // leave Left
                 }
                 else
@@ -172,6 +166,27 @@ namespace GUICalculator.View
                 }
             }
             return LastChild();
+        }
+
+        public override bool DeleteChild(Expression child)
+        {
+            bool result = Items.Remove(child);
+            Expression aux = AddAuxiliary();
+            Caret.Instance.SetActiveExpression(aux);
+            return result;
+        }
+
+        
+        public override Expression AddAuxiliary()
+        {
+            if (Items.Count == 0)
+            {
+                var aux = new Auxiliary();
+                aux.ParentExpression = this;
+                Items.Add(aux);
+                return aux;
+            }
+            return null;
         }
     }
 }

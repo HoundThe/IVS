@@ -10,28 +10,17 @@ using System.Windows.Input;
 
 namespace GUICalculator.View
 {
-    //internal enum ExpressionType
-    //{
-    //    Basic, // 5 + 4 + 3
-    //    Root, // 
-    //    Power, // 
-    //    Number, // 4
-    //    Operator, // +
-    //    Parenthesis // (
-    //}
     public abstract class Expression : ContentControl
     {
         private static Caret caret = Caret.Instance;
         
-        public Expression(Expression parent)
+        public Expression()
         {
-            ParentExpression = parent;
             VerticalAlignment = VerticalAlignment.Center;
             MouseLeftButtonUp += OnMouseClick;
-            //PreviewKeyDown += WhenKeyDown;
         }
 
-        public Expression ParentExpression { get; }
+        public Expression ParentExpression { get; set; }
 
         private void OnMouseClick(object sender, MouseButtonEventArgs e)
         {
@@ -60,20 +49,24 @@ namespace GUICalculator.View
             }
 
             caret.SetActiveExpression(this);
-            //caret.ActiveExpression = this;
-            //caret.Left = locationFromWindow.X;
-            //caret.Top = locationFromWindow.Y;
-            //caret.CaretHeight = control.ActualHeight;
             caret.RestartBlinking();
             e.Handled = true;
         }
 
-        public abstract void AddExpression(Expression expression);
+        public abstract void AddExpression(Expression activeExpression, Expression expressionToBeAdded);
+        /// <summary>
+        ///     Adds Auxiliary expression if the items count is 0.
+        /// </summary>
+        /// <returns>Returns the instance of Auxiliary expression class. 
+        /// Returns null if no expression was added.</returns>
+        public abstract Expression AddAuxiliary();
         public abstract Expression PreviousChild(Expression currentChild);
         public abstract Expression NextChild(Expression currentChild);
         public abstract Expression LastChild();
         public abstract Expression FirstChild();
         public abstract Expression MoveLeft(Expression child, bool jumpIn);
         public abstract Expression MoveRight(Expression child, bool jumpIn);
+        public abstract bool DeleteChild(Expression child);
+
     }
 }

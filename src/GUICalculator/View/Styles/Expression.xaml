@@ -3,31 +3,11 @@
                     xmlns:local="clr-namespace:GUICalculator.View.Styles"
                     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" >
 
-    <!--<ControlTemplate x:Key="NumberExpressionTemplate" TargetType="{x:Type ContentControl}">
+    <ControlTemplate x:Key="AuxiliaryExpressionTemplate" TargetType="{x:Type ContentControl}">
         <Grid>
-            <ItemsControl ItemsSource="{Binding Items}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>
+            <TextBlock Text="" VerticalAlignment="Center" Height="18"/>
         </Grid>
     </ControlTemplate>
-
-    <ControlTemplate x:Key="DigitExpressionTemplate" TargetType="{x:Type ContentControl}">
-        <Grid>
-            <TextBlock Text="{Binding Value, FallbackValue=???}" 
-                     VerticalAlignment="Center" />
-        </Grid>
-    </ControlTemplate>
-
-    <ControlTemplate x:Key="OperatorExpressionTemplate" TargetType="{x:Type ContentControl}">
-        <Grid>
-            <TextBlock Text="{Binding Value, FallbackValue=???}" 
-                       VerticalAlignment="Center"/>
-        </Grid>
-    </ControlTemplate>-->
 
     <ControlTemplate x:Key="CharacterExpressionTemplate" TargetType="{x:Type ContentControl}">
         <Grid>
@@ -41,43 +21,47 @@
             <ItemsControl ItemsSource="{Binding Items}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" />
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
         </Grid>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="RootExpressionTemplate" TargetType="{x:Type ContentControl}">
-        <Grid Background="Transparent">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
+    <ControlTemplate x:Key="RootExpressionTemplate" TargetType="{x:Type ContentControl}" >
+        <StackPanel>
+            <Grid Background="Transparent">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
-            <Grid Grid.Column="0" x:Name="TrackSurface" Margin="5,5,0,5">
-                <Path Margin="0,0,0,0" StrokeEndLineCap="Square" Stretch="Fill" Stroke="Black" StrokeThickness="2" 
-                      Data="M0,10 L 5,14 L 14,0 L 15, 0" Height="{Binding ActualHeight, ElementName=InnerBox}" VerticalAlignment="Top">
-                </Path>
-            </Grid>
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto" Name="InnerBox"/>
-                </Grid.RowDefinitions>
+                <Grid Grid.Column="0" Margin="5,5,0,5">
+                    <Path Margin="0,0,0,0" StrokeEndLineCap="Square" Stretch="Fill" Stroke="Black" StrokeThickness="2" 
+                      Data="M0,10 L 5,14 L 14,0 L 15, 0" 
+                      />
 
-                <Path Margin="0,0,0,0" StrokeStartLineCap="Square" VerticalAlignment="Bottom" Grid.Row="0" Height="7" HorizontalAlignment="Stretch" Stretch="Fill" Stroke="Black" StrokeThickness="2" 
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Path Margin="0,0,0,0" StrokeStartLineCap="Square" VerticalAlignment="Bottom" Grid.Row="0" Height="7" 
+                      HorizontalAlignment="Stretch" Stretch="Fill" Stroke="Black" StrokeThickness="2" 
                       Data="M 0,5 L 10,5">
-                </Path>
-                <ItemsControl Grid.Row="1" ItemsSource="{Binding InnerExpression}" Margin="2">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal"/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                </ItemsControl>
+                    </Path>
+                    <ItemsControl Grid.Row="1" ItemsSource="{Binding InnerExpression}" Margin="2" >
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </Grid>
             </Grid>
-        </Grid>
+        </StackPanel>
     </ControlTemplate>
 
     <ControlTemplate x:Key="SquareRootExpressionTemplate" TargetType="{x:Type ContentControl}">
