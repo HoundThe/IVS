@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace MathLibrary
 {
-    public class Math
+    class Number : IExpression
     {
-
-        // for example
-        public int Factorial(int number)
+        public double Evaluate()
         {
-            return -1;
-        } 
+            throw new NotImplementedException();
+        }
     }
 }
