@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 
 namespace MathLibrary
 {
-    public class Number : IExpression
+    class Number : IExpression
     {
+        private double value;
 
-        private double number;
-        public Number(double number)
+        public Number(double value)
         {
-            this.number = (double) number;
+            this.value = value;
         }
+
         public double Evaluate()
         {
-            return number;
+            return value;
         }
     }
 }

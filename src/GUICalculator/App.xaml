@@ -7,8 +7,7 @@
 
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="View/SquareRoot.xaml"/>
-                <ResourceDictionary Source="View/CustomTextBoxStyle.xaml"/>
+                <ResourceDictionary Source="View/Styles/CustomTextBoxStyle.xaml"/>
                 <ResourceDictionary Source="View/Styles/Expression.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
