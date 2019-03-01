@@ -8,9 +8,16 @@ namespace MathLibrary
 {
     class Number : IExpression
     {
+        private double value;
+
+        public Number(double value)
+        {
+            this.value = value;
+        }
+
         public double Evaluate()
         {
-            throw new NotImplementedException();
+            return value;
         }
     }
 }
