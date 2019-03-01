@@ -69,7 +69,7 @@ namespace GUICalculator.View
         public abstract Expression FirstChild();
         public abstract bool DeleteChild(Expression child);
 
-        public Expression MoveLeft(Expression child, bool jumpIn)
+        public virtual Expression MoveLeft(Expression child, bool jumpIn)
         {
             if (Caret.Instance.ExpressionSide == ExpressionSide.Left)
             {
@@ -123,7 +123,7 @@ namespace GUICalculator.View
             return FirstChild();
         }
 
-        public Expression MoveRight(Expression child, bool jumpIn)
+        public virtual Expression MoveRight(Expression child, bool jumpIn)
         {
             if (Caret.Instance.ExpressionSide == ExpressionSide.Right)
             {

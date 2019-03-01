@@ -62,6 +62,7 @@
     </ApplicationDefinition>
     <Compile Include="ViewModel\Direction.cs" />
     <Compile Include="ViewModel\Expressions\Auxiliary.cs" />
+    <Compile Include="ViewModel\Expressions\MultiplicationSign.cs" />
     <Compile Include="ViewModel\Expressions\TerminalExpression.cs" />
     <Compile Include="ViewModel\RootVM.cs" />
     <Compile Include="View\CustomControls\Caret.cs" />

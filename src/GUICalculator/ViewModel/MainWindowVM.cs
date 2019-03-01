@@ -1,6 +1,7 @@
 ﻿using GUICalculator.Command;
 using GUICalculator.View;
 using GUICalculator.ViewModel;
+using GUICalculator.ViewModel.Expressions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,6 +22,7 @@ namespace GUICalculator.ViewModel
     {
         public Expression _expression;
         public ICommand _characterInputCommand;
+        public ICommand _multiplicationCommand;
         public ICommand _rootCommand;
 
         public MainWindowVM()
@@ -53,6 +55,16 @@ namespace GUICalculator.ViewModel
             }
         }
 
+        public ICommand MultiplicationCommand
+        {
+            get
+            {
+                if (_multiplicationCommand == null)
+                    _multiplicationCommand = new RelayCommand(AddMultiplicationExpression);
+                return _multiplicationCommand;
+            }
+        }
+
         public ICommand RootCommand
         {
             get
@@ -81,6 +93,14 @@ namespace GUICalculator.ViewModel
             Caret.Instance.SetActiveExpression(root.FirstChild());
         }
 
+        public void AddMultiplicationExpression()
+        {
+            Expression activeExp = Caret.Instance.ActiveExpression;
+            Expression multiplicationSign = new MultiplicationSign();
+            AddNewExpression(activeExp, multiplicationSign);
+            Caret.Instance.SetActiveExpression(multiplicationSign);
+        }
+
         public void AddCharacterExpression(string str)
         {
             if (str.Length != 1)
@@ -93,6 +113,7 @@ namespace GUICalculator.ViewModel
             Expression activeExp = Caret.Instance.ActiveExpression;
             Expression characterExp = new Character(character);
             AddNewExpression(activeExp, characterExp);
+            Caret.Instance.SetActiveExpression(characterExp);
         }
 
         public void AddNewExpression(Expression activeExp, Expression newExpression)
@@ -194,6 +215,7 @@ namespace GUICalculator.ViewModel
                 parentExp.DeleteChild(toBeRemoved);
                 parentExp.UpdateLayout();
                 Caret.Instance.SetActiveExpression(nextActive);
+                Caret.Instance.UpdateActiveExpression();
                 //Console.WriteLine("ExpSide {0}, Active value: {1}", Caret.Instance.ExpressionSide, ((Character)Caret.Instance.ActiveExpression).Value);
             }
         }

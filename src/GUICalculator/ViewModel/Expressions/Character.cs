@@ -16,7 +16,6 @@ namespace GUICalculator.View
             : base("CharacterExpressionTemplate")
         {
             Value = value;
-            Caret.Instance.SetActiveExpression(this);
         }
         
         public char Value { get; set; }

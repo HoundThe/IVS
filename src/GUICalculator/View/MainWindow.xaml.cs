@@ -22,7 +22,7 @@ namespace GUICalculator.View
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly Regex regex = new Regex("^[0123456789+\\-*/()!.]+$");
+        private readonly Regex regex = new Regex("^[0123456789+\\-()!.]+$");
         private readonly MainWindowVM dataContext;
 
         public MainWindow()
@@ -46,10 +46,17 @@ namespace GUICalculator.View
             else if (e.Key == Key.Back)
             {
                 dataContext.DeleteExpression(Direction.Left);
+                e.Handled = true;
             }
             else if (e.Key == Key.Delete)
             {
                 dataContext.DeleteExpression(Direction.Right);
+                e.Handled = true;
+            }
+            else if (e.Key == Key.Multiply)
+            {
+                dataContext.AddMultiplicationExpression();
+                e.Handled = true;
             }
         }
         
