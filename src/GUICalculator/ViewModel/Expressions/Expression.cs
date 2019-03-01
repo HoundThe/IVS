@@ -13,9 +13,12 @@ namespace GUICalculator.View
     public abstract class Expression : ContentControl
     {
         private static Caret caret = Caret.Instance;
-        
-        public Expression()
+
+        public Expression(string templateName)
         {
+            this.Template = Application.Current.FindResource(templateName) as ControlTemplate;
+            this.DataContext = this;
+
             VerticalAlignment = VerticalAlignment.Center;
             MouseLeftButtonUp += OnMouseClick;
         }
@@ -26,7 +29,7 @@ namespace GUICalculator.View
         {
             Console.WriteLine("Type of sender: {0}", sender.GetType());
             ContentControl control = sender as ContentControl;
-            
+
             Point relativePoint = e.GetPosition(Application.Current.MainWindow);
             Console.WriteLine("{0}", relativePoint);
 
@@ -64,9 +67,115 @@ namespace GUICalculator.View
         public abstract Expression NextChild(Expression currentChild);
         public abstract Expression LastChild();
         public abstract Expression FirstChild();
-        public abstract Expression MoveLeft(Expression child, bool jumpIn);
-        public abstract Expression MoveRight(Expression child, bool jumpIn);
         public abstract bool DeleteChild(Expression child);
+
+        public Expression MoveLeft(Expression child, bool jumpIn)
+        {
+            if (Caret.Instance.ExpressionSide == ExpressionSide.Left)
+            {
+                if (child != null && PreviousChild(child) != null)
+                {
+                    Expression lastChild = PreviousChild(child).LastChild();
+                    if (lastChild != null)
+                    {
+                        Caret.Instance.ExpressionSide = ExpressionSide.Right;
+                        return lastChild;
+                    }
+                    //Caret.Instance.ExpressionSide = ExpressionSide.Right;
+                    return PreviousChild(child); // leave Left
+                }
+                else if (child != null && PreviousChild(child) == null)
+                {
+                    return this;
+                }
+                else
+                {
+                    //Caret.Instance.ExpressionSide = ExpressionSide.Right;
+                    Expression tmp;
+                    if (ParentExpression != null && (tmp = ParentExpression.MoveLeft(this, false)) != null)
+                        return tmp;
+                }
+            }
+            else // Right
+            {
+                // jump in from right
+                if (jumpIn && LastChild() != null)
+                {
+                    return LastChild(); // leave right
+                }
+
+                if (child != null && PreviousChild(child) != null)
+                {
+                    return PreviousChild(child); // leave right
+                }
+                else if (child != null && PreviousChild(child) == null)
+                {
+                    Caret.Instance.ExpressionSide = ExpressionSide.Left;
+                    return child;
+                }
+                else
+                {
+                    Expression tmp;
+                    if (ParentExpression != null && (tmp = ParentExpression.MoveLeft(this, false)) != null)
+                        return tmp;
+                }
+            }
+            return FirstChild();
+        }
+
+        public Expression MoveRight(Expression child, bool jumpIn)
+        {
+            if (Caret.Instance.ExpressionSide == ExpressionSide.Right)
+            {
+                if (child != null && NextChild(child) != null)
+                {
+                    Expression lastChild = NextChild(child).FirstChild();
+                    if (lastChild != null)
+                    {
+                        Caret.Instance.ExpressionSide = ExpressionSide.Left;
+                        return lastChild;
+                    }
+
+                    //Caret.Instance.ExpressionSide = ExpressionSide.Left;
+                    return NextChild(child);
+                }
+                else if (child != null && NextChild(child) == null)
+                {
+                    return this;
+                }
+                else
+                {
+                    //Caret.Instance.ExpressionSide = ExpressionSide.Left;
+                    Expression tmp;
+                    if (ParentExpression != null && (tmp = ParentExpression.MoveRight(this, false)) != null)
+                        return tmp;
+                }
+            }
+            else // Right
+            {
+                // jump in from right
+                if (jumpIn && FirstChild() != null)
+                {
+                    return FirstChild(); // leave right
+                }
+
+                if (child != null && NextChild(child) != null)
+                {
+                    return NextChild(child); // leave right
+                }
+                else if (child != null && NextChild(child) == null)
+                {
+                    Caret.Instance.ExpressionSide = ExpressionSide.Right;
+                    return child;
+                }
+                else {
+                    Expression tmp;
+                    if (ParentExpression != null && (tmp = ParentExpression.MoveRight(this, false)) != null)
+                        return tmp;
+                }
+            }
+            return LastChild();
+        }
 
     }
 }

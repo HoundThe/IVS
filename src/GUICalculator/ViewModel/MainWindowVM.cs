@@ -102,6 +102,8 @@ namespace GUICalculator.ViewModel
             {
                 // create new expression and add it to the appropriate parent expression
                 Expression parent = activeExp.ParentExpression;
+                if (parent == null)
+                    return;
                 newExpression.ParentExpression = parent;
                 parent.AddExpression(activeExp, newExpression);
 

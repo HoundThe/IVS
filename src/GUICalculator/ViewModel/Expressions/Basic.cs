@@ -13,9 +13,8 @@ namespace GUICalculator.View
     {
 
         public Basic()
+            : base("BasicExpressionTemplate")
         {
-            this.Template = Application.Current.FindResource("BasicExpressionTemplate") as ControlTemplate;
-            this.DataContext = this;
             this.AddAuxiliary();
         }
 
@@ -79,93 +78,6 @@ namespace GUICalculator.View
             if (Items.Count > 0)
                 return Items[0];
             return null;
-        }
-        public override Expression MoveLeft(Expression child, bool jumpIn)
-        {
-            if (Caret.Instance.ExpressionSide == ExpressionSide.Left)
-            {
-                if (child != null && PreviousChild(child) != null)
-                {
-                    Expression lastChild = PreviousChild(child).LastChild();
-                    if (lastChild != null)
-                    {
-                        Caret.Instance.ExpressionSide = ExpressionSide.Right;
-                        return lastChild;
-                    }
-                    Caret.Instance.ExpressionSide = ExpressionSide.Right;
-                    return PreviousChild(child); // leave Left
-                }
-                else
-                {
-                    //Caret.Instance.ExpressionSide = ExpressionSide.Right;
-                    Expression tmp;
-                    if (ParentExpression != null && (tmp = ParentExpression.MoveLeft(this, false)) != null)
-                        return tmp;
-                }
-            }
-            else // Right
-            {
-                // jump in from right
-                if (jumpIn && LastChild() != null)
-                {
-                    return LastChild(); // leave right
-                }
-
-                if (child != null && PreviousChild(child) != null)
-                {
-                    return PreviousChild(child); // leave right
-                }
-                else
-                {
-                    Caret.Instance.ExpressionSide = ExpressionSide.Left;
-                    return child;
-                }
-            }
-            return FirstChild();
-        }
-
-        public override Expression MoveRight(Expression child, bool jumpIn)
-        {
-            if (Caret.Instance.ExpressionSide == ExpressionSide.Right)
-            {
-                if (child != null && NextChild(child) != null)
-                {
-                    Expression lastChild = NextChild(child).FirstChild();
-                    if (lastChild != null)
-                    {
-                        Caret.Instance.ExpressionSide = ExpressionSide.Left;
-                        return lastChild;
-                    }
-                    Caret.Instance.ExpressionSide = ExpressionSide.Left;
-                    return NextChild(child); // leave Left
-                }
-                else
-                {
-                    //Caret.Instance.ExpressionSide = ExpressionSide.Left;
-                    Expression tmp;
-                    if (ParentExpression != null && (tmp = ParentExpression.MoveRight(this, false)) != null)
-                        return tmp;
-                }
-            }
-            else // Right
-            {
-                // jump in from right
-                if (jumpIn && FirstChild() != null)
-                {
-                    return FirstChild(); // leave right
-                }
-
-                if (child != null && NextChild(child) != null)
-                {
-                    return NextChild(child); // leave right
-                }
-                else
-                {
-                    Caret.Instance.ExpressionSide = ExpressionSide.Right;
-                    return child;
-                }
-            }
-            return LastChild();
         }
 
         public override bool DeleteChild(Expression child)
