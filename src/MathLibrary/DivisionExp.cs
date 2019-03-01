@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace MathLibrary
 {
-    class DivisionExp : IExpression
+    public class DivisionExp : IExpression
     {
+        public double Evaluate()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

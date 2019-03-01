@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MathLibrary
 {
-    class SubtractionExp : IExpression
+    public class SubtractionExp : IExpression
     {
         private IExpression minuend;
         private IExpression subtrahend;

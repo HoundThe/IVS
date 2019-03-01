@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MathLibrary
 {
-    class MultiplicationExp : IExpression
+    public class MultiplicationExp : IExpression
     {
         private IExpression multiplicant;
         private IExpression multiplier;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MathLibrary
 {
-    class AdditionExp : IExpression
+    public class AdditionExp : IExpression
     {
         private IExpression addend1;
         private IExpression addend2;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MathLibrary
 {
-    interface IExpression
+    public interface IExpression
     {
         double Evaluate();
     }

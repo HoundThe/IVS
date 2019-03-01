@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MathLibrary
 {
-    class FactorialExp : IExpression
+    public class FactorialExp : IExpression
     {
         private IExpression number;
         private double result;

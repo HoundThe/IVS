@@ -6,11 +6,17 @@ using System.Threading.Tasks;
 
 namespace MathLibrary
 {
-    class Number : IExpression
+    public class Number : IExpression
     {
+
+        private double number;
+        public Number(double number)
+        {
+            this.number = (double) number;
+        }
         public double Evaluate()
         {
-            throw new NotImplementedException();
+            return number;
         }
     }
 }
