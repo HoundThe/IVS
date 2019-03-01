@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MathLibrary
 {
-    class Number : IExpression
+    public class Number : IExpression
     {
         private double value;
 
