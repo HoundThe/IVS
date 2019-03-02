@@ -56,8 +56,10 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="SubtractionExpTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AdditionExpTest.cs" />
+    <Compile Include="Values.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
