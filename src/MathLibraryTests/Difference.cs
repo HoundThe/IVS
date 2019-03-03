@@ -14,7 +14,10 @@ namespace MathLibraryTests
 
         private double value1;
         private double value2;
-        private double precission = 1e-15;
+        private double difference;                      //actual differecne (abs) bewtween value1 and value2
+        private double precission = 0.0000000001;       //amount of digits which has to be correct (10 digits precission)
+        private double tolerance;                       //tolerate-able difference bewtween value1 and value2
+
 
         /// <summary>
         /// Constructor
@@ -25,17 +28,18 @@ namespace MathLibraryTests
         {
             this.value1 = value1;
             this.value2 = value2;
+            difference = (value1 > value2 ? (value1 - value2) : (value2 - value1)); //abs(value1 - value2)
+            tolerance = precission * value1;
+            tolerance = tolerance < 0 ? -tolerance : tolerance; //abs(tolerance)
         }
 
         /// <summary>
-        /// Check the absoilut value of difference between 'value1' and 'value2'
+        /// Check the absolut value of difference between 'value1' and 'value2'
         /// </summary>
         /// <returns>true if difference is \< preccision</returns>
         public bool IsAlmostSame()
         {
-            double difference = value1 - value2;
-            difference = (difference < 0 ? -difference : difference);
-            if (difference < precission)
+            if (difference <= tolerance)
             {
                 return true;
             }

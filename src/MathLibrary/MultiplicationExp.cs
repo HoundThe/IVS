@@ -29,7 +29,7 @@ namespace MathLibrary
         /// <returns>Product of multiplicant and multiplier</returns>
         public double Evaluate()
         {
-            return multiplier.Evaluate() * multiplier.Evaluate();
+            return multiplicant.Evaluate() * multiplier.Evaluate();
         }
     }
 }

@@ -21,7 +21,7 @@ namespace MathLibraryTests
         public void TwoDifferentNumbers()
         {
             subExp = new SubtractionExp(new Number(456.336136), new Number(40.2500011));
-            dif = new Difference(subExp.Evaluate(), 416.0861349);
+            dif = new Difference(416.0861349, subExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
@@ -29,7 +29,7 @@ namespace MathLibraryTests
         public void TwoOppositeNumbers()
         {
             subExp = new SubtractionExp(new Number(156776323.0012), new Number(-156776323.0012));
-            dif = new Difference(subExp.Evaluate(), 313552646.0024);
+            dif = new Difference(313552646.0024, subExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
@@ -38,15 +38,15 @@ namespace MathLibraryTests
         public void TwoSameNumbers()
         {
             subExp = new SubtractionExp(new Number(0.1111125224), new Number(0.1111125224));
-            dif = new Difference(subExp.Evaluate(), 0.0);
+            dif = new Difference(0.0, subExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
         [TestMethod]
         public void TwoSpecialFormatNumbers()
         {
-            subExp = new SubtractionExp(new Number(3e-13), new Number(21e-15));
-            dif = new Difference(subExp.Evaluate(), 279e-15);
+            subExp = new SubtractionExp(new Number(3e-13), new Number(2.1e-15));
+            dif = new Difference(2.979e-13, subExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
@@ -55,18 +55,18 @@ namespace MathLibraryTests
         {
             //---Testing two zeroes
             subExp = new SubtractionExp(new Number(0.0), new Number(0.0));
-            dif = new Difference(subExp.Evaluate(), 0.0);
+            dif = new Difference(0.0, subExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
 
 
             //---Testing zero as first argument
             subExp = new SubtractionExp(new Number(0.0), new Number(-0.00000000001));
-            dif = new Difference(subExp.Evaluate(), 0.00000000001);
+            dif = new Difference(0.00000000001, subExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
 
             //---Testing zero as second argument
             subExp = new SubtractionExp(new Number(12e300), new Number(0.0));
-            dif = new Difference(subExp.Evaluate(), 12e300);
+            dif = new Difference(12e300, subExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
     }
