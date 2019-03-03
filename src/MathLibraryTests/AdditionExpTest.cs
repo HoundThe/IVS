@@ -10,89 +10,75 @@ namespace MathLibraryTests
     /// Class containing methods for AdditionExp class' Evaulate method testing
     /// </summary>
     [TestClass]
-    public class AdditionExpTest : Values
+    public class AdditionExpTest : ITest
     {
-        protected AdditionExp addExp;
+        private AdditionExp addExp;
+        private Difference dif;
 
         /// <summary>
-        /// List of doubles, containg results for sum of number from number set(s) on same index, gonna be filled in method deppending on test need
-        /// </summary>
-        protected List<double> results;
-
-        /// <summary>
-        /// Method testing the sum of two differen number from two numbers sets (input1, input2) on same index
+        /// Testing the sum of two random real numbers
         /// </summary>
         [TestMethod]
         public void TwoDifferentNumbers()
         {
-            Assert.AreEqual(input1.Count, input2.Count);
-            results = new List<double> { -1001.40, -243.06, -289.19, -201.50, 102.13, 344.00, -3504.10, 407.35, 1237.00, 1028.00 };
-            Assert.AreEqual(input1.Count, results.Count);
-
-            for (int i = 0; i < results.Count; i++)
-            {
-                addExp = new AdditionExp(new Number(input1[i]), new Number(input2[i]));
-                Assert.AreEqual(addExp.Evaluate(), results[i]);
-            }
-
+            addExp = new AdditionExp(new Number(-35216.012552), new Number(162.26671));
+            dif = new Difference(addExp.Evaluate(), -35053.745842);
+            Assert.IsTrue(dif.IsAlmostSame());
         }
 
         /// <summary>
-        /// Method testing the sum of two same number from one numbers set (input1) on same index
-        /// </summary>
-        [TestMethod]
-        public void TwoSameNumbers()
-        {
-            results = new List<double>() { -1998.0, -512.0, -526.4, -471.0, -305.74, 4.0, 104.0, 26.0, 1964.0, 2006.0 };
-            Assert.AreEqual(results.Count, input1.Count);
-            for (int i = 0; i < results.Count; i++)
-            {
-                addExp = new AdditionExp(new Number(input1[i]), new Number(input1[i]));
-                Assert.AreEqual(addExp.Evaluate(), (results[i]));
-            }
-        }
-
-        /// <summary>
-        /// Method testing the sum of two opposite numbers
+        /// Testing the sum of two opposite real numbers
         /// </summary>
         [TestMethod]
         public void TwoOppositeNumbers()
         {
-            for (int i = 0; i < input1.Count; i++)
-            {
-                addExp = new AdditionExp(new Number(input1[i]), new Number(-(input1[i])));
-                Assert.AreEqual(addExp.Evaluate(), 0.0);
-            }
+            addExp = new AdditionExp(new Number(734.13623), new Number(-734.13623));
+            dif = new Difference(addExp.Evaluate(), 0.0);
+            Assert.IsTrue(dif.IsAlmostSame());
         }
 
         /// <summary>
-        /// Method testing the sum of one number from one testing numbers set (input 1, then input 2) and zero and sum of zeroes 
+        /// Testing the sum of two same real numbers
         /// </summary>
         [TestMethod]
+        public void TwoSameNumbers()
+        {
+            addExp = new AdditionExp(new Number(120.0000001452), new Number(120.0000001452));
+            dif = new Difference(addExp.Evaluate(), 240.0000002904);
+            Assert.IsTrue(dif.IsAlmostSame());
+        }
 
-        public void SumWithZero()
+        /// <summary>
+        /// Testing the sum of two numbers in speacial exponent format
+        /// </summary>
+        [TestMethod]
+        public void TwoSpecialFormatNumbers()
+        {
+            addExp = new AdditionExp(new Number(15e23), new Number(3e21));
+            dif = new Difference(addExp.Evaluate(), 1503e21);
+            Assert.IsTrue(dif.IsAlmostSame());
+        }
+
+        /// <summary>
+        /// Method testing the sum of number and zero in multiple combination
+        /// </summary>
+        [TestMethod]
+        public void WithZero()
         {
             //---Testing two zeroes
             addExp = new AdditionExp(new Number(0.0), new Number(0.0));
-            Assert.AreEqual(addExp.Evaluate(), 0.0);
+            dif = new Difference(addExp.Evaluate(), 0.0);
+            Assert.IsTrue(dif.IsAlmostSame());
 
             //---Testing zero as first argument
-            for (int i = 0; i < input1.Count; i++)
-            {
-                addExp = new AdditionExp(new Number(0), new Number(input1[i]));
-                Assert.AreEqual(addExp.Evaluate(), input1[i]);
-            }
+            addExp = new AdditionExp(new Number(0.0), new Number(-152.252));
+            dif = new Difference(addExp.Evaluate(), -152.252);
+            Assert.IsTrue(dif.IsAlmostSame());
 
             //---Testing zero as second argument
-            for (int i = 0; i < input1.Count; i++)
-            {
-                addExp = new AdditionExp(new Number(input2[i]), new Number(0));
-                Assert.AreEqual(addExp.Evaluate(), input2[i]);
-            }
-
-
-
+            addExp = new AdditionExp(new Number(3333.025123), new Number(0.0));
+            dif = new Difference(addExp.Evaluate(), 3333.025123);
+            Assert.IsTrue(dif.IsAlmostSame());
         }
     }
-
 }

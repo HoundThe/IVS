@@ -14,12 +14,12 @@ namespace MathLibrary
         /// <summary>
         /// Inicializing the minuend and subtrahend
         /// </summary>
-        /// <param name="a">Minuend</param>
-        /// <param name="b">Subtrahend</param>
+        /// <param name="Minuend"></param>
+        /// <param name="Subtrahend"></param>
         public SubtractionExp(IExpression minuend, IExpression subtrahend)
         {
             this.minuend = minuend;
-            this.subtrahend = minuend;
+            this.subtrahend = subtrahend;
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace MathLibrary
         /// <returns>Difference of Minuend and Subtrahend (in order)</returns>
         public double Evaluate()
         {
-            return minuend.Evaluate() - subtrahend.Evaluate();
+            return (minuend.Evaluate() - subtrahend.Evaluate());
         }
     }
 }

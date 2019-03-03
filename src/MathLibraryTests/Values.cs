@@ -13,14 +13,37 @@ namespace MathLibraryTests
     public class Values
     {
         /// <summary>
-        /// List of doubles, containg first random numbers set
+        /// List of doubles, containg first random natural numbers set
         /// </summary>
-        protected List<double> input1 = new List<double> { -999.0, -256.0, -263.2, -235.5, -152.87, 2.0, 52.0, 13.0, 982.0, 1003.0 };
+        protected List<double> ValueIntigers = new List<double> {
+            13.0,
+            1.0,
+            1366663263311.0,
+            22626.0,
+            5.0,
+            123.0,
+            17.0,
+            1366555.0,
+            999.0,
+            10.0,
+        };
+
 
         /// <summary>
-        /// List of doubles, containg second random numbers set
+        /// List of doubles, containg second random real numbers set
         /// </summary>
-        protected List<double> input2 = new List<double> { -2.4, 12.94, -25.99, 34.0, 255.0, 342.0, -3556.1, 394.35, 255.0, 25.0 };
+        protected List<double> input2 = new List<double> {
+            -112.402,
+              12.914,
+             -25.995,
+             134.000,
+             255.001,
+             342.010,
+           -3556.165,
+             394.354,
+             255.013,
+              25.010
+        };
 
         
     }

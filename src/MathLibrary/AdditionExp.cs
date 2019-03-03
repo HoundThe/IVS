@@ -28,7 +28,7 @@ namespace MathLibrary
         /// <returns>Sum of addend1 and addend2</returns>
         public double Evaluate()
         {
-            return addend1.Evaluate() + addend2.Evaluate();
+            return (addend1.Evaluate() + addend2.Evaluate());
         }
     }
 }
