@@ -24,12 +24,12 @@ namespace MathLibrary
         }
 
         /// <summary>
-        /// Multiplies two numbers inicialized by constructor
+        /// Multiplies two numbers initialized by constructor
         /// </summary>
         /// <returns>Product of multiplicant and multiplier</returns>
         public double Evaluate()
         {
-            return multiplicant.Evaluate() * multiplier.Evaluate();
+            return (multiplicant.Evaluate() * multiplier.Evaluate());
         }
     }
 }

@@ -33,7 +33,7 @@ namespace MathLibraryTests
         [TestMethod]
         public void TwoOppositeNumbers()
         {
-            mulExp = new MultiplicationExp(new Number(125235.1265436), new Number(1/ 125235.1265436));
+            mulExp = new MultiplicationExp(new Number(125235.1265436), new Number(0.00000798498015372));
             dif = new Difference(1.0, mulExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
 
