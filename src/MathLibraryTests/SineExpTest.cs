@@ -97,8 +97,8 @@ namespace MathLibraryTests
         [TestMethod]
         public void InputSevenPiDivSix()
         {
-            sineExp = new SineExp(new Number(SevenPiDivFour));
-            dif = new Difference(((-SqrtTwoDivTwo)), sineExp.Evaluate());
+            sineExp = new SineExp(new Number(SevenPiDivSix));
+            dif = new Difference(((-OneDivTwo)), sineExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
