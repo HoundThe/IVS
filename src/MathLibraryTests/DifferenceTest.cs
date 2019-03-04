@@ -35,7 +35,7 @@ namespace MathLibraryTests
         }
 
         /// <summary>
-        /// Testing the aproximatly same values (numbers have same atleast 11 highest digits)
+        /// Testing the aproximatly same values (+-10^-8% of first Difference argument)
         /// </summary>
         [TestMethod]
         public void AlmostSame()
@@ -58,7 +58,7 @@ namespace MathLibraryTests
 
 
         /// <summary>
-        /// Testing different values (numbers have different atleast 1 of 11 highest digit)
+        /// Testing different values
         /// </summary>
         [TestMethod]
         public void DifferentValues()
