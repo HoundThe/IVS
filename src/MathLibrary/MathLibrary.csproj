@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="AdditionExp.cs" />
     <Compile Include="CosineExp.cs" />
+    <Compile Include="Difference.cs" />
     <Compile Include="DivisionExp.cs" />
     <Compile Include="FactorialExp.cs" />
     <Compile Include="IExpression.cs" />

@@ -57,7 +57,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CosineExpTest.cs" />
-    <Compile Include="Difference.cs" />
+    <Compile Include="DifferenceTest.cs" />
     <Compile Include="FactorialExpTest.cs" />
     <Compile Include="TrigonoValues.cs" />
     <Compile Include="ITest.cs" />
