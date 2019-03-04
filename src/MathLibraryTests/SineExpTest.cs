@@ -41,7 +41,7 @@ namespace MathLibraryTests
         [TestMethod]
         public void InputFivePiDivSix()
         {
-            sineExp = new SineExp(new Number(FivePiDivFour));
+            sineExp = new SineExp(new Number(FivePiDivSix));
             dif = new Difference((OneDivTwo), sineExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
