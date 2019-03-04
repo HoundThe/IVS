@@ -57,7 +57,9 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Difference.cs" />
+    <Compile Include="FactorialExpTest.cs" />
     <Compile Include="ITest.cs" />
+    <Compile Include="PowerExpTest.cs" />
     <Compile Include="SubtractionExpTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AdditionExpTest.cs" />

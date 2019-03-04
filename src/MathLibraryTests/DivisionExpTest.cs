@@ -10,8 +10,8 @@ namespace MathLibraryTests
     [TestClass]
     public class DivisionExpTest :ITest
     {
-        DivisionExp divExp;
-        Difference dif;
+        private DivisionExp divExp;
+        private Difference dif;
 
         /// <summary>
         /// Testing the quotient of two random real numbers

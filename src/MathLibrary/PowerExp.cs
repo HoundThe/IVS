@@ -6,10 +6,17 @@ using System.Threading.Tasks;
 
 namespace MathLibrary
 {
+
     public class PowerExp : IExpression
     {
+        private IExpression mantis;
+        private IExpression exponent;
 
-
+        public PowerExp(IExpression mantis, IExpression exponent)
+        {
+            this.mantis = mantis;
+            this.exponent = exponent;
+        }
 
         public double Evaluate()
         {

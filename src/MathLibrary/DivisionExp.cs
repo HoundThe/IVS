@@ -26,7 +26,7 @@ namespace MathLibrary
         /// <summary>
         /// Divide two numbers initialized by constructor
         /// </summary>
-        /// <returns>Quotient of twi numbers (in order) or throw exception if zero division is tried</returns>
+        /// <returns>Quotient of two numbers (in order) or throw exception if zero division is tried</returns>
         public double Evaluate()
         {
             if (divisor.Evaluate() == 0)
