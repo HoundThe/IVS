@@ -8,6 +8,13 @@ namespace MathLibrary
 {
     public class SineExp : IExpression
     {
+        private IExpression value;
+
+        public SineExp(IExpression value)
+        {
+            this.value = value;
+        }
+
         public double Evaluate()
         {
             throw new NotImplementedException();

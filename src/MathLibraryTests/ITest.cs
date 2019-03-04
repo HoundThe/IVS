@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace MathLibraryTests
 {
+    /// <summary>
+    /// Auxiliari interface for AdditionExpTest, SubtrationExpTest, MultiplicationExpTest and DivisionExpTest classes
+    /// Including testing methods
+    /// </summary>
     interface ITest
     {
         void WithZero();

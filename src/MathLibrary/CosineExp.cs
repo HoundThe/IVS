@@ -8,7 +8,7 @@ namespace MathLibrary
 {
     public class CosineExp : IExpression
     {
-        private IExpression result;
+
         private IExpression value;
 
         /// <summary>

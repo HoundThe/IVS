@@ -8,6 +8,14 @@ namespace MathLibrary
 {
     public class TangentExp : IExpression
     {
+
+        private IExpression value;
+
+        public TangentExp(IExpression value)
+        {
+            this.value = value;
+        }
+
         public double Evaluate()
         {
             throw new NotImplementedException();

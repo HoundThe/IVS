@@ -50,6 +50,7 @@
     <Compile Include="PowerExp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RootExp.cs" />
+    <Compile Include="SimplifyArgument.cs" />
     <Compile Include="SineExp.cs" />
     <Compile Include="SubtractionExp.cs" />
     <Compile Include="TangentExp.cs" />
