@@ -1,4 +1,12 @@
-﻿using System;
+﻿/************************************************************
+ *      ROZSIVAL MICHAL                                     *
+ *      IVS - project 2                                     *
+ *      FEB/MAR 2019                                        *
+ *      Testing class for MathLibrary                       *
+ *      Version 1.0                                         *
+ ************************************************************/
+
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MathLibrary;
 

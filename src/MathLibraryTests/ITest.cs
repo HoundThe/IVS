@@ -1,4 +1,12 @@
-﻿using System;
+﻿/************************************************************
+ *      ROZSIVAL MICHAL                                     *
+ *      IVS - project 2                                     *
+ *      FEB/MAR 2019                                        *
+ *      Interface for MathLibrary's testing classes         *
+ *      Version 1.0                                         *
+ ************************************************************/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

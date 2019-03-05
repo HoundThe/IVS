@@ -15,7 +15,7 @@ namespace MathLibraryTests
         private double value1;
         private double value2;
         private double difference;                      //actual differecne (abs) bewtween value1 and value2
-        private double precission = 0.0000000001;       //amount of digits which has to be correct (10 digits precission)
+        private double precission = 0.0000000001;       //setting the procentual tolerance for differnce between value1 and value2 (10^-8%)
         private double tolerance;                       //tolerate-able difference bewtween value1 and value2
 
 
@@ -30,7 +30,7 @@ namespace MathLibraryTests
             this.value2 = value2;
             difference = (value1 > value2 ? (value1 - value2) : (value2 - value1)); //abs(value1 - value2)
             tolerance = precission * value1;
-            tolerance = tolerance < 0 ? -tolerance : tolerance; //abs(tolerance)
+            tolerance = (tolerance < 0 ? -tolerance : tolerance);                   //abs(tolerance)
         }
 
         /// <summary>

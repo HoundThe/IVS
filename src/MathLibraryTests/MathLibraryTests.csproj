@@ -59,10 +59,10 @@
     <Compile Include="CosineExpTest.cs" />
     <Compile Include="DifferenceTest.cs" />
     <Compile Include="FactorialExpTest.cs" />
-    <Compile Include="TrigonoValues.cs" />
     <Compile Include="ITest.cs" />
     <Compile Include="ITestTrigono.cs" />
     <Compile Include="PowerExpTest.cs" />
+    <Compile Include="RootExpTest.cs" />
     <Compile Include="SimplifyArgumentTest.cs" />
     <Compile Include="SineExpTest.cs" />
     <Compile Include="SubtractionExpTest.cs" />

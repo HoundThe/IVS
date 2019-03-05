@@ -1,4 +1,12 @@
-﻿using System;
+﻿/************************************************************
+ *      ROZSIVAL MICHAL                                     *
+ *      IVS - project 2                                     *
+ *      FEB/MAR 2019                                        *
+ *      Testing class for MathLibrary                       *
+ *      Version 1.0                                         *
+ ************************************************************/
+
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MathLibrary;
 
@@ -8,11 +16,79 @@ namespace MathLibraryTests
     /// Class testing SimplifyArgument class
     /// </summary>
     [TestClass]
-    public class SimplifyArgumentTest
+    public class SimplifyArgumentTest : TrigonoValues
     {
+        Difference dif;
+        SimplifyArgument sim;
+
+        /// <summary>
+        /// Inputing values in accept-able interval of <-pi;pi> ~ <-3.14;3.14>
+        /// </summary>
         [TestMethod]
-        public void TestMethod1()
+        public void InRange()
         {
+            sim = new SimplifyArgument(-Pi);
+            dif = new Difference(-Pi, sim.SimplifyOfTwoPi());
+            Assert.IsTrue(dif.IsAlmostSame());
+
+            sim = new SimplifyArgument(-PiDivSix);
+            dif = new Difference(-PiDivSix, sim.SimplifyOfTwoPi());
+            Assert.IsTrue(dif.IsAlmostSame());
+
+            sim = new SimplifyArgument(Zero);
+            dif = new Difference(Zero, sim.SimplifyOfTwoPi());
+            Assert.IsTrue(dif.IsAlmostSame());
+
+            sim = new SimplifyArgument(PiDivFour);
+            dif = new Difference(PiDivFour, sim.SimplifyOfTwoPi());
+            Assert.IsTrue(dif.IsAlmostSame());
+
+            sim = new SimplifyArgument(Pi);
+            dif = new Difference(Pi, sim.SimplifyOfTwoPi());
+            Assert.IsTrue(dif.IsAlmostSame());
+
+            sim = new SimplifyArgument(2.8665);
+            dif = new Difference(2.8665, sim.SimplifyOfTwoPi());
+            Assert.IsTrue(dif.IsAlmostSame());
         }
+
+        /// <summary>
+        /// Inputing value smaller than -pi ~ -3.14 and expecting output in range of <-pi;pi> ~ <-3.14;3.14>
+        /// </summary>
+        [TestMethod]
+        public void OutOfRangeSmaller()
+        { //-----------TODO
+            sim = new SimplifyArgument(-ThreePiDivTwo);
+            dif = new Difference(PiDivTwo, sim.SimplifyOfTwoPi());
+            Assert.IsTrue(dif.IsAlmostSame());
+
+            sim = new SimplifyArgument(-TwoPi);
+            dif = new Difference(Zero, sim.SimplifyOfTwoPi());
+            Assert.IsTrue(dif.IsAlmostSame());
+
+            sim = new SimplifyArgument(-5443.366);
+            dif = new Difference(-20.97707990401687041347, sim.SimplifyOfTwoPi());
+            Assert.IsTrue(dif.IsAlmostSame());
+        }
+
+        /// <summary>
+        /// Inputing value greater than pi ~ 3.14 and expecting output in range of <-pi;pi> ~ <-3.14;3.14>
+        /// </summary>
+        [TestMethod]
+        public void OutOfRangeGreater()
+        {
+            sim = new SimplifyArgument(ThreePiDivTwo);
+            dif = new Difference(-PiDivTwo, sim.SimplifyOfTwoPi());
+            Assert.IsTrue(dif.IsAlmostSame());
+
+            sim = new SimplifyArgument(TwoPi);
+            dif = new Difference(Zero, sim.SimplifyOfTwoPi());
+            Assert.IsTrue(dif.IsAlmostSame());
+
+            sim = new SimplifyArgument(654354.2572);
+            dif = new Difference(4.48975439632553356986, sim.SimplifyOfTwoPi());
+            Assert.IsTrue(dif.IsAlmostSame());
+        }
+
     }
 }
