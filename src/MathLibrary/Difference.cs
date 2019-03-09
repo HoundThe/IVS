@@ -22,7 +22,7 @@ namespace MathLibrary
 
         private double value1;
         private double value2;
-        private double difference;                      //actual differecne (abs) bewtween value1 and value2
+        private double difference;                      //actual differecne (abs) bewtween value1 and value
         private double precission = 0.0000000001;       //setting the procentual tolerance for differnce between value1 and value2 (10^-8%)
         private double tolerance;                       //tolerate-able difference bewtween value1 and value2
 

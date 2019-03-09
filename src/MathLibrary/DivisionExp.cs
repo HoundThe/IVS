@@ -40,7 +40,7 @@ namespace MathLibrary
             if (divisor.Evaluate() == 0)
             {
                 throw new ArgumentException("Can't devide by zero!");
-            } 
+            }
             return (divident.Evaluate() / divisor.Evaluate());
         }
     }

@@ -35,7 +35,7 @@ namespace MathLibrary
         }
 
         /// <summary>
-        /// Computing the value of sin(argument) by the Taylor series
+        /// Computing the value of sin(argument) using continued fraction
         /// </summary>
         private void Sin()
         {

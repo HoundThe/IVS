@@ -153,8 +153,8 @@ namespace MathLibraryTests
         [TestMethod]
         public void RandomValues()
         {
-            tanExp = new TangentExp(new Number(-54354.35334));
-            dif = new Difference((11.32860504664168507550), tanExp.Evaluate());
+            tanExp = new TangentExp(new Number(-54352.35334));
+            dif = new Difference((0.35504229132005616478), tanExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
 
             tanExp = new TangentExp(new Number(-542.543245222));
