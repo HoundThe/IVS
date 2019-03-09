@@ -103,7 +103,7 @@ namespace MathLibrary
 
             dif1 = new Difference(simplifiedArgument, -PiDivTwo);
             dif2 = new Difference(simplifiedArgument, PiDivTwo);
-            if (dif1.IsAlmostSame()) { result = -One; throw new ArgumentException("Wrong argument of tan(x) function!"); }
+            if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = -One; throw new ArgumentException("Wrong argument of tan(x) function!"); }
 
             return false;
 

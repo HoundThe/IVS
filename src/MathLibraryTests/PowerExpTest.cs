@@ -161,7 +161,7 @@ namespace MathLibraryTests
             Assert.IsTrue(dif.IsAlmostSame());
 
             powExp = new PowerExp(new Number(7.0), new Number(43.0));
-            dif = new Difference(21838143759917965991093122.0, powExp.Evaluate());
+            dif = new Difference(2.18381437599179659910931225275e36, powExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
 
             powExp = new PowerExp(new Number(-1.12), new Number(101.0));
