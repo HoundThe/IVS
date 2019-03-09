@@ -8,7 +8,14 @@ namespace MathLibrary
 {
     public class RootExp : IExpression
     {
+        private IExpression mantis;
+        private IExpression root;
 
+        public RootExp(IExpression mantis, IExpression root)
+        {
+            this.mantis = mantis;
+            this.root = root;
+        }
 
         public double Evaluate()
         {

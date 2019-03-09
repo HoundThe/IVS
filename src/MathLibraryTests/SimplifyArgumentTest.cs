@@ -57,7 +57,7 @@ namespace MathLibraryTests
         /// </summary>
         [TestMethod]
         public void OutOfRangeSmaller()
-        { //-----------TODO
+        {
             sim = new SimplifyArgument(-ThreePiDivTwo);
             dif = new Difference(PiDivTwo, sim.SimplifyOfTwoPi());
             Assert.IsTrue(dif.IsAlmostSame());
@@ -67,7 +67,7 @@ namespace MathLibraryTests
             Assert.IsTrue(dif.IsAlmostSame());
 
             sim = new SimplifyArgument(-5443.366);
-            dif = new Difference(-20.97707990401687041347, sim.SimplifyOfTwoPi());
+            dif = new Difference(-2.12752398247811098270, sim.SimplifyOfTwoPi());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 

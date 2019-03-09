@@ -21,7 +21,7 @@ namespace MathLibraryTests
     {
         private SineExp sineExp;
         private Difference dif;
-
+       
         [TestMethod]
         public void InputEightPiDivSix()
         {

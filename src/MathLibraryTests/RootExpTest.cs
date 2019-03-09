@@ -26,7 +26,7 @@ namespace MathLibraryTests
         /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void ComplexResult()
+        public void ForbiddenRootValue()
         {
             rootExp = new RootExp(new Number(25.0), new Number(0.0));
             rootExp.Evaluate();
