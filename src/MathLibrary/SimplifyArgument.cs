@@ -2,7 +2,7 @@
  *      ROZSIVAL MICHAL                                     *
  *      IVS - project 2                                     *
  *      FEB/MAR 2019                                        *
- *      Testing class for MathLibrary                       *
+ *      Class of the MathLibary                             *
  *      Version 1.0                                         *
  ************************************************************/
 

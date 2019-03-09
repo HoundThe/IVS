@@ -66,7 +66,7 @@ namespace MathLibraryTests
         public void InputPi()
         {
             cosineExp = new CosineExp(new Number(Pi));
-            dif = new Difference((-Zero), cosineExp.Evaluate());
+            dif = new Difference((-1), cosineExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
@@ -106,7 +106,7 @@ namespace MathLibraryTests
         public void InputSevenPiDivSix()
         {
             cosineExp = new CosineExp(new Number(SevenPiDivSix));
-            dif = new Difference(((SqrtThreeDivTwo)), cosineExp.Evaluate());
+            dif = new Difference(((-SqrtThreeDivTwo)), cosineExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
