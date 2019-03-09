@@ -86,7 +86,7 @@ namespace MathLibraryTests
             Assert.IsTrue(dif.IsAlmostSame());
 
             sim = new SimplifyArgument(654354.2572);
-            dif = new Difference(4.48975439632553356986, sim.SimplifyOfTwoPi());
+            dif = new Difference(-1.79343091085405290706, sim.SimplifyOfTwoPi());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 

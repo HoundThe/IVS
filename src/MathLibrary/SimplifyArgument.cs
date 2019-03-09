@@ -28,7 +28,6 @@ namespace MathLibrary
         public SimplifyArgument(double argument)
         {
             this.argument = argument;
-            period = (uint)(((argument >= 0) ? argument : -argument) / TwoPi);
         }
 
         /// <summary>
@@ -77,25 +76,29 @@ namespace MathLibrary
         /// <returns>Argument if no need of setting or argumentSimplified if any change's been made</returns>
         public double SimplifyOfTwoPi()
         {
-            if(InRange())
+            period = (uint)(((argument >= 0) ? argument : -argument) / TwoPi);
+
+            if (InRange())
             {
-                ;//empty body
+                return argument;
             }
-            else if(InExtendedRange() && argument < 0)
-            {
-                argument += TwoPi;
-            } 
-            else if(InExtendedRange() && argument > 0)
-            {
-                argument -= TwoPi;
-            }
-            else if (argument < 0)
+
+            if (argument < 0)
             {
                 ExpandArgument();
             }
             else if(argument > 0)
             {
                 SchrinkArgument();
+            }
+
+            if (InExtendedRange() && !InRange() && argument < 0)
+            {
+                argument += TwoPi;
+            }
+            else if (InExtendedRange() && !InRange() && argument > 0)
+            {
+                argument -= TwoPi;
             }
             return argument;
         }
