@@ -23,7 +23,7 @@ namespace MathLibrary
         private Difference dif1;
         private Difference dif2;
         private SimplifyArgument sim;
-        private int iteration = 20;
+        private readonly int iteration = 100;
 
         /// <summary>
         /// Constructor inicializin argument

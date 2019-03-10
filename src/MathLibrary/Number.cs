@@ -8,7 +8,7 @@ namespace MathLibrary
 {
     public class Number : IExpression
     {
-        private double value;
+        private readonly double value;
 
         public Number(double value)
         {

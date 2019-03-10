@@ -1,4 +1,12 @@
-﻿using System;
+﻿/************************************************************
+ *      ROZSIVAL MICHAL                                     *
+ *      IVS - project 2                                     *
+ *      FEB/MAR 2019                                        *
+ *      Class of the MathLibary                             *
+ *      Version 1.0                                         *
+ ************************************************************/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,26 +16,65 @@ namespace MathLibrary
 {
     public class FactorialExp : IExpression
     {
-        private IExpression number;
-        private double result;
+        private IExpression argument;
+        private double result = 1;
+        private int naturalArgument;
 
+        
         /// <summary>
-        /// Takes number and calculate it's factorial
+        /// Constructor inicializing arguments
         /// </summary>
-        /// <param name="number"></param>
-        public FactorialExp(IExpression number)
+        /// <param name="argument"></param>
+        public FactorialExp(IExpression argument)
         {
-            this.number = number;
+            this.argument = argument;
         }
 
+        /// <summary>
+        /// Mathod checking if argument is natural number or zero
+        /// </summary>
+        /// <returns></returns>
+        private bool NaturalOrZero()
+        {
+            if(argument.Evaluate() < 0.0)
+            {
+                return false;
+            }
+            if(argument.Evaluate() - (int)argument.Evaluate() != 0)
+            {
+                return false;
+            }
+            return true;
+        }
 
         /// <summary>
-        /// Calculate factorial
+        /// Computing factorial of argument
         /// </summary>
-        /// <returns>Factorial of the inputed number</returns>
+        private void Factorial()
+        {
+            for (int i = 1; i <= naturalArgument; i++)
+                result *= i;
+        }
+
+        /// <summary>
+        /// Calculate factorial of argument
+        /// </summary>
+        /// <returns>Factorial of the inputed argument or throw exception if non-natural number* (*including zero)</returns>
         public double Evaluate()
         {
-            //ToDo
+            if(!NaturalOrZero())
+            {
+                throw new ArgumentException("Argument of factorial has to be natural number or zero!");
+            }
+            naturalArgument = (int)argument.Evaluate();
+            if(naturalArgument == 0)
+            {
+                result = 1;
+            }
+            else
+            {
+                Factorial();
+            }
             return result;
         }
 

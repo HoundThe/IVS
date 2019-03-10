@@ -53,7 +53,7 @@ namespace MathLibrary
         /// <summary>
         /// Computing the mantis to exponent power
         /// </summary>
-        private void power()
+        private void Power()
         {
             result = mantis.Evaluate();
             for(int i = 1; i < naturalExponent; i++)
@@ -76,14 +76,20 @@ namespace MathLibrary
             if (!NaturalOrZero()) //if exponent is decimal or negative number
             {
                 throw new ArgumentException("Power has to be Natural number or zero by zero!");
-            } 
+            }
             naturalExponent = (int)exponent.Evaluate();
             if(naturalExponent == 0) //number (excluding 0) to zero is one
             {
                 result = 1;
-                return result;
             }
-            power();
+            else if(naturalExponent == 1) //number to first power is the same number
+            {
+                result = mantis.Evaluate();
+            }
+            else
+            {
+                Power();
+            }
             return result;
 
         }
