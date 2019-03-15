@@ -62,9 +62,15 @@
     </ApplicationDefinition>
     <Compile Include="ViewModel\Direction.cs" />
     <Compile Include="ViewModel\Expressions\Auxiliary.cs" />
+    <Compile Include="ViewModel\Expressions\LeftParenthesis.cs" />
     <Compile Include="ViewModel\Expressions\MultiplicationSign.cs" />
+    <Compile Include="ViewModel\Expressions\Power.cs" />
+    <Compile Include="ViewModel\Expressions\RightParenthesis.cs" />
+    <Compile Include="ViewModel\Expressions\Root.cs" />
     <Compile Include="ViewModel\Expressions\TerminalExpression.cs" />
+    <Compile Include="ViewModel\Expressions\TrigonometricFunction.cs" />
     <Compile Include="ViewModel\RootVM.cs" />
+    <Compile Include="ViewModel\TrigonometricFunction.cs" />
     <Compile Include="View\CustomControls\Caret.cs" />
     <Compile Include="ViewModel\Expressions\ExpressionSide.cs" />
     <Compile Include="View\FrameworkElementExtension.cs" />
@@ -131,7 +137,7 @@
     <Folder Include="View\Converter\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ViewModel\Expressions\Root.cs" />
+    <Compile Include="ViewModel\Expressions\SquareRoot.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

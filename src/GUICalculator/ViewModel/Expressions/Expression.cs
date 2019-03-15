@@ -13,6 +13,7 @@ namespace GUICalculator.View
     public abstract class Expression : ContentControl
     {
         private static Caret caret = Caret.Instance;
+        private Expression _parentExpression;
 
         public Expression(string templateName)
         {
@@ -23,30 +24,43 @@ namespace GUICalculator.View
             MouseLeftButtonUp += OnMouseClick;
         }
 
-        public Expression ParentExpression { get; set; }
+        public Expression ParentExpression
+        {
+            get => _parentExpression;
+            set
+            {
+                _parentExpression = value;
+                OnParentExpressionSet(_parentExpression);
+            }
+        }
+
+        protected virtual void OnParentExpressionSet(Expression parent)
+        {
+
+        }
 
         private void OnMouseClick(object sender, MouseButtonEventArgs e)
         {
-            Console.WriteLine("Type of sender: {0}", sender.GetType());
+            //Console.WriteLine("Type of sender: {0}", sender.GetType());
             ContentControl control = sender as ContentControl;
 
             Point relativePoint = e.GetPosition(Application.Current.MainWindow);
-            Console.WriteLine("{0}", relativePoint);
+            //Console.WriteLine("{0}", relativePoint);
 
             Point locationFromWindow = control.LeftPositionOf();
             double distFromLeft = relativePoint.X - locationFromWindow.X;
             double distFromRight = locationFromWindow.X + control.ActualWidth - relativePoint.X;
-            Console.WriteLine("From left: {0}, from right: {1}", distFromLeft, distFromRight);
+            //Console.WriteLine("From left: {0}, from right: {1}", distFromLeft, distFromRight);
 
             if (distFromLeft <= distFromRight)
             {
-                Console.WriteLine("Caret X location: {0}, height: {1}", locationFromWindow.X, control.ActualHeight);
+                //Console.WriteLine("Caret X location: {0}, height: {1}", locationFromWindow.X, control.ActualHeight);
                 locationFromWindow = control.LeftPositionOf();
                 caret.ExpressionSide = ExpressionSide.Left;
             }
             else
             {
-                Console.WriteLine("Caret X location: {0}, height: {1}", locationFromWindow.X + control.ActualWidth, control.ActualHeight);
+                //Console.WriteLine("Caret X location: {0}, height: {1}", locationFromWindow.X + control.ActualWidth, control.ActualHeight);
                 locationFromWindow = control.RightPositionOf();
                 caret.ExpressionSide = ExpressionSide.Right;
             }
@@ -81,7 +95,6 @@ namespace GUICalculator.View
                         Caret.Instance.ExpressionSide = ExpressionSide.Right;
                         return lastChild;
                     }
-                    //Caret.Instance.ExpressionSide = ExpressionSide.Right;
                     return PreviousChild(child); // leave Left
                 }
                 else if (child != null && PreviousChild(child) == null)
@@ -90,23 +103,21 @@ namespace GUICalculator.View
                 }
                 else
                 {
-                    //Caret.Instance.ExpressionSide = ExpressionSide.Right;
                     Expression tmp;
                     if (ParentExpression != null && (tmp = ParentExpression.MoveLeft(this, false)) != null)
                         return tmp;
                 }
             }
-            else // Right
+            else // ExpressionSide.Right
             {
                 // jump in from right
                 if (jumpIn && LastChild() != null)
                 {
-                    return LastChild(); // leave right
+                    return LastChild();
                 }
-
-                if (child != null && PreviousChild(child) != null)
+                else if (child != null && PreviousChild(child) != null)
                 {
-                    return PreviousChild(child); // leave right
+                    return PreviousChild(child);
                 }
                 else if (child != null && PreviousChild(child) == null)
                 {
@@ -129,14 +140,12 @@ namespace GUICalculator.View
             {
                 if (child != null && NextChild(child) != null)
                 {
-                    Expression lastChild = NextChild(child).FirstChild();
-                    if (lastChild != null)
+                    Expression nextChild = NextChild(child).FirstChild();
+                    if (nextChild != null)
                     {
                         Caret.Instance.ExpressionSide = ExpressionSide.Left;
-                        return lastChild;
+                        return nextChild;
                     }
-
-                    //Caret.Instance.ExpressionSide = ExpressionSide.Left;
                     return NextChild(child);
                 }
                 else if (child != null && NextChild(child) == null)
@@ -145,23 +154,21 @@ namespace GUICalculator.View
                 }
                 else
                 {
-                    //Caret.Instance.ExpressionSide = ExpressionSide.Left;
                     Expression tmp;
                     if (ParentExpression != null && (tmp = ParentExpression.MoveRight(this, false)) != null)
                         return tmp;
                 }
             }
-            else // Right
+            else // ExpressionSide.Left
             {
-                // jump in from right
+                // jump in from left
                 if (jumpIn && FirstChild() != null)
                 {
-                    return FirstChild(); // leave right
+                    return FirstChild(); 
                 }
-
-                if (child != null && NextChild(child) != null)
+                else if (child != null && NextChild(child) != null)
                 {
-                    return NextChild(child); // leave right
+                    return NextChild(child); 
                 }
                 else if (child != null && NextChild(child) == null)
                 {

@@ -23,58 +23,35 @@ namespace GUICalculator.ViewModel
         public Expression _expression;
         public ICommand _characterInputCommand;
         public ICommand _multiplicationCommand;
+        public ICommand _powerCommand;
         public ICommand _rootCommand;
+        public ICommand _squareRootCommand;
+        public ICommand _ansCommand;
+        public ICommand _clearCommand;
+        public ICommand _deleteCommand;
+        public ICommand _evaluateCommand;
+        public ICommand _sineCommand;
+        public ICommand _cosineCommand;
+        public ICommand _tangentCommand;
 
         public MainWindowVM()
         {
-            Expression = new Basic();
-            Caret.Instance.SetActiveExpression(Expression.FirstChild());
-
-            //var exp = new Basic(null);
-            //var sqRoot = new Root(exp);
-            //AddNumber(54.45, sqRoot);
-            //AddNumber('*', sqRoot);
-            //var sqRoot2 = new Root(sqRoot);
-            //AddNumber(46.6, sqRoot2);
-            //sqRoot.InnerExpression.Add(sqRoot2);
-            //exp.Items.Add(sqRoot);
-            //exp.Items.Add(new Character('+', exp));
-            //AddNumber(54.24, exp);
-            //exp.Items.Add(new Character('+', exp));
-            //AddNumber(46, exp);
-            //Expression = exp;
+            ClearExpressions();
         }
 
-        public ICommand CharacterInputCommand
-        {
-            get
-            {
-                if (_characterInputCommand == null)
-                    _characterInputCommand = new RelayCommand<string>(AddCharacterExpression);
-                return _characterInputCommand;
-            }
-        }
+        public ICommand CharacterInputCommand => _characterInputCommand ?? (_characterInputCommand = new RelayCommand<string>(AddCharacterExpression));
+        public ICommand MultiplicationCommand => _multiplicationCommand ?? (_multiplicationCommand = new RelayCommand(AddMultiplicationExpression));
+        public ICommand PowerCommand => _powerCommand ?? (_powerCommand = new RelayCommand(AddPowerExpression));
+        public ICommand RootCommand => _rootCommand ?? (_rootCommand = new RelayCommand(AddRootExpression));
+        public ICommand SquareRootCommand => _squareRootCommand ?? (_squareRootCommand = new RelayCommand(AddSquareRootExpression));
+        public ICommand AnsCommand => _ansCommand ?? (_ansCommand = new RelayCommand(PerformAns));
+        public ICommand ClearCommand => _clearCommand ?? (_clearCommand = new RelayCommand(ClearExpressions));
+        public ICommand DeleteCommand => _deleteCommand ?? (_deleteCommand = new RelayCommand(() => DeleteExpression(Direction.Left)));
+        public ICommand EvaluateCommand => _evaluateCommand ?? (_evaluateCommand = new RelayCommand(EvaluateExpression));
+        public ICommand SineCommand => _sineCommand ?? (_sineCommand = new RelayCommand(() => AddTrigonometricExpression(TrigonometricFunctionType.Sine)));
+        public ICommand CosineCommand => _cosineCommand ?? (_cosineCommand = new RelayCommand(() => AddTrigonometricExpression(TrigonometricFunctionType.Cosine)));
+        public ICommand TangentCommand => _tangentCommand ?? (_tangentCommand = new RelayCommand(() => AddTrigonometricExpression(TrigonometricFunctionType.Tangent)));
 
-        public ICommand MultiplicationCommand
-        {
-            get
-            {
-                if (_multiplicationCommand == null)
-                    _multiplicationCommand = new RelayCommand(AddMultiplicationExpression);
-                return _multiplicationCommand;
-            }
-        }
-
-        public ICommand RootCommand
-        {
-            get
-            {
-                if (_rootCommand == null)
-                    _rootCommand = new RelayCommand(AddRootExpression);
-                return _rootCommand;
-            }
-        }
-        
         public View.Expression Expression
         {
             get => _expression;
@@ -84,20 +61,55 @@ namespace GUICalculator.ViewModel
                 OnPropertyChanged(nameof(Expression));
             }
         }
+        
+        private void EvaluateExpression()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ClearExpressions()
+        {
+            Expression = new Basic();
+            Caret.Instance.SetActiveExpression(Expression.FirstChild());
+        }
+
+        private void PerformAns()
+        {
+            throw new NotImplementedException();
+        }
 
         public void AddRootExpression()
         {
-            Expression activeExp = Caret.Instance.ActiveExpression;
-            Root root = new Root();
-            AddNewExpression(activeExp, root);
+            Expression root = new Root();
+            AddNewExpression(Caret.Instance.ActiveExpression, root);
             Caret.Instance.SetActiveExpression(root.FirstChild());
+        }
+
+        public void AddSquareRootExpression()
+        {
+            Expression squareRoot = new SquareRoot();
+            AddNewExpression(Caret.Instance.ActiveExpression, squareRoot);
+            Caret.Instance.SetActiveExpression(squareRoot.FirstChild());
+        }
+
+        public void AddPowerExpression()
+        {
+            Expression power = new Power();
+            AddNewExpression(Caret.Instance.ActiveExpression, power);
+            Caret.Instance.SetActiveExpression(power.FirstChild());
+        }
+
+        public void AddTrigonometricExpression(TrigonometricFunctionType type)
+        {
+            Expression trigFunc = new TrigonometricFunction(type);
+            AddNewExpression(Caret.Instance.ActiveExpression, trigFunc);
+            Caret.Instance.SetActiveExpression(trigFunc.FirstChild());
         }
 
         public void AddMultiplicationExpression()
         {
-            Expression activeExp = Caret.Instance.ActiveExpression;
             Expression multiplicationSign = new MultiplicationSign();
-            AddNewExpression(activeExp, multiplicationSign);
+            AddNewExpression(Caret.Instance.ActiveExpression, multiplicationSign);
             Caret.Instance.SetActiveExpression(multiplicationSign);
         }
 
@@ -110,8 +122,24 @@ namespace GUICalculator.ViewModel
 
         public void AddCharacterExpression(char character)
         {
+            Expression characterExp = null;
+            switch (character)
+            {
+                case '(':
+                    {
+                        characterExp = new LeftParenthesis();
+                    } break;
+                case ')':
+                    {
+                        characterExp = new RightParenthesis();
+                    } break;
+                default:
+                    {
+                        characterExp = new Character(character);
+                    } break;
+            }
+
             Expression activeExp = Caret.Instance.ActiveExpression;
-            Expression characterExp = new Character(character);
             AddNewExpression(activeExp, characterExp);
             Caret.Instance.SetActiveExpression(characterExp);
         }
@@ -125,8 +153,8 @@ namespace GUICalculator.ViewModel
                 Expression parent = activeExp.ParentExpression;
                 if (parent == null)
                     return;
-                newExpression.ParentExpression = parent;
                 parent.AddExpression(activeExp, newExpression);
+                newExpression.ParentExpression = parent;
 
                 // make sure the new expression is displayed and new position is calculated for this element
                 activeExp.UpdateLayout();
@@ -154,6 +182,7 @@ namespace GUICalculator.ViewModel
 
             caret.SetActiveExpression(exp);
             caret.RestartBlinking();
+            Console.WriteLine("Caret side: {0}", Caret.Instance.ExpressionSide);
         }
 
         public void DeleteExpression(Direction direction)
