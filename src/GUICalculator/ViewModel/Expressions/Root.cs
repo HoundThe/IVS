@@ -25,7 +25,6 @@ namespace GUICalculator.View
 
         public override void AddExpression(Expression activeExpression, Expression expressionToBeAdded)
         {
-            //Expression activeExpression = Caret.Instance.ActiveExpression;
             int activeIndex = InnerExpression.IndexOf(activeExpression);
             if (activeIndex >= 0)
             {
@@ -56,6 +55,22 @@ namespace GUICalculator.View
 
         public override Expression NextChild(Expression currentChild)
         {
+            for (int i = 0; i < OuterExpression.Count; i++)
+            {
+                if (currentChild == OuterExpression[i])
+                {
+                    if (i + 1 == OuterExpression.Count)
+                    {
+                        if (InnerExpression.Count > 0 && Caret.Instance.ExpressionSide == ExpressionSide.Right)
+                        {
+                            Caret.Instance.ExpressionSide = ExpressionSide.Left;
+                            return InnerExpression[0];
+                        }
+                        return null;
+                    }
+                    return OuterExpression[i + 1];
+                }
+            }
             for (int i = 0; i < InnerExpression.Count; i++)
             {
                 if (currentChild == InnerExpression[i])
@@ -75,8 +90,24 @@ namespace GUICalculator.View
                 if (currentChild == InnerExpression[i])
                 {
                     if (i == 0)
+                    {
+                        if (OuterExpression.Count > 0 && Caret.Instance.ExpressionSide == ExpressionSide.Left)
+                        {
+                            Caret.Instance.ExpressionSide = ExpressionSide.Right;
+                            return OuterExpression[OuterExpression.Count - 1];
+                        }
                         return null;
+                    }
                     return InnerExpression[i - 1];
+                }
+            }
+            for (int i = 0; i < OuterExpression.Count; i++)
+            {
+                if (currentChild == OuterExpression[i])
+                {
+                    if (i == 0)
+                        return null;
+                    return OuterExpression[i - 1];
                 }
             }
             throw new KeyNotFoundException("Expression not found.");
@@ -87,11 +118,15 @@ namespace GUICalculator.View
         {
             if (InnerExpression.Count > 0)
                 return InnerExpression[InnerExpression.Count - 1];
+            if (OuterExpression.Count > 0)
+                return OuterExpression[InnerExpression.Count - 1];
             return null;
         }
 
         public override Expression FirstChild()
         {
+            if (OuterExpression.Count > 0)
+                return OuterExpression[0];
             if (InnerExpression.Count > 0)
                 return InnerExpression[0];
             return null;
@@ -102,7 +137,7 @@ namespace GUICalculator.View
         {
             bool result = InnerExpression.Remove(child) || OuterExpression.Remove(child);
             Expression aux = AddAuxiliary();
-            Caret.Instance.SetActiveExpression(aux);
+            Caret.Instance.SetActiveExpression(aux, ExpressionSide.Left);
             return result;
         }
 

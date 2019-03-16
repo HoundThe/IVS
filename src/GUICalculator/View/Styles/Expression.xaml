@@ -4,8 +4,8 @@
                     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" >
 
     <ControlTemplate x:Key="AuxiliaryExpressionTemplate" TargetType="{x:Type ContentControl}">
-        <Grid>
-            <TextBlock Text="" VerticalAlignment="Center" Height="18"/>
+        <Grid VerticalAlignment="Stretch" >
+            <TextBlock Text="" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinHeight="18" Width="12" Background="{Binding Background}"/>
         </Grid>
     </ControlTemplate>
 
@@ -46,9 +46,42 @@
         </Grid>
     </ControlTemplate>
 
+    <ControlTemplate x:Key="FractionExpressionTemplate" TargetType="{x:Type ContentControl}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <ItemsControl Grid.Row="0" ItemsSource="{Binding NumeratorExpression}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+
+            <Rectangle Grid.Row="1" Height="2" VerticalAlignment="Stretch" Fill="Black"/>
+
+            <ItemsControl Grid.Row="2" ItemsSource="{Binding DenominatorExpression}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </Grid>
+    </ControlTemplate>
+
     <ControlTemplate x:Key="PowerExpressionTemplate" TargetType="{x:Type ContentControl}">
-        <Grid VerticalAlignment="Top">
-            <TextBlock Text="asd"/>
+        <Grid VerticalAlignment="Top" Margin="0,0,0,13">
+            <ItemsControl ItemsSource="{Binding InnerExpression}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
         </Grid>
     </ControlTemplate>
 
@@ -73,32 +106,47 @@
             <ContentControl Grid.Column="3" Template="{StaticResource RightParenthesisExpressionTemplate}" Margin="0,0,2,0"/>
         </Grid>
     </ControlTemplate>
-    
+
     <ControlTemplate x:Key="RootExpressionTemplate" TargetType="{x:Type ContentControl}" >
         <StackPanel>
             <Grid Background="Transparent">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <Grid Grid.Column="0" Margin="0,5,0,5">
-                    <Path Margin="0,0,0,0" StrokeEndLineCap="Square" Stretch="Fill" Stroke="Black" StrokeThickness="2" 
-                      Data="M0,10 L 5,14 L 14,0 L 15, 0" 
-                      />
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="4*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <ItemsControl ItemsSource="{Binding OuterExpression}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
 
+                    <Grid Grid.Row="1" Margin="5,5,0,5" MaxWidth="12" HorizontalAlignment="Right">
+                        <Path Margin="0,0,0,0" StrokeEndLineCap="Square" Stretch="Fill" Stroke="Black" StrokeThickness="2" 
+                              Data="M0,12 L 3,18" Width="7" Height="15"/>
+                    </Grid>
                 </Grid>
-                <Grid Grid.Column="1">
+                <Path Grid.Column="1" Data="M 0,18 L 6,0 L 7, 0" Stroke="Black" Stretch="Fill" 
+                      StrokeEndLineCap="Square" StrokeThickness="2" Margin="0,5,0,2"/>
+                <Grid Grid.Column="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Path Margin="0,0,0,0" StrokeStartLineCap="Square" VerticalAlignment="Bottom" Grid.Row="0" Height="7" 
-                      HorizontalAlignment="Stretch" Stretch="Fill" Stroke="Black" StrokeThickness="2" 
-                      Data="M 0,5 L 10,5">
+                    <Path Margin="0,1,0,0" StrokeStartLineCap="Square" VerticalAlignment="Bottom" Grid.Row="0" Height="6" 
+                                      HorizontalAlignment="Stretch" Stretch="Fill" Stroke="Black" StrokeThickness="2" 
+                                      Data="M 0,5 L 10,5">
                     </Path>
-                    <ItemsControl Grid.Row="1" ItemsSource="{Binding InnerExpression}" Margin="2" >
+                    <ItemsControl Grid.Row="1" ItemsSource="{Binding InnerExpression}" Margin="-2,2,2,2">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Orientation="Horizontal"/>

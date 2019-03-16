@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         ResizeMode="CanMinimize"
         SizeToContent="WidthAndHeight"
-        MinWidth="450"
+        MinWidth="515"
         Title="Calculator">
     <Window.DataContext>
         <vm:MainWindowVM/>
@@ -28,7 +28,7 @@
             <Setter Property="BorderBrush" Value="#ACACAC"/>
         </Style>
         <Style TargetType="{x:Type Button}" x:Key="SmallerText">
-            
+
         </Style>
     </Window.Resources>
 
@@ -46,7 +46,7 @@
                                      MinHeight="70" FontSize="17" Height="Auto" />
             </Grid>
         </UserControl>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Background="#D5EAFF">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -54,6 +54,7 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition />
                 <ColumnDefinition />
                 <ColumnDefinition />
                 <ColumnDefinition />
@@ -74,7 +75,7 @@
             <Button Grid.Row="2" Grid.Column="2" Command="{Binding CharacterInputCommand}" CommandParameter="3" Content="3"/>
             <Button Grid.Row="3" Grid.Column="0" Command="{Binding CharacterInputCommand}" CommandParameter="0" Content="0"/>
             <Button Grid.Row="3" Grid.Column="1" Command="{Binding CharacterInputCommand}" CommandParameter="." Content="."/>
-            <Button Grid.Row="3" Grid.Column="5" Command="{Binding AnsCommand}" Content="ANS"/>
+            <Button Grid.Row="2" Grid.Column="7" Command="{Binding AnsCommand}" Content="ANS"/>
             <Button Grid.Row="0" Grid.Column="3" Command="{Binding CharacterInputCommand}" CommandParameter="/" Content="/"/>
             <Button Grid.Row="1" Grid.Column="3" Command="{Binding MultiplicationCommand}" Content="*"/>
             <Button Grid.Row="2" Grid.Column="3" Command="{Binding CharacterInputCommand}" CommandParameter="+" Content="+"/>
@@ -93,6 +94,8 @@
                     </Grid>
                 </Button.Content>
             </Button>
+            <Button Grid.Row="2" Grid.Column="6" Command="{Binding CharacterInputCommand}" CommandParameter="π" Content="π"/>
+            <Button Grid.Row="3" Grid.Column="6" Command="{Binding CharacterInputCommand}" CommandParameter="e" Content="e"/>
             <Button Grid.Row="2" Grid.Column="4" Command="{Binding PowerCommand}">
                 <Button.Content>
                     <Grid>
@@ -109,6 +112,14 @@
                         <Rectangle Grid.Row="0" Grid.Column="1" Stroke="Black" Fill="Transparent" Width="12" Height="15" Margin="0,0,0,-5"/>
                     </Grid>
                 </Button.Content>
+            </Button>
+
+            <Button Grid.Row="3" Grid.Column="4" Command="{Binding FractionCommand}">
+                <StackPanel VerticalAlignment="Center">
+                    <Rectangle Width="14" Height="12" Stroke="Black"/>
+                    <Rectangle Width="24" Height="2" Fill="Black" Margin="2"/>
+                    <Rectangle Width="14" Height="12" Stroke="Black"/>
+                </StackPanel>
             </Button>
             <Button Grid.Row="0" Grid.Column="4" Command="{Binding SquareRootCommand}">
                 <Button.Content>
@@ -131,7 +142,7 @@
 
                                 <Path Margin="0,1,0,0" StrokeStartLineCap="Square" VerticalAlignment="Bottom" Grid.Row="0" Height="6" 
                                       HorizontalAlignment="Stretch" Stretch="Fill" Stroke="Black" StrokeThickness="2" 
-                                      Data="M 0,5 L 10,5">  
+                                      Data="M 0,5 L 10,5">
                                 </Path>
                                 <Rectangle Grid.Row="1" Margin="-2,2,2,2" Height="15" Width="12" Stroke="Black" Fill="Transparent"/>
                             </Grid>
@@ -154,9 +165,9 @@
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
                                 <Rectangle Grid.Row="0" Height="12" Width="9" Stroke="Black" Margin="-7,0,0,0"/>
-                                
+
                                 <Grid Grid.Row="0" Grid.RowSpan="2" Margin="5,5,0,5">
-                                <Path Margin="0,0,0,0" StrokeEndLineCap="Square" Stretch="Fill" Stroke="Black" StrokeThickness="2" 
+                                    <Path Margin="0,0,0,0" StrokeEndLineCap="Square" Stretch="Fill" Stroke="Black" StrokeThickness="2" 
                                       Data="M0,12 L 3,18 L 12,0 L 13, 0" />
                                 </Grid>
                             </Grid>
@@ -179,10 +190,10 @@
             <Button Grid.Row="0" Grid.Column="5" Command="{Binding SineCommand}" Content="sin"/>
             <Button Grid.Row="1" Grid.Column="5" Command="{Binding CosineCommand}" Content="cos"/>
             <Button Grid.Row="2" Grid.Column="5" Command="{Binding TangentCommand}" Content="tan"/>
-            <Button Grid.Row="3" Grid.Column="2" Command="{Binding CharacterInputCommand}" CommandParameter="!" Content="x!"/>
-            <Button Grid.Row="3" Grid.Column="4" Command="{Binding DeleteCommand}" Content="DEL"/>
-            <Button Grid.Row="2" Grid.Column="6" Command="{Binding ClearCommand}" Content="C"/>
-            <Button Grid.Row="3" Grid.Column="6" Command="{Binding EvaluateCommand}" Content="=" Background="#316EAC"/>
+            <Button Grid.Row="3" Grid.Column="5" Command="{Binding CharacterInputCommand}" CommandParameter="!" Content="x!"/>
+            <Button Grid.Row="1" Grid.Column="7" Command="{Binding DeleteCommand}" Content="DEL"/>
+            <Button Grid.Row="0" Grid.Column="7" Command="{Binding ClearCommand}" Content="C"/>
+            <Button Grid.Row="3" Grid.Column="7" Command="{Binding EvaluateCommand}" Content="=" Background="#316EAC"/>
         </Grid>
     </Grid>
 </Window>

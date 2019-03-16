@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace GUICalculator.View
 {
@@ -14,6 +15,7 @@ namespace GUICalculator.View
         public Auxiliary()
             : base("AuxiliaryExpressionTemplate")
         {
+            Background = Brushes.LightGray;
         }
 
         public override Expression MoveLeft(Expression child, bool jumpIn)

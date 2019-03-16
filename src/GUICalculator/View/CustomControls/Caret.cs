@@ -118,6 +118,14 @@ namespace GUICalculator.View
             RestartBlinking();
         }
 
+        public void SetActiveExpression(Expression exp, ExpressionSide desiredExpressionSide)
+        {
+            if (exp == null)
+                return;
+            ExpressionSide = desiredExpressionSide;
+            SetActiveExpression(exp);
+        }
+
         public void UpdateActiveExpression()
         {
             Point position = default(Point);

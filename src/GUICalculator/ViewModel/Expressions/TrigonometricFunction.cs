@@ -66,7 +66,7 @@ namespace GUICalculator.ViewModel.Expressions
         {
             bool result = InnerExpression.Remove(child);
             Expression aux = AddAuxiliary();
-            Caret.Instance.SetActiveExpression(aux);
+            Caret.Instance.SetActiveExpression(aux, ExpressionSide.Left);
             return result;
         }
 

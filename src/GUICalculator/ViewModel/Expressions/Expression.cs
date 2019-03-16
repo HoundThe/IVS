@@ -87,17 +87,18 @@ namespace GUICalculator.View
         {
             if (Caret.Instance.ExpressionSide == ExpressionSide.Left)
             {
-                if (child != null && PreviousChild(child) != null)
+                Expression previousChild = null;
+                if (child != null && (previousChild = PreviousChild(child)) != null)
                 {
-                    Expression lastChild = PreviousChild(child).LastChild();
+                    Expression lastChild = previousChild.LastChild();
                     if (lastChild != null)
                     {
                         Caret.Instance.ExpressionSide = ExpressionSide.Right;
                         return lastChild;
                     }
-                    return PreviousChild(child); // leave Left
+                    return previousChild; // leave Left
                 }
-                else if (child != null && PreviousChild(child) == null)
+                else if (child != null && previousChild == null)
                 {
                     return this;
                 }
@@ -110,16 +111,17 @@ namespace GUICalculator.View
             }
             else // ExpressionSide.Right
             {
+                Expression previousChild = null;
                 // jump in from right
                 if (jumpIn && LastChild() != null)
                 {
                     return LastChild();
                 }
-                else if (child != null && PreviousChild(child) != null)
+                else if (child != null && (previousChild = PreviousChild(child)) != null)
                 {
-                    return PreviousChild(child);
+                    return previousChild;
                 }
-                else if (child != null && PreviousChild(child) == null)
+                else if (child != null && previousChild == null)
                 {
                     Caret.Instance.ExpressionSide = ExpressionSide.Left;
                     return child;
@@ -138,17 +140,18 @@ namespace GUICalculator.View
         {
             if (Caret.Instance.ExpressionSide == ExpressionSide.Right)
             {
-                if (child != null && NextChild(child) != null)
+                Expression nextChild = null;
+                if (child != null && (nextChild = NextChild(child)) != null)
                 {
-                    Expression nextChild = NextChild(child).FirstChild();
-                    if (nextChild != null)
+                    Expression firstChild = nextChild.FirstChild();
+                    if (firstChild != null)
                     {
                         Caret.Instance.ExpressionSide = ExpressionSide.Left;
-                        return nextChild;
+                        return firstChild;
                     }
-                    return NextChild(child);
+                    return nextChild;
                 }
-                else if (child != null && NextChild(child) == null)
+                else if (child != null && nextChild == null)
                 {
                     return this;
                 }
@@ -161,16 +164,17 @@ namespace GUICalculator.View
             }
             else // ExpressionSide.Left
             {
+                Expression nextChild = null;
                 // jump in from left
                 if (jumpIn && FirstChild() != null)
                 {
                     return FirstChild(); 
                 }
-                else if (child != null && NextChild(child) != null)
+                else if (child != null && (nextChild = NextChild(child)) != null)
                 {
-                    return NextChild(child); 
+                    return nextChild ; 
                 }
-                else if (child != null && NextChild(child) == null)
+                else if (child != null && nextChild == null)
                 {
                     Caret.Instance.ExpressionSide = ExpressionSide.Right;
                     return child;

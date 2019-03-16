@@ -62,6 +62,7 @@
     </ApplicationDefinition>
     <Compile Include="ViewModel\Direction.cs" />
     <Compile Include="ViewModel\Expressions\Auxiliary.cs" />
+    <Compile Include="ViewModel\Expressions\Fraction.cs" />
     <Compile Include="ViewModel\Expressions\LeftParenthesis.cs" />
     <Compile Include="ViewModel\Expressions\MultiplicationSign.cs" />
     <Compile Include="ViewModel\Expressions\Power.cs" />

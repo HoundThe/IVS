@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace GUICalculator.ViewModel
 {
@@ -26,6 +27,7 @@ namespace GUICalculator.ViewModel
         public ICommand _powerCommand;
         public ICommand _rootCommand;
         public ICommand _squareRootCommand;
+        public ICommand _fractionCommand;
         public ICommand _ansCommand;
         public ICommand _clearCommand;
         public ICommand _deleteCommand;
@@ -44,6 +46,7 @@ namespace GUICalculator.ViewModel
         public ICommand PowerCommand => _powerCommand ?? (_powerCommand = new RelayCommand(AddPowerExpression));
         public ICommand RootCommand => _rootCommand ?? (_rootCommand = new RelayCommand(AddRootExpression));
         public ICommand SquareRootCommand => _squareRootCommand ?? (_squareRootCommand = new RelayCommand(AddSquareRootExpression));
+        public ICommand FractionCommand => _fractionCommand ?? (_fractionCommand = new RelayCommand(AddFractionExpression));
         public ICommand AnsCommand => _ansCommand ?? (_ansCommand = new RelayCommand(PerformAns));
         public ICommand ClearCommand => _clearCommand ?? (_clearCommand = new RelayCommand(ClearExpressions));
         public ICommand DeleteCommand => _deleteCommand ?? (_deleteCommand = new RelayCommand(() => DeleteExpression(Direction.Left)));
@@ -70,12 +73,88 @@ namespace GUICalculator.ViewModel
         private void ClearExpressions()
         {
             Expression = new Basic();
+            Expression.FirstChild().Background = Brushes.Transparent;
             Caret.Instance.SetActiveExpression(Expression.FirstChild());
         }
 
         private void PerformAns()
         {
             throw new NotImplementedException();
+        }
+
+        private Expression FindExpression<T>(Expression currentExpression, Direction direction)
+        {
+            if (currentExpression == null || currentExpression.ParentExpression == null)
+                return null;
+            
+            while (currentExpression != null && currentExpression.GetType() != typeof(T))
+            {
+                if (direction == Direction.Left)
+                    currentExpression = currentExpression.ParentExpression.PreviousChild(currentExpression);
+                else
+                    currentExpression = currentExpression.ParentExpression.NextChild(currentExpression);
+            }
+            return currentExpression;
+        }
+
+        // Returns an expression. If it a parentheses, finds the other one and returns all
+        // the expressions in between 
+        private List<Expression> GetExpressionUnit(Direction direction, Expression activeExp)
+        {
+            var unit = new List<Expression>();
+            if (activeExp == null)
+                return unit;
+            if (direction == Direction.Left)
+            {
+                if (Caret.Instance.ExpressionSide == ExpressionSide.Left)
+                    activeExp = activeExp.ParentExpression.PreviousChild(activeExp);
+                if (activeExp == null)
+                    return unit;
+
+                if (activeExp is RightParenthesis)
+                {
+                    Expression leftParenthesis = FindExpression<LeftParenthesis>(activeExp, Direction.Left);
+                    if (leftParenthesis == null)
+                        return unit;
+
+                    while (leftParenthesis != activeExp)
+                    {
+                        unit.Add(leftParenthesis);
+                        leftParenthesis = leftParenthesis.ParentExpression.NextChild(leftParenthesis);
+                    }
+                    unit.Add(activeExp);
+                    return unit;
+                }
+                else if (activeExp is LeftParenthesis)
+                {
+                    return unit; // empty
+                }
+                else
+                {
+                    unit.Add(activeExp);
+                    return unit;
+                }
+            }
+            return unit;
+        } 
+
+        private void AddCollectionToFraction(Fraction fraction, List<Expression> unit)
+        {
+            Expression activeExp = fraction.FirstChild();
+            foreach (Expression exp in unit)
+            {
+                fraction.AddExpression(activeExp, exp);
+                activeExp = exp;
+            }
+        }
+
+        private void AddFractionExpression()
+        {
+            Fraction fraction = new Fraction();
+            //List<Expression> leftUnit = GetExpressionUnit(Direction.Left, Caret.Instance.ActiveExpression);
+            //AddCollectionToFraction(fraction, leftUnit);
+            AddNewExpression(Caret.Instance.ActiveExpression, fraction);
+            Caret.Instance.SetActiveExpression(fraction.FirstChild(), ExpressionSide.Left);
         }
 
         public void AddRootExpression()
