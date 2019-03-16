@@ -153,5 +153,18 @@ namespace GUICalculator.ViewModel.Expressions
             }
             throw new KeyNotFoundException("Expression not found.");
         }
+
+        public override string ConvertToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("(");
+            foreach (Expression expression in NumeratorExpression)
+                sb.Append(expression.ConvertToString());
+            sb.Append(")/(");
+            foreach (Expression expresssion in DenominatorExpression)
+                sb.Append(expresssion.ConvertToString());
+            sb.Append(")");
+            return sb.ToString();
+        }
     }
 }

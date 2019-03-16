@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GUICalculator.ViewModel.Expressions
 {
-    class TerminalExpression : Expression
+    abstract class TerminalExpression : Expression
     {
         public TerminalExpression(string templateName)
             : base(templateName)
@@ -49,5 +49,6 @@ namespace GUICalculator.ViewModel.Expressions
         {
             throw new NotSupportedException("Not supported operation.");
         }
+        
     }
 }

@@ -82,6 +82,7 @@ namespace GUICalculator.View
         public abstract Expression LastChild();
         public abstract Expression FirstChild();
         public abstract bool DeleteChild(Expression child);
+        public abstract string ConvertToString();
 
         public virtual Expression MoveLeft(Expression child, bool jumpIn)
         {

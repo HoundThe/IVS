@@ -102,5 +102,14 @@ namespace GUICalculator.View
             }
             return null;
         }
+
+        public override string ConvertToString()
+        {
+            StringBuilder sb = new StringBuilder("sqrt(");
+            foreach (Expression expression in InnerExpression)
+                sb.Append(expression.ConvertToString());
+            sb.Append(")");
+            return sb.ToString();
+        }
     }
 }

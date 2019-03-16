@@ -46,5 +46,10 @@ namespace GUICalculator.View
             }
             return ParentExpression.MoveRight(this, false);
         }
+
+        public override string ConvertToString()
+        {
+            return String.Empty;
+        }
     }
 }

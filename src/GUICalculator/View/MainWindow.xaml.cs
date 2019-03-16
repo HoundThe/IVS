@@ -65,7 +65,7 @@ namespace GUICalculator.View
             // Check if it an allowed character
             if (regex.IsMatch(e.Text))
             {
-                Console.WriteLine("{0}", e.Text);
+                //Console.WriteLine("{0}", e.Text);
                 if (e.Text.Length != 1)
                     throw new Exception("Input text should have length of 1 character.");
                 dataContext.AddCharacterExpression(e.Text[0]);

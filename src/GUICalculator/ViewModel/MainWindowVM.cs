@@ -67,7 +67,10 @@ namespace GUICalculator.ViewModel
         
         private void EvaluateExpression()
         {
-            throw new NotImplementedException();
+            string test = "56+sin(89*sqrt(26^(4)+26*5))*((25)/(p)+12!-cos(p*e))+2e^(5+4)";
+
+            string infix = Expression.ConvertToString();
+            Console.WriteLine(infix);
         }
 
         private void ClearExpressions()
@@ -261,7 +264,7 @@ namespace GUICalculator.ViewModel
 
             caret.SetActiveExpression(exp);
             caret.RestartBlinking();
-            Console.WriteLine("Caret side: {0}", Caret.Instance.ExpressionSide);
+            //Console.WriteLine("Caret side: {0}", Caret.Instance.ExpressionSide);
         }
 
         public void DeleteExpression(Direction direction)

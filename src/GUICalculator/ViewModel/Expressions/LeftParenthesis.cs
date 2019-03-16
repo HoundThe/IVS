@@ -23,5 +23,10 @@ namespace GUICalculator.ViewModel.Expressions
             
             Height = nextChild.ActualHeight;
         }
+
+        public override string ConvertToString()
+        {
+            return "(";
+        }
     }
 }

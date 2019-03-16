@@ -100,5 +100,13 @@ namespace GUICalculator.View
             }
             return null;
         }
+
+        public override string ConvertToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (Expression expression in Items)
+                sb.Append(expression.ConvertToString());
+            return sb.ToString();
+        }
     }
 }

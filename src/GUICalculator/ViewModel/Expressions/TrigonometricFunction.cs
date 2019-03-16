@@ -10,9 +10,13 @@ namespace GUICalculator.ViewModel.Expressions
 {
     class TrigonometricFunction : Expression
     {
+        private TrigonometricFunctionType type;
+
         public TrigonometricFunction(TrigonometricFunctionType type) 
             : base("TrigonometricFunctionExpressionTemplate")
         {
+            this.type = type;
+
             switch (type) {
                 case TrigonometricFunctionType.Sine:
                     Value = "sin";
@@ -28,7 +32,7 @@ namespace GUICalculator.ViewModel.Expressions
             }
             AddAuxiliary();
         }
-
+        
         public string Value { get; }
         public ObservableCollection<Expression> InnerExpression { get; set; } = new ObservableCollection<Expression>();
 
@@ -110,6 +114,17 @@ namespace GUICalculator.ViewModel.Expressions
                 }
             }
             throw new KeyNotFoundException("Expression not found.");
+        }
+
+        public override string ConvertToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(Value);
+            sb.Append("(");
+            foreach (Expression expression in InnerExpression)
+                sb.Append(expression.ConvertToString());
+            sb.Append(")");
+            return sb.ToString();
         }
     }
 }

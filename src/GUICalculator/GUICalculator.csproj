@@ -71,7 +71,7 @@
     <Compile Include="ViewModel\Expressions\TerminalExpression.cs" />
     <Compile Include="ViewModel\Expressions\TrigonometricFunction.cs" />
     <Compile Include="ViewModel\RootVM.cs" />
-    <Compile Include="ViewModel\TrigonometricFunction.cs" />
+    <Compile Include="ViewModel\TrigonometricFunctionType.cs" />
     <Compile Include="View\CustomControls\Caret.cs" />
     <Compile Include="ViewModel\Expressions\ExpressionSide.cs" />
     <Compile Include="View\FrameworkElementExtension.cs" />

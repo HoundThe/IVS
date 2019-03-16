@@ -20,5 +20,10 @@ namespace GUICalculator.View
         
         public char Value { get; set; }
 
+
+        public override string ConvertToString()
+        {
+            return Value.ToString();
+        }
     }
 }

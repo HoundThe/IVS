@@ -147,7 +147,7 @@ namespace GUICalculator.View
 
         private void BlinkCaret(Object state)
         {
-            Console.WriteLine("Left {0}, Top {1}, Height {2}", Left, Top, CaretHeight);
+            //Console.WriteLine("Left {0}, Top {1}, Height {2}", Left, Top, CaretHeight);
             Dispatcher.Invoke(new Action(delegate { Visible = !Visible; }));
         }
         

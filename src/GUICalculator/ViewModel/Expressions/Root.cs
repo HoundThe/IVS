@@ -159,5 +159,16 @@ namespace GUICalculator.View
             }
             return null;
         }
+        public override string ConvertToString()
+        {
+            StringBuilder sb = new StringBuilder("(");
+            foreach (Expression expression in OuterExpression)
+                sb.Append(expression.ConvertToString());
+            sb.Append(")rt(");
+            foreach (Expression expression in InnerExpression)
+                sb.Append(expression.ConvertToString());
+            sb.Append(")");
+            return sb.ToString();
+        }
     }
 }

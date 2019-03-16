@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace GUICalculator.Model
 {
-    // Parses the input
+    // Parses the expressions into one line form for better processing later
     class InputParser
-
     {
+
+
     }
 }
