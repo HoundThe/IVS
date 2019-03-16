@@ -103,9 +103,10 @@ namespace GUICalculator.View
 
         public override string ConvertToString()
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder("(");
             foreach (Expression expression in Items)
                 sb.Append(expression.ConvertToString());
+            sb.Append(")");
             return sb.ToString();
         }
     }

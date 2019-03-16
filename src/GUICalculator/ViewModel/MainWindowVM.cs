@@ -1,4 +1,5 @@
 ﻿using GUICalculator.Command;
+using GUICalculator.Model;
 using GUICalculator.View;
 using GUICalculator.ViewModel;
 using GUICalculator.ViewModel.Expressions;
@@ -36,6 +37,8 @@ namespace GUICalculator.ViewModel
         public ICommand _cosineCommand;
         public ICommand _tangentCommand;
 
+        private InfixToPostfixConverter converter = new InfixToPostfixConverter();
+
         public MainWindowVM()
         {
             ClearExpressions();
@@ -67,10 +70,12 @@ namespace GUICalculator.ViewModel
         
         private void EvaluateExpression()
         {
-            string test = "56+sin(89*sqrt(26^(4)+26*5))*((25)/(p)+12!-cos(p*e))+2e^(5+4)";
-
+            //string test = "56+sin(89*sqrt(26^(4)+26*5))*((25)/(p)+12!-cos(p*e))+2e^(5+4)";
+            
             string infix = Expression.ConvertToString();
             Console.WriteLine(infix);
+            string postfix = converter.Convert(infix);
+            Console.WriteLine(postfix);
         }
 
         private void ClearExpressions()
