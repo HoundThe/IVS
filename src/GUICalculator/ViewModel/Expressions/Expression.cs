@@ -39,7 +39,7 @@ namespace GUICalculator.View
 
         }
 
-        private void OnMouseClick(object sender, MouseButtonEventArgs e)
+        protected virtual void OnMouseClick(object sender, MouseButtonEventArgs e)
         {
             //Console.WriteLine("Type of sender: {0}", sender.GetType());
             ContentControl control = sender as ContentControl;

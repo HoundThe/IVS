@@ -161,28 +161,28 @@ namespace GUICalculator.ViewModel
         {
             Expression root = new Root();
             AddNewExpression(Caret.Instance.ActiveExpression, root);
-            Caret.Instance.SetActiveExpression(root.FirstChild());
+            Caret.Instance.SetActiveExpression(root.FirstChild(), ExpressionSide.Left);
         }
 
         public void AddSquareRootExpression()
         {
             Expression squareRoot = new SquareRoot();
             AddNewExpression(Caret.Instance.ActiveExpression, squareRoot);
-            Caret.Instance.SetActiveExpression(squareRoot.FirstChild());
+            Caret.Instance.SetActiveExpression(squareRoot.FirstChild(), ExpressionSide.Left);
         }
 
         public void AddPowerExpression()
         {
             Expression power = new Power();
             AddNewExpression(Caret.Instance.ActiveExpression, power);
-            Caret.Instance.SetActiveExpression(power.FirstChild());
+            Caret.Instance.SetActiveExpression(power.FirstChild(), ExpressionSide.Left);
         }
 
         public void AddTrigonometricExpression(TrigonometricFunctionType type)
         {
             Expression trigFunc = new TrigonometricFunction(type);
             AddNewExpression(Caret.Instance.ActiveExpression, trigFunc);
-            Caret.Instance.SetActiveExpression(trigFunc.FirstChild());
+            Caret.Instance.SetActiveExpression(trigFunc.FirstChild(), ExpressionSide.Left);
         }
 
         public void AddMultiplicationExpression()
