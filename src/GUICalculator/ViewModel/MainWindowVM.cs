@@ -23,6 +23,7 @@ namespace GUICalculator.ViewModel
     public sealed class MainWindowVM : ViewModelBase
     {
         public Expression _expression;
+        public string _result;
         public ICommand _characterInputCommand;
         public ICommand _multiplicationCommand;
         public ICommand _powerCommand;
@@ -42,6 +43,7 @@ namespace GUICalculator.ViewModel
         public MainWindowVM()
         {
             ClearExpressions();
+            Result = 0.ToString();
         }
 
         public ICommand CharacterInputCommand => _characterInputCommand ?? (_characterInputCommand = new RelayCommand<string>(AddCharacterExpression));
@@ -67,6 +69,16 @@ namespace GUICalculator.ViewModel
                 OnPropertyChanged(nameof(Expression));
             }
         }
+
+        public string Result
+        {
+            get => _result;
+            set
+            {
+                _result = value;
+                OnPropertyChanged(nameof(Result));
+            }
+        }
         
         private void EvaluateExpression()
         {
@@ -74,8 +86,16 @@ namespace GUICalculator.ViewModel
             
             string infix = Expression.ConvertToString();
             Console.WriteLine(infix);
-            string postfix = converter.Convert(infix);
-            Console.WriteLine(postfix);
+            try
+            {
+                string postfix = converter.Convert(infix);
+                Console.WriteLine(postfix);
+                Result = postfix;
+            }
+            catch
+            {
+                Result = "Error";
+            }
         }
 
         private void ClearExpressions()

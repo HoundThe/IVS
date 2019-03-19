@@ -1,0 +1,84 @@
+
+Datum: 19.3.2019
+Členové týmu: xondri07 (vedoucí týmu), xrozsi06, xhajek48, xrosin00
+=====================================================
+
+1) Termíny
+
+3.3.
+Vytvoření repozitáře na GitHubu, vytvoření a nahrání základní kostry projektu (xhajek48)
+Vytvoření předběžného plánu projektu (xondri07)
+
+10.3.
+Napsání testů pro matematickou knihovnu (xrozsi06)
+Snímek obrazovky debuggeru v mat. knihovně (xrozsi06)
+Návrh a vytvoření funkčního GUI včetně víceřádkového boxu pro vkládání výrazů a grafických komponent (xondri07)
+
+17.3.
+Implementace knihovny matematických funkcí (xrozsi06)
+Propojení GUI s implementací převodu z infix na postfix a matematickou knihovnou (xondri07)
+Implementace výrazu z infix na postfix  (xondri07)
+Implementace algoritmu pro výpočet postfix výrazu (xhajek48)
+Vytvoření nápovědy do GUI (xrosin00)
+
+31.3.
+Uživatelská dokumentace (xrosin00)
+Programová dokumentace + generování pomocí nástroje Doxygen (xrozsi06, xondri07)
+Vytvoření Makefile (xhajek48)
+Vytvoření samostatného programu + protokol o profilingu (xrosin00)
+
+7.3.
+Vytvoření instalátoru/odinstalátoru (xhajek48 )
+Mockup GUI nové verze kalkulačky (xrosin00)
+Vytvoření souboru skutecnost.txt (rozdíl mezi plánem projektu a skutečností) (xondri07)
+Vytvoření Readme souboru (xrosin00)
+
+14.4.
+Kontrola všech náležitostí
+Odevzdání projektu
+Odevzdání souboru s problémy
+
+xondri07 - Ladislav Ondris
+	- Vytvoření předběžného plánu projektu 
+	- Návrh a vytvoření funkčního GUI včetně víceřádkového boxu pro vkládání výrazů a grafických komponent
+	- Propojení GUI s implementací převodu z infix na postfix a matematickou knihovnou
+	- Implementace výrazu z infix na postfix
+	- Vytvoření souboru skutecnost.txt (rozdíl mezi plánem projektu a skutečností)
+
+xrozsi06 - Michal Rozsíval
+	- Napsání testů pro matematickou knihovnu
+	- Snímek obrazovky debuggeru v mat. knihovně 
+	- Implementace knihovny matematických funkcí
+	- Programová dokumentace + generování pomocí nástroje Doxygen
+
+xrosin00 - Monika Rosinská
+	- Vytvoření nápovědy do GUI
+	- Vytvoření samostatného programu + protokol o profilingu 
+	- Uživatelská dokumentace
+	- Vytvoření Readme souboru 
+	- Mockup GUI nové verze kalkulačky
+
+xhajek48 - Karel Hájek
+	- Vytvoření repozitáře na GitHubu, vytvoření a nahrání základní kostry projektu
+	- Implementace algoritmu pro výpočet postfix výrazu
+	- Vytvoření Makefile
+	- Vytvoření instalátoru/odinstalátoru
+
+Poznámka: I přes to, že každá činnost je přiřazena právě jednomu členovi týmu, tak na
+některých z uvedených činností se budeme podílet společně. 
+	
+2) Komunikační kanály
+
+Pro komunikaci jsme zvolili https://discordapp.com. 
+Nastavili jsme si pravidlo připojit se každý den alespoň jednou, 
+abychom se společně mohli domlouvat, radit se a řešit případné problémy.
+Discord mimo jiné nabízí notifikace v případě nových zpráv. 
+To nám umožňuje rychlou a pohohotovou komunikaci.
+Kromě komunikace přes Discord se budeme taky osobně scházet.
+
+
+3) Systém pro správu verzí
+
+Zvolený systém pro správu verzí: Git
+Odkaz: https://github.com/HoundThe/IVS
+Přidali jsme účet ivskontrola, který by nyní měl mít do repozitáře přístup.

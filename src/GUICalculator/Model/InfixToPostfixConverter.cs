@@ -14,7 +14,7 @@ namespace GUICalculator.Model
 
         private bool IsDigit(char ch)
         {
-            return Char.IsDigit(ch) || ch == 'e' || ch == 'p';
+            return Char.IsDigit(ch) || ch == 'e' || ch == 'π' || ch == '.';
         }
 
         private bool IsOperator(char ch)
@@ -61,7 +61,7 @@ namespace GUICalculator.Model
                     }
                     stack.Pop(); // pop '(' from the stack
 
-                    if (IsFunction(stack.Peek()))
+                    if (stack.Count > 0 && IsFunction(stack.Peek()))
                     {
                         postfix.Append(stack.Pop());
                         postfix.Append(" ");
