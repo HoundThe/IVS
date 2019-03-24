@@ -24,7 +24,8 @@ namespace MathLibrary
         public const double FourPiDivSix        = 2.09439510239319549230;
         public const double ThreePiDivFour      = 2.35619449019234492884;
         public const double FivePiDivSix        = 2.61799387799149436538;
-                                          
+
+        public const double E                   = 2.718281828459045235360287471352;
         public const double Pi                  = 3.14159265358979323846;
         public const double SevenPiDivSix       = 3.66519142918809211153;
         public const double FivePiDivFour       = 3.92699081698724154807;
