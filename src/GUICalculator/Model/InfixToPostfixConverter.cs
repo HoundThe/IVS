@@ -99,7 +99,7 @@ namespace GUICalculator.Model
                 if (stack.Count != 0)
                     postfix.Append(" ");
             }
-            return postfix.ToString();
+            return postfix.ToString().TrimEnd();
         }
     }
 }
