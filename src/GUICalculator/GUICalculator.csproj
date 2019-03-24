@@ -63,15 +63,16 @@
     <Compile Include="Model\InfixToPostfixConverter.cs" />
     <Compile Include="ViewModel\Direction.cs" />
     <Compile Include="ViewModel\Expressions\Auxiliary.cs" />
+    <Compile Include="ViewModel\Expressions\Base\SingleExpression.cs" />
+    <Compile Include="ViewModel\Expressions\Base\TwoExpression.cs" />
     <Compile Include="ViewModel\Expressions\Fraction.cs" />
     <Compile Include="ViewModel\Expressions\LeftParenthesis.cs" />
     <Compile Include="ViewModel\Expressions\MultiplicationSign.cs" />
     <Compile Include="ViewModel\Expressions\Power.cs" />
     <Compile Include="ViewModel\Expressions\RightParenthesis.cs" />
     <Compile Include="ViewModel\Expressions\Root.cs" />
-    <Compile Include="ViewModel\Expressions\TerminalExpression.cs" />
+    <Compile Include="ViewModel\Expressions\Base\TerminalExpression.cs" />
     <Compile Include="ViewModel\Expressions\TrigonometricFunction.cs" />
-    <Compile Include="ViewModel\RootVM.cs" />
     <Compile Include="ViewModel\TrigonometricFunctionType.cs" />
     <Compile Include="View\CustomControls\Caret.cs" />
     <Compile Include="ViewModel\Expressions\ExpressionSide.cs" />
@@ -96,12 +97,12 @@
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\Expressions\Basic.cs" />
     <Compile Include="View\CustomControls\CustomTextBox.cs" />
-    <Compile Include="ViewModel\Expressions\Expression.cs" />
+    <Compile Include="ViewModel\Expressions\Base\Expression.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\Styles\Expression.xaml">
+    <Page Include="View\Styles\ExpressionTemplates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

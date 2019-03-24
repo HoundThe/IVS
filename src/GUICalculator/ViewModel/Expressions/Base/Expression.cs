@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GUICalculator.View;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace GUICalculator.View
+namespace GUICalculator.ViewModel.Expressions.Base
 {
     public abstract class Expression : ContentControl
     {
@@ -20,7 +21,7 @@ namespace GUICalculator.View
             this.Template = Application.Current.FindResource(templateName) as ControlTemplate;
             this.DataContext = this;
 
-            VerticalAlignment = VerticalAlignment.Center;
+            VerticalAlignment = VerticalAlignment.Bottom;
             MouseLeftButtonUp += OnMouseClick;
         }
 

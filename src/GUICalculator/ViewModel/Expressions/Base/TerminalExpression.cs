@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GUICalculator.ViewModel.Expressions
+namespace GUICalculator.ViewModel.Expressions.Base
 {
     abstract class TerminalExpression : Expression
     {

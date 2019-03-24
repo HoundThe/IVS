@@ -3,11 +3,11 @@ using GUICalculator.Model;
 using GUICalculator.View;
 using GUICalculator.ViewModel;
 using GUICalculator.ViewModel.Expressions;
+using GUICalculator.ViewModel.Expressions.Base;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-//using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -60,7 +60,7 @@ namespace GUICalculator.ViewModel
         public ICommand CosineCommand => _cosineCommand ?? (_cosineCommand = new RelayCommand(() => AddTrigonometricExpression(TrigonometricFunctionType.Cosine)));
         public ICommand TangentCommand => _tangentCommand ?? (_tangentCommand = new RelayCommand(() => AddTrigonometricExpression(TrigonometricFunctionType.Tangent)));
 
-        public View.Expression Expression
+        public Expression Expression
         {
             get => _expression;
             set
@@ -101,6 +101,7 @@ namespace GUICalculator.ViewModel
         private void ClearExpressions()
         {
             Expression = new Basic();
+            Expression.VerticalAlignment = System.Windows.VerticalAlignment.Center;
             Expression.FirstChild().Background = Brushes.Transparent;
             Caret.Instance.SetActiveExpression(Expression.FirstChild());
         }

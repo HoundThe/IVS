@@ -2,20 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:GUICalculator.View">
 
-    <ControlTemplate x:Key="CustomTextBoxControlTemplate" TargetType="{x:Type ContentControl}">
-        <ContentControl Template="{StaticResource SquareRoot}">
-            <ContentControl Template="{StaticResource SquareRoot}">
-                <ContentControl Template="{StaticResource SquareRoot}">
-                    <ContentControl Template="{StaticResource SquareRoot}">
-                        <ContentControl Template="{StaticResource SquareRoot}">
-                            asdadasdasdasa
-                        </ContentControl>
-                    </ContentControl>
-                </ContentControl>
-            </ContentControl>
-        </ContentControl>
-    </ControlTemplate>
-
     <Style x:Key="CustomTextBox" TargetType="{x:Type local:CustomTextBox}">
         <Setter Property="Height" Value="50"/>
         <Setter Property="Template">

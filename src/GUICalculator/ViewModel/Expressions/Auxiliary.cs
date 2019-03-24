@@ -1,10 +1,10 @@
-﻿using GUICalculator.ViewModel.Expressions;
+﻿using GUICalculator.ViewModel.Expressions.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -17,6 +17,22 @@ namespace GUICalculator.View
             : base("AuxiliaryExpressionTemplate")
         {
             Background = Brushes.LightGray;
+        }
+
+        protected override void OnParentExpressionSet(Expression parent)
+        {
+            //Size size = GetSize(parent);
+            //Width = size.Width;
+            //Height = size.Height;
+            base.OnParentExpressionSet(parent);
+        }
+
+        private System.Windows.Size GetSize(Expression parent)
+        {
+            var typeface = new Typeface(parent.FontFamily, parent.FontStyle, parent.FontWeight, parent.FontStretch);
+            var formattedText = new FormattedText("0", Thread.CurrentThread.CurrentCulture, parent.FlowDirection, typeface, parent.FontSize, parent.Foreground);
+
+            return new System.Windows.Size(formattedText.Width, formattedText.Height);
         }
 
         protected override void OnMouseClick(object sender, MouseButtonEventArgs e)
@@ -46,7 +62,7 @@ namespace GUICalculator.View
             }
             return ParentExpression.MoveRight(this, false);
         }
-
+        
         public override string ConvertToString()
         {
             return String.Empty;

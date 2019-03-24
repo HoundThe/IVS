@@ -1,4 +1,4 @@
-﻿using GUICalculator.View;
+﻿using GUICalculator.ViewModel.Expressions.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,16 +12,17 @@ namespace GUICalculator.ViewModel.Expressions
         public RightParenthesis()
             : base("RightParenthesisExpressionTemplate")
         {
-            Height = 18;
+            MinHeight = 18;
+            VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
         }
 
         protected override void OnParentExpressionSet(Expression parent)
         {
-            Expression previousChild = parent.PreviousChild(this);
-            if (previousChild == null)
-                return;
+            //Expression previousChild = parent.PreviousChild(this);
+            //if (previousChild == null)
+            //    return;
 
-            Height = previousChild.ActualHeight;
+            //Height = previousChild.ActualHeight;
         }
 
         public override string ConvertToString()

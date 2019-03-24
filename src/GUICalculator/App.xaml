@@ -8,7 +8,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="View/Styles/CustomTextBoxStyle.xaml"/>
-                <ResourceDictionary Source="View/Styles/Expression.xaml"/>
+                <ResourceDictionary Source="View/Styles/ExpressionTemplates.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
         

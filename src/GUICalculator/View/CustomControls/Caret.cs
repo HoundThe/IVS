@@ -32,7 +32,7 @@ namespace GUICalculator.View
 
         public static Caret Instance { get; } = new Caret();
         public double CaretHeight { get; set; }
-        public Expression ActiveExpression { get; private set; }
+        public ViewModel.Expressions.Base.Expression ActiveExpression { get; private set; }
         public ExpressionSide ExpressionSide { get; set; } // defines on which side of the ActiveExpression the Caret lies
         public Point DefaultPosition { get; } = new Point(0, 10);
         public double DefaultHeight { get; } = 18;
@@ -109,7 +109,7 @@ namespace GUICalculator.View
             Left = position.X;
         }
 
-        public void SetActiveExpression(Expression exp)
+        public void SetActiveExpression(ViewModel.Expressions.Base.Expression exp)
         {
             if (exp == null)
                 return;
@@ -118,7 +118,7 @@ namespace GUICalculator.View
             RestartBlinking();
         }
 
-        public void SetActiveExpression(Expression exp, ExpressionSide desiredExpressionSide)
+        public void SetActiveExpression(ViewModel.Expressions.Base.Expression exp, ExpressionSide desiredExpressionSide)
         {
             if (exp == null)
                 return;

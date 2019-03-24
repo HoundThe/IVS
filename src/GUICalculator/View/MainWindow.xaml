@@ -9,26 +9,54 @@
         ResizeMode="CanMinimize"
         SizeToContent="WidthAndHeight"
         MinWidth="515"
-        Title="Calculator">
+        Title="Kalkulačka"
+        FontFamily="Segoe UI"
+        FontSize="24">
     <Window.DataContext>
         <vm:MainWindowVM/>
     </Window.DataContext>
     <Window.Resources>
+        <SolidColorBrush x:Key="PathColor" Color="White"/>
+
         <Style TargetType="{x:Type TextBox}" x:Key="InputTextBoxStyle">
             <Setter Property="FontSize" Value="22"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
-        <Style TargetType="{x:Type Button}">
+        <Style TargetType="{x:Type Button}" x:Key="DefaultButtonStyle">
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="VerticalAlignment" Value="Stretch"/>
             <Setter Property="Margin" Value="0"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="FontSize" Value="18"/>
-            <Setter Property="Background" Value="#D5EAFF"/>
-            <Setter Property="BorderBrush" Value="#ACACAC"/>
+            <Setter Property="FontWeight" Value="Light"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                        <GradientStop Color="#0F46673C" Offset="0" />
+                        <GradientStop Color="#340941" Offset="2" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="Transparent" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#5E6B6D6B"/>
+                    <Setter Property="Foreground" Value="#70FFFFFF"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
-        <Style TargetType="{x:Type Button}" x:Key="SmallerText">
-
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource DefaultButtonStyle}">
+            
+        </Style>
+        <Style TargetType="{x:Type Button}" x:Key="TextButtonStyle" BasedOn="{StaticResource DefaultButtonStyle}">
+            <Setter Property="FontSize" Value="20"/>
         </Style>
     </Window.Resources>
 
@@ -40,17 +68,25 @@
         </Grid.RowDefinitions>
 
 
-        <UserControl Grid.Row="0">
+        <UserControl Grid.Row="0" Background="#FFFFFF">
             <Grid x:Name="CustomTextBoxContainer">
                 <local:CustomTextBox Style="{StaticResource CustomTextBox}" 
                                      Content="{Binding Expression}" 
                                      MinHeight="70" FontSize="17" Height="Auto" />
             </Grid>
         </UserControl>
-        <TextBlock Grid.Row="1" Text="{Binding Result}" FontSize="22" 
+        <Grid Grid.Row="1" Background="#FFFFFF">
+            <TextBlock Text="{Binding Result}" FontSize="22" 
                    VerticalAlignment="Center" HorizontalAlignment="Right"
                    Margin="5,0,5,0"/>
-        <Grid Grid.Row="2" Background="#D5EAFF">
+        </Grid>
+        <Grid Grid.Row="2" >
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#262626" Offset="0" />
+                    <GradientStop Color="#340941" Offset="1.2" />
+                </LinearGradientBrush>
+            </Grid.Background>
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -79,27 +115,27 @@
             <Button Grid.Row="2" Grid.Column="2" Command="{Binding CharacterInputCommand}" CommandParameter="3" Content="3"/>
             <Button Grid.Row="3" Grid.Column="0" Command="{Binding CharacterInputCommand}" CommandParameter="0" Content="0"/>
             <Button Grid.Row="3" Grid.Column="1" Command="{Binding CharacterInputCommand}" CommandParameter="." Content="."/>
-            <Button Grid.Row="2" Grid.Column="7" Command="{Binding AnsCommand}" Content="ANS"/>
-            <Button Grid.Row="0" Grid.Column="3" Command="{Binding CharacterInputCommand}" CommandParameter="/" Content="/"/>
-            <Button Grid.Row="1" Grid.Column="3" Command="{Binding MultiplicationCommand}" Content="*"/>
+            <Button Grid.Row="2" Grid.Column="7" Command="{Binding AnsCommand}" Content="ANS" Style="{StaticResource TextButtonStyle}"/>
+            <Button Grid.Row="0" Grid.Column="3" Command="{Binding CharacterInputCommand}" CommandParameter="/" Content="÷"/>
+            <Button Grid.Row="1" Grid.Column="3" Command="{Binding MultiplicationCommand}" Content="×"/>
             <Button Grid.Row="2" Grid.Column="3" Command="{Binding CharacterInputCommand}" CommandParameter="+" Content="+"/>
             <Button Grid.Row="3" Grid.Column="3" Command="{Binding CharacterInputCommand}" CommandParameter="-" Content="-"/>
             <Button Grid.Row="0" Grid.Column="6" Command="{Binding CharacterInputCommand}" CommandParameter="(">
                 <Button.Content>
                     <Grid>
-                        <Path Stroke="Black" StrokeThickness="1" Data="M 1 10 C 0 10 0 0 1 0" Stretch="Fill" Height="18" Width="4"/>
+                        <Path Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}" StrokeThickness="1" Data="M 1 10 C 0 10 0 0 1 0" Stretch="Fill" Height="18" Width="4"/>
                     </Grid>
                 </Button.Content>
             </Button>
             <Button Grid.Row="1" Grid.Column="6" Command="{Binding CharacterInputCommand}" CommandParameter=")">
                 <Button.Content>
                     <Grid>
-                        <Path Stroke="Black" StrokeThickness="1" Data="M 0 10 C 1 10 1 0 0 0" Stretch="Fill" Height="18" Width="4"/>
+                        <Path Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}" StrokeThickness="1" Data="M 0 10 C 1 10 1 0 0 0" Stretch="Fill" Height="18" Width="4"/>
                     </Grid>
                 </Button.Content>
             </Button>
-            <Button Grid.Row="2" Grid.Column="6" Command="{Binding CharacterInputCommand}" CommandParameter="π" Content="π"/>
-            <Button Grid.Row="3" Grid.Column="6" Command="{Binding CharacterInputCommand}" CommandParameter="e" Content="e"/>
+            <Button Grid.Row="2" Grid.Column="6" Command="{Binding CharacterInputCommand}" CommandParameter="π" Content="π" Style="{StaticResource TextButtonStyle}"/>
+            <Button Grid.Row="3" Grid.Column="6" Command="{Binding CharacterInputCommand}" CommandParameter="e" Content="e" Style="{StaticResource TextButtonStyle}"/>
             <Button Grid.Row="2" Grid.Column="4" Command="{Binding PowerCommand}">
                 <Button.Content>
                     <Grid>
@@ -113,16 +149,16 @@
                         </Grid.RowDefinitions>
 
                         <TextBlock Grid.Row="1" Grid.Column="0" Text="x" VerticalAlignment="Center" Margin="0,0,0,5"/>
-                        <Rectangle Grid.Row="0" Grid.Column="1" Stroke="Black" Fill="Transparent" Width="12" Height="15" Margin="0,0,0,-5"/>
+                        <Rectangle Grid.Row="0" Grid.Column="1" Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}" Fill="Transparent" Width="12" Height="15" Margin="0,0,0,-5"/>
                     </Grid>
                 </Button.Content>
             </Button>
 
             <Button Grid.Row="3" Grid.Column="4" Command="{Binding FractionCommand}">
                 <StackPanel VerticalAlignment="Center">
-                    <Rectangle Width="14" Height="12" Stroke="Black"/>
-                    <Rectangle Width="24" Height="2" Fill="Black" Margin="2"/>
-                    <Rectangle Width="14" Height="12" Stroke="Black"/>
+                    <Rectangle Width="14" Height="12" Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}"/>
+                    <Rectangle Width="24" Height="2" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}" Margin="2"/>
+                    <Rectangle Width="14" Height="12" Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}"/>
                 </StackPanel>
             </Button>
             <Button Grid.Row="0" Grid.Column="4" Command="{Binding SquareRootCommand}">
@@ -135,7 +171,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Grid Grid.Column="0" Margin="5,5,0,5">
-                                <Path Margin="0,0,0,0" StrokeEndLineCap="Square" Stretch="Fill" Stroke="Black" StrokeThickness="2" 
+                                <Path Margin="0,0,0,0" StrokeEndLineCap="Square" Stretch="Fill" Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}" StrokeThickness="2" 
                                       Data="M0,6 L 3,11 L 11,0 L 12, 0" />
                             </Grid>
                             <Grid Grid.Column="1">
@@ -145,10 +181,10 @@
                                 </Grid.RowDefinitions>
 
                                 <Path Margin="0,1,0,0" StrokeStartLineCap="Square" VerticalAlignment="Bottom" Grid.Row="0" Height="6" 
-                                      HorizontalAlignment="Stretch" Stretch="Fill" Stroke="Black" StrokeThickness="2" 
+                                      HorizontalAlignment="Stretch" Stretch="Fill" Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}" StrokeThickness="2" 
                                       Data="M 0,5 L 10,5">
                                 </Path>
-                                <Rectangle Grid.Row="1" Margin="-2,2,2,2" Height="15" Width="12" Stroke="Black" Fill="Transparent"/>
+                                <Rectangle Grid.Row="1" Margin="-2,2,2,2" Height="15" Width="12" Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}" Fill="Transparent"/>
                             </Grid>
                         </Grid>
                     </StackPanel>
@@ -168,10 +204,10 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-                                <Rectangle Grid.Row="0" Height="12" Width="9" Stroke="Black" Margin="-7,0,0,0"/>
+                                <Rectangle Grid.Row="0" Height="12" Width="9" Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}" Margin="-7,0,0,0"/>
 
                                 <Grid Grid.Row="0" Grid.RowSpan="2" Margin="5,5,0,5">
-                                    <Path Margin="0,0,0,0" StrokeEndLineCap="Square" Stretch="Fill" Stroke="Black" StrokeThickness="2" 
+                                    <Path Margin="0,0,0,0" StrokeEndLineCap="Square" Stretch="Fill" Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}" StrokeThickness="2" 
                                       Data="M0,12 L 3,18 L 12,0 L 13, 0" />
                                 </Grid>
                             </Grid>
@@ -182,21 +218,21 @@
                                 </Grid.RowDefinitions>
 
                                 <Path Margin="0,1,0,0" StrokeStartLineCap="Square" VerticalAlignment="Bottom" Grid.Row="0" Height="6" 
-                                      HorizontalAlignment="Stretch" Stretch="Fill" Stroke="Black" StrokeThickness="2" 
+                                      HorizontalAlignment="Stretch" Stretch="Fill" Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}" StrokeThickness="2" 
                                       Data="M 0,5 L 10,5">
                                 </Path>
-                                <Rectangle Grid.Row="1" Margin="-2,2,2,2" Height="16" Width="12" Stroke="Black" Fill="Transparent"/>
+                                <Rectangle Grid.Row="1" Margin="-2,2,2,2" Height="16" Width="12" Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}" Fill="Transparent"/>
                             </Grid>
                         </Grid>
                     </StackPanel>
                 </Button.Content>
             </Button>
-            <Button Grid.Row="0" Grid.Column="5" Command="{Binding SineCommand}" Content="sin"/>
-            <Button Grid.Row="1" Grid.Column="5" Command="{Binding CosineCommand}" Content="cos"/>
-            <Button Grid.Row="2" Grid.Column="5" Command="{Binding TangentCommand}" Content="tan"/>
-            <Button Grid.Row="3" Grid.Column="5" Command="{Binding CharacterInputCommand}" CommandParameter="!" Content="x!"/>
-            <Button Grid.Row="1" Grid.Column="7" Command="{Binding DeleteCommand}" Content="DEL"/>
-            <Button Grid.Row="0" Grid.Column="7" Command="{Binding ClearCommand}" Content="C"/>
+            <Button Grid.Row="0" Grid.Column="5" Command="{Binding SineCommand}" Content="sin" Style="{StaticResource TextButtonStyle}"/>
+            <Button Grid.Row="1" Grid.Column="5" Command="{Binding CosineCommand}" Content="cos" Style="{StaticResource TextButtonStyle}"/>
+            <Button Grid.Row="2" Grid.Column="5" Command="{Binding TangentCommand}" Content="tan" Style="{StaticResource TextButtonStyle}"/>
+            <Button Grid.Row="3" Grid.Column="5" Command="{Binding CharacterInputCommand}" CommandParameter="!" Content="x!" Style="{StaticResource TextButtonStyle}"/>
+            <Button Grid.Row="1" Grid.Column="7" Command="{Binding DeleteCommand}" Content="DEL" Style="{StaticResource TextButtonStyle}"/>
+            <Button Grid.Row="0" Grid.Column="7" Command="{Binding ClearCommand}" Content="C" Style="{StaticResource TextButtonStyle}"/>
             <Button Grid.Row="3" Grid.Column="7" Command="{Binding EvaluateCommand}" Content="=" Background="#316EAC"/>
         </Grid>
     </Grid>

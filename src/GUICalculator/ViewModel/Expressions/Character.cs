@@ -1,4 +1,4 @@
-﻿using GUICalculator.ViewModel.Expressions;
+﻿using GUICalculator.ViewModel.Expressions.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;

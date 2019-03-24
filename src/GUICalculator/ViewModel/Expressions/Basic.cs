@@ -1,104 +1,44 @@
-﻿using System;
+﻿using GUICalculator.ViewModel.Expressions.Base;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 
 namespace GUICalculator.View
 {
-    class Basic : Expression
+    class Basic : SingleExpression
     {
 
         public Basic()
             : base("BasicExpressionTemplate")
         {
-            this.AddAuxiliary();
         }
-
-        public ObservableCollection<Expression> Items { get; set; } = new ObservableCollection<Expression>();
-
-        public override void AddExpression(Expression activeExpression, Expression expression)
-        {
-            //Expression activeExpression = Caret.Instance.ActiveExpression;
-            int activeIndex = Items.IndexOf(activeExpression);
-            if (activeIndex >= 0)
-            {
-                if (Caret.Instance.ExpressionSide == ExpressionSide.Right)
-                    activeIndex++;
-                Items.Insert(activeIndex, expression);
-
-                // remove auxiliary
-                if (activeExpression is Auxiliary)
-                    Items.Remove(activeExpression);
-                return;
-            }
-            throw new KeyNotFoundException("Active expression wasn't found therefore a new expression couldn't be added.");
-        }
-
-        public override Expression NextChild(Expression currentChild)
-        {
-            for (int i = 0; i < Items.Count; i++)
-            {
-                if (currentChild == Items[i])
-                {
-                    if (i + 1 == Items.Count)
-                        return null;
-                    return Items[i + 1];
-                }
-            }
-            throw new KeyNotFoundException("Expression not found.");
-        }
-
-        public override Expression PreviousChild(Expression currentChild)
-        {
-            for (int i = 0; i < Items.Count; i++)
-            {
-                if (currentChild == Items[i])
-                {
-                    if (i == 0)
-                        return null;
-                    return Items[i - 1];
-                }
-            }
-            throw new KeyNotFoundException("Expression not found.");
-        }
-
-        public override Expression LastChild()
-        {
-            if (Items.Count > 0)
-                return Items[Items.Count - 1];
-            return null;
-        }
-
-        public override Expression FirstChild()
-        {
-            if (Items.Count > 0)
-                return Items[0];
-            return null;
-        }
-
-        public override bool DeleteChild(Expression child)
-        {
-            bool result = Items.Remove(child);
-            Expression aux = AddAuxiliary();
-            Caret.Instance.SetActiveExpression(aux, ExpressionSide.Left);
-            return result;
-        }
-
         
-        public override Expression AddAuxiliary()
+        public override Expression MoveLeft(Expression child, bool jumpIn)
         {
-            if (Items.Count == 0)
+            // Makes sure the caret remains inside the Base expression 
+            // on the left side of the first child.
+            if (Caret.Instance.ExpressionSide == ExpressionSide.Left)
             {
-                var aux = new Auxiliary();
-                aux.ParentExpression = this;
-                Items.Add(aux);
-                return aux;
+                if (child != null && PreviousChild(child) == null)
+                    return FirstChild();
             }
-            return null;
+            return base.MoveLeft(child, jumpIn);
+        }
+
+        public override Expression MoveRight(Expression child, bool jumpIn)
+        {
+            // Makes sure the caret remains inside the Base expression 
+            // on the right side of the right child.
+            if (Caret.Instance.ExpressionSide == ExpressionSide.Right)
+            {
+                if (child != null && NextChild(child) == null)
+                    return LastChild();
+            }
+            return base.MoveRight(child, jumpIn);
         }
 
         public override string ConvertToString()
