@@ -16,7 +16,7 @@ namespace MathLibraryTests
     /// Class testing SimplifyArgument class
     /// </summary>
     [TestClass]
-    public class SimplifyArgumentTest : TrigonoValues
+    public class SimplifyArgumentTest
     {
         Difference dif;
         SimplifyArgument sim;
@@ -27,24 +27,24 @@ namespace MathLibraryTests
         [TestMethod]
         public void InRange()
         {
-            sim = new SimplifyArgument(-Pi);
-            dif = new Difference(-Pi, sim.SimplifyOfTwoPi());
+            sim = new SimplifyArgument(-Constants.Pi);
+            dif = new Difference(-Constants.Pi, sim.SimplifyOfTwoPi());
             Assert.IsTrue(dif.IsAlmostSame());
 
-            sim = new SimplifyArgument(-PiDivSix);
-            dif = new Difference(-PiDivSix, sim.SimplifyOfTwoPi());
+            sim = new SimplifyArgument(-Constants.PiDivSix);
+            dif = new Difference(-Constants.PiDivSix, sim.SimplifyOfTwoPi());
             Assert.IsTrue(dif.IsAlmostSame());
 
-            sim = new SimplifyArgument(Zero);
-            dif = new Difference(Zero, sim.SimplifyOfTwoPi());
+            sim = new SimplifyArgument(Constants.Zero);
+            dif = new Difference(Constants.Zero, sim.SimplifyOfTwoPi());
             Assert.IsTrue(dif.IsAlmostSame());
 
-            sim = new SimplifyArgument(PiDivFour);
-            dif = new Difference(PiDivFour, sim.SimplifyOfTwoPi());
+            sim = new SimplifyArgument(Constants.PiDivFour);
+            dif = new Difference(Constants.PiDivFour, sim.SimplifyOfTwoPi());
             Assert.IsTrue(dif.IsAlmostSame());
 
-            sim = new SimplifyArgument(Pi);
-            dif = new Difference(Pi, sim.SimplifyOfTwoPi());
+            sim = new SimplifyArgument(Constants.Pi);
+            dif = new Difference(Constants.Pi, sim.SimplifyOfTwoPi());
             Assert.IsTrue(dif.IsAlmostSame());
 
             sim = new SimplifyArgument(2.8665);
@@ -58,12 +58,12 @@ namespace MathLibraryTests
         [TestMethod]
         public void OutOfRangeSmaller()
         {
-            sim = new SimplifyArgument(-ThreePiDivTwo);
-            dif = new Difference(PiDivTwo, sim.SimplifyOfTwoPi());
+            sim = new SimplifyArgument(-Constants.ThreePiDivTwo);
+            dif = new Difference(Constants.PiDivTwo, sim.SimplifyOfTwoPi());
             Assert.IsTrue(dif.IsAlmostSame());
 
-            sim = new SimplifyArgument(-TwoPi);
-            dif = new Difference(Zero, sim.SimplifyOfTwoPi());
+            sim = new SimplifyArgument(-Constants.TwoPi);
+            dif = new Difference(Constants.Zero, sim.SimplifyOfTwoPi());
             Assert.IsTrue(dif.IsAlmostSame());
 
             sim = new SimplifyArgument(-5443.366);
@@ -77,12 +77,12 @@ namespace MathLibraryTests
         [TestMethod]
         public void OutOfRangeGreater()
         {
-            sim = new SimplifyArgument(ThreePiDivTwo);
-            dif = new Difference(-PiDivTwo, sim.SimplifyOfTwoPi());
+            sim = new SimplifyArgument(Constants.ThreePiDivTwo);
+            dif = new Difference(-Constants.PiDivTwo, sim.SimplifyOfTwoPi());
             Assert.IsTrue(dif.IsAlmostSame());
 
-            sim = new SimplifyArgument(TwoPi);
-            dif = new Difference(Zero, sim.SimplifyOfTwoPi());
+            sim = new SimplifyArgument(Constants.TwoPi);
+            dif = new Difference(Constants.Zero, sim.SimplifyOfTwoPi());
             Assert.IsTrue(dif.IsAlmostSame());
 
             sim = new SimplifyArgument(654354.2572);

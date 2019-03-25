@@ -20,7 +20,7 @@ namespace MathLibrary
     /// Due to the periodic behavior of trigonometric function, you can convert high argument to lower one by subtracting the n*2PI
     /// where 'n' is natural number or zero
     /// </summary>
-    public class SimplifyArgument : TrigonoValues
+    public class SimplifyArgument
     {
         private double argument;
         private uint period;
@@ -36,9 +36,9 @@ namespace MathLibrary
         /// <returns>true if argument is <-pi;pi> ~ <-3.14;3.14>. Else false</returns>
         private bool InRange()
         {
-            Difference dif1 = new Difference(argument, -Pi);                        //  is almost -pi
-            Difference dif2 = new Difference(argument, Pi);                         //  is almost pi
-            bool inRange = ((argument >= -Pi && argument <= Pi) ? true : false);    //  in range <-pi;pi>
+            Difference dif1 = new Difference(argument, -Constants.Pi);                        //  is almost -pi
+            Difference dif2 = new Difference(argument, Constants.Pi);                         //  is almost pi
+            bool inRange = ((argument >= -Constants.Pi && argument <= Constants.Pi) ? true : false);    //  in range <-pi;pi>
             return (((dif1.IsAlmostSame() || dif2.IsAlmostSame() || inRange) ? true : false));
         }
 
@@ -48,9 +48,9 @@ namespace MathLibrary
         /// <returns>true if argument is <-2pi;2pi> ~ <-6.28;6.28>. Else false</returns>
         private bool InExtendedRange()
         {
-            Difference dif1 = new Difference(argument, -TwoPi);                         //  is almost -2pi
-            Difference dif2 = new Difference(argument, TwoPi);                          //  is almost 2pi
-            bool inRange = ((argument >= -TwoPi && argument <= TwoPi) ? true : false);  //  in range <-2pi;2pi>
+            Difference dif1 = new Difference(argument, -Constants.TwoPi);                         //  is almost -2pi
+            Difference dif2 = new Difference(argument, Constants.TwoPi);                          //  is almost 2pi
+            bool inRange = ((argument >= -Constants.TwoPi && argument <= Constants.TwoPi) ? true : false);  //  in range <-2pi;2pi>
             return (((dif1.IsAlmostSame() || dif2.IsAlmostSame() || inRange) ? true : false));
         }
 
@@ -59,7 +59,7 @@ namespace MathLibrary
         /// </summary>
         private void ExpandArgument()
         {
-            argument += period*TwoPi;
+            argument += period*Constants.TwoPi;
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace MathLibrary
         /// </summary>
         private void SchrinkArgument()
         {
-            argument -= period*TwoPi;
+            argument -= period*Constants.TwoPi;
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace MathLibrary
         /// <returns>Argument if no need of setting or argumentSimplified if any change's been made</returns>
         public double SimplifyOfTwoPi()
         {
-            period = (uint)(((argument >= 0) ? argument : -argument) / TwoPi);
+            period = (uint)(((argument >= 0) ? argument : -argument) / Constants.TwoPi);
 
             if (InRange())
             {
@@ -94,11 +94,11 @@ namespace MathLibrary
 
             if (InExtendedRange() && !InRange() && argument < 0)
             {
-                argument += TwoPi;
+                argument += Constants.TwoPi;
             }
             else if (InExtendedRange() && !InRange() && argument > 0)
             {
-                argument -= TwoPi;
+                argument -= Constants.TwoPi;
             }
             return argument;
         }

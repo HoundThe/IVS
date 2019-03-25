@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace MathLibrary
 {
-    public class TangentExp : TrigonoValues, IExpression
+    public class TangentExp : IExpression
     {
 
         private double result = 0;
@@ -70,40 +70,40 @@ namespace MathLibrary
         /// <returns></returns>
         private bool BaseValue()
         {
-            dif1 = new Difference(simplifiedArgument, -Pi);
-            dif2 = new Difference(simplifiedArgument, Pi);
+            dif1 = new Difference(simplifiedArgument, -Constants.Pi);
+            dif2 = new Difference(simplifiedArgument, Constants.Pi);
             if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = 0; return true; }
 
-            dif1 = new Difference(simplifiedArgument, -FivePiDivSix);
-            dif2 = new Difference(simplifiedArgument, PiDivSix);
-            if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = SqrtThreeDivThree; return true; }
+            dif1 = new Difference(simplifiedArgument, -Constants.FivePiDivSix);
+            dif2 = new Difference(simplifiedArgument, Constants.PiDivSix);
+            if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = Constants.SqrtThreeDivThree; return true; }
 
-            dif1 = new Difference(simplifiedArgument, -ThreePiDivFour);
-            dif2 = new Difference(simplifiedArgument, PiDivFour);
+            dif1 = new Difference(simplifiedArgument, -Constants.ThreePiDivFour);
+            dif2 = new Difference(simplifiedArgument, Constants.PiDivFour);
             if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = 1; return true; }
 
-            dif1 = new Difference(simplifiedArgument, -FourPiDivSix);
-            dif2 = new Difference(simplifiedArgument, TwoPiDivSix);
-            if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = SqrtThree; return true; }
+            dif1 = new Difference(simplifiedArgument, -Constants.FourPiDivSix);
+            dif2 = new Difference(simplifiedArgument, Constants.TwoPiDivSix);
+            if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = Constants.SqrtThree; return true; }
 
-            dif1 = new Difference(simplifiedArgument, -TwoPiDivSix);
-            dif2 = new Difference(simplifiedArgument, FourPiDivSix);
-            if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = -SqrtThree; return true; }
+            dif1 = new Difference(simplifiedArgument, -Constants.TwoPiDivSix);
+            dif2 = new Difference(simplifiedArgument, Constants.FourPiDivSix);
+            if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = -Constants.SqrtThree; return true; }
 
-            dif2 = new Difference(simplifiedArgument, -PiDivFour);
-            dif1 = new Difference(simplifiedArgument, ThreePiDivFour);
+            dif2 = new Difference(simplifiedArgument, -Constants.PiDivFour);
+            dif1 = new Difference(simplifiedArgument, Constants.ThreePiDivFour);
             if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = -1; return true; }
 
-            dif1 = new Difference(simplifiedArgument, -PiDivSix);
-            dif2 = new Difference(simplifiedArgument, FivePiDivSix);
-            if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = -SqrtThreeDivThree; return true; }
+            dif1 = new Difference(simplifiedArgument, -Constants.PiDivSix);
+            dif2 = new Difference(simplifiedArgument, Constants.FivePiDivSix);
+            if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = -Constants.SqrtThreeDivThree; return true; }
 
             dif1 = new Difference(simplifiedArgument, 0);
             if (dif1.IsAlmostSame()) { result = 0; return true; }
 
-            dif1 = new Difference(simplifiedArgument, -PiDivTwo);
-            dif2 = new Difference(simplifiedArgument, PiDivTwo);
-            if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = -One; throw new ArgumentException("Wrong argument of tan(x) function!"); }
+            dif1 = new Difference(simplifiedArgument, -Constants.PiDivTwo);
+            dif2 = new Difference(simplifiedArgument, Constants.PiDivTwo);
+            if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = -Constants.One; throw new ArgumentException("Wrong argument of tan(x) function!"); }
 
             return false;
 

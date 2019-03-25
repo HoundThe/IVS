@@ -17,7 +17,7 @@ namespace MathLibraryTests
     /// Each method name is function input. No exception excepted.
     /// </summary>
     [TestClass]
-    public class SineExpTest : TrigonoValues, ITestTrigono
+    public class SineExpTest : ITestTrigono
     {
         private SineExp sineExp;
         private Difference dif;
@@ -25,128 +25,128 @@ namespace MathLibraryTests
         [TestMethod]
         public void InputEightPiDivSix()
         {
-            sineExp = new SineExp(new Number(EightPiDivSix));
-            dif = new Difference((-SqrtThreeDivTwo), sineExp.Evaluate());
+            sineExp = new SineExp(new Number(Constants.EightPiDivSix));
+            dif = new Difference(-Constants.SqrtThreeDivTwo, sineExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
         [TestMethod]
         public void InputElevenPiDivSix()
         {
-            sineExp = new SineExp(new Number(ElevenPiDivSix));
-            dif = new Difference(((-OneDivTwo)), sineExp.Evaluate());
+            sineExp = new SineExp(new Number(Constants.ElevenPiDivSix));
+            dif = new Difference(-Constants.OneDivTwo, sineExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
         [TestMethod]
         public void InputFivePiDivFour()
         {
-            sineExp = new SineExp(new Number(FivePiDivFour));
-            dif = new Difference((-SqrtTwoDivTwo), sineExp.Evaluate());
+            sineExp = new SineExp(new Number(Constants.FivePiDivFour));
+            dif = new Difference(-Constants.SqrtTwoDivTwo, sineExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
         [TestMethod]
         public void InputFivePiDivSix()
         {
-            sineExp = new SineExp(new Number(FivePiDivSix));
-            dif = new Difference((OneDivTwo), sineExp.Evaluate());
+            sineExp = new SineExp(new Number(Constants.FivePiDivSix));
+            dif = new Difference(Constants.OneDivTwo, sineExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
         [TestMethod]
         public void InputFourPiDivSix()
         {
-            sineExp = new SineExp(new Number(FourPiDivSix));
-            dif = new Difference((SqrtThreeDivTwo), sineExp.Evaluate());
+            sineExp = new SineExp(new Number(Constants.FourPiDivSix));
+            dif = new Difference(Constants.SqrtThreeDivTwo, sineExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
         [TestMethod]
         public void InputPi()
         {
-            sineExp = new SineExp(new Number(Pi));
-            dif = new Difference((Zero), sineExp.Evaluate());
+            sineExp = new SineExp(new Number(Constants.Pi));
+            dif = new Difference(Constants.Zero, sineExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
         [TestMethod]
         public void InputPiDivFour()
         {
-            sineExp = new SineExp(new Number(PiDivFour));
-            dif = new Difference((SqrtTwoDivTwo), sineExp.Evaluate());
+            sineExp = new SineExp(new Number(Constants.PiDivFour));
+            dif = new Difference(Constants.SqrtTwoDivTwo, sineExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
         [TestMethod]
         public void InputPiDivSix()
         {
-            sineExp = new SineExp(new Number(PiDivSix));
-            dif = new Difference((OneDivTwo), sineExp.Evaluate());
+            sineExp = new SineExp(new Number(Constants.PiDivSix));
+            dif = new Difference(Constants.OneDivTwo, sineExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
         [TestMethod]
         public void InputPiDivTwo()
         {
-            sineExp = new SineExp(new Number(PiDivTwo));
-            dif = new Difference((One), sineExp.Evaluate());
+            sineExp = new SineExp(new Number(Constants.PiDivTwo));
+            dif = new Difference(Constants.One, sineExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
         [TestMethod]
         public void InputSevenPiDivFour()
         {
-            sineExp = new SineExp(new Number(SevenPiDivFour));
-            dif = new Difference(((-SqrtTwoDivTwo)), sineExp.Evaluate());
+            sineExp = new SineExp(new Number(Constants.SevenPiDivFour));
+            dif = new Difference(-Constants.SqrtTwoDivTwo, sineExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
         [TestMethod]
         public void InputSevenPiDivSix()
         {
-            sineExp = new SineExp(new Number(SevenPiDivSix));
-            dif = new Difference(((-OneDivTwo)), sineExp.Evaluate());
+            sineExp = new SineExp(new Number(Constants.SevenPiDivSix));
+            dif = new Difference(-Constants.OneDivTwo, sineExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
         [TestMethod]
         public void InputTenPiDivSix()
         {
-            sineExp = new SineExp(new Number(TenPiDivSix));
-            dif = new Difference(((-SqrtThreeDivTwo)), sineExp.Evaluate());
+            sineExp = new SineExp(new Number(Constants.TenPiDivSix));
+            dif = new Difference(-Constants.SqrtThreeDivTwo, sineExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
         [TestMethod]
         public void InputThreePiDivFour()
         {
-            sineExp = new SineExp(new Number(ThreePiDivFour));
-            dif = new Difference((SqrtTwoDivTwo), sineExp.Evaluate());
+            sineExp = new SineExp(new Number(Constants.ThreePiDivFour));
+            dif = new Difference(Constants.SqrtTwoDivTwo, sineExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
         [TestMethod]
         public void InputThreePiDivTwo()
         {
-            sineExp = new SineExp(new Number(ThreePiDivTwo));
-            dif = new Difference(((-One)), sineExp.Evaluate());
+            sineExp = new SineExp(new Number(Constants.ThreePiDivTwo));
+            dif = new Difference(-Constants.One, sineExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
         [TestMethod]
         public void InputTwoPiDivSix()
         {
-            sineExp = new SineExp(new Number(TwoPiDivSix));
-            dif = new Difference((SqrtThreeDivTwo), sineExp.Evaluate());
+            sineExp = new SineExp(new Number(Constants.TwoPiDivSix));
+            dif = new Difference(Constants.SqrtThreeDivTwo, sineExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
         [TestMethod]
         public void InputZero()
         {
-            sineExp = new SineExp(new Number(Zero));
-            dif = new Difference((Zero), sineExp.Evaluate());
+            sineExp = new SineExp(new Number(Constants.Zero));
+            dif = new Difference(Constants.Zero, sineExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 

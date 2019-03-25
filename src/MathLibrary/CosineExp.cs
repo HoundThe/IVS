@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace MathLibrary
 {
-    public class CosineExp : TrigonoValues, IExpression
+    public class CosineExp : IExpression
     {
         private IExpression argument;
 
@@ -34,7 +34,7 @@ namespace MathLibrary
         /// <returns>Cosine of value</returns>
         public double Evaluate()
         {
-            SineExp sin = new SineExp(new Number(argument.Evaluate() + PiDivTwo));
+            SineExp sin = new SineExp(new Number(argument.Evaluate() + Constants.PiDivTwo));
             return sin.Evaluate();
         }
     }

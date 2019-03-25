@@ -17,7 +17,7 @@ namespace MathLibraryTests
     /// Each method name is function input.
     /// </summary>
     [TestClass]
-    public class TangentExpTest : TrigonoValues, ITestTrigono
+    public class TangentExpTest : ITestTrigono
     {
         private TangentExp tanExp;
         private Difference dif;
@@ -25,64 +25,64 @@ namespace MathLibraryTests
         [TestMethod]
         public void InputEightPiDivSix()
         {
-            tanExp = new TangentExp(new Number(EightPiDivSix));
-            dif = new Difference((SqrtThree), tanExp.Evaluate());
+            tanExp = new TangentExp(new Number(Constants.EightPiDivSix));
+            dif = new Difference(Constants.SqrtThree, tanExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
         [TestMethod]
         public void InputElevenPiDivSix()
         {
-            tanExp = new TangentExp(new Number(ElevenPiDivSix));
-            dif = new Difference((-SqrtThreeDivThree), tanExp.Evaluate());
+            tanExp = new TangentExp(new Number(Constants.ElevenPiDivSix));
+            dif = new Difference(-Constants.SqrtThreeDivThree, tanExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
         [TestMethod]
         public void InputFivePiDivFour()
         {
-            tanExp = new TangentExp(new Number(FivePiDivFour));
-            dif = new Difference((One), tanExp.Evaluate());
+            tanExp = new TangentExp(new Number(Constants.FivePiDivFour));
+            dif = new Difference(Constants.One, tanExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
         [TestMethod]
         public void InputFivePiDivSix()
         {
-            tanExp = new TangentExp(new Number(FivePiDivSix));
-            dif = new Difference((-SqrtThreeDivThree), tanExp.Evaluate());
+            tanExp = new TangentExp(new Number(Constants.FivePiDivSix));
+            dif = new Difference(-Constants.SqrtThreeDivThree, tanExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
         [TestMethod]
         public void InputFourPiDivSix()
         {
-            tanExp = new TangentExp(new Number(FourPiDivSix));
-            dif = new Difference((-SqrtThree), tanExp.Evaluate());
+            tanExp = new TangentExp(new Number(Constants.FourPiDivSix));
+            dif = new Difference(-Constants.SqrtThree, tanExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
         [TestMethod]
         public void InputPi()
         {
-            tanExp = new TangentExp(new Number(Pi));
-            dif = new Difference((Zero), tanExp.Evaluate());
+            tanExp = new TangentExp(new Number(Constants.Pi));
+            dif = new Difference(Constants.Zero, tanExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
         [TestMethod]
         public void InputPiDivFour()
         {
-            tanExp = new TangentExp(new Number(PiDivFour));
-            dif = new Difference((One), tanExp.Evaluate());
+            tanExp = new TangentExp(new Number(Constants.PiDivFour));
+            dif = new Difference(Constants.One, tanExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
         [TestMethod]
         public void InputPiDivSix()
         {
-            tanExp = new TangentExp(new Number(PiDivSix));
-            dif = new Difference((SqrtThreeDivThree), tanExp.Evaluate());
+            tanExp = new TangentExp(new Number(Constants.PiDivSix));
+            dif = new Difference(Constants.SqrtThreeDivThree, tanExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
@@ -90,39 +90,39 @@ namespace MathLibraryTests
         [ExpectedException(typeof(ArgumentException))]
         public void InputPiDivTwo()
         {
-            tanExp = new TangentExp(new Number(PiDivTwo));
+            tanExp = new TangentExp(new Number(Constants.PiDivTwo));
             tanExp.Evaluate();
         }
 
         [TestMethod]
         public void InputSevenPiDivFour()
         {
-            tanExp = new TangentExp(new Number(SevenPiDivFour));
-            dif = new Difference(((-One)), tanExp.Evaluate());
+            tanExp = new TangentExp(new Number(Constants.SevenPiDivFour));
+            dif = new Difference(-Constants.One, tanExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
         [TestMethod]
         public void InputSevenPiDivSix()
         {
-            tanExp = new TangentExp(new Number(SevenPiDivSix));
-            dif = new Difference(((SqrtThreeDivThree)), tanExp.Evaluate());
+            tanExp = new TangentExp(new Number(Constants.SevenPiDivSix));
+            dif = new Difference(Constants.SqrtThreeDivThree, tanExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
         [TestMethod]
         public void InputTenPiDivSix()
         {
-            tanExp = new TangentExp(new Number(TenPiDivSix));
-            dif = new Difference(((-SqrtThree)), tanExp.Evaluate());
+            tanExp = new TangentExp(new Number(Constants.TenPiDivSix));
+            dif = new Difference(-Constants.SqrtThree, tanExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
         [TestMethod]
         public void InputThreePiDivFour()
         {
-            tanExp = new TangentExp(new Number(ThreePiDivFour));
-            dif = new Difference((-One), tanExp.Evaluate());
+            tanExp = new TangentExp(new Number(Constants.ThreePiDivFour));
+            dif = new Difference(-Constants.One, tanExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
@@ -130,23 +130,23 @@ namespace MathLibraryTests
         [ExpectedException(typeof(ArgumentException))]
         public void InputThreePiDivTwo()
         {
-            tanExp = new TangentExp(new Number(ThreePiDivTwo));
+            tanExp = new TangentExp(new Number(Constants.ThreePiDivTwo));
             tanExp.Evaluate();
         }
 
         [TestMethod]
         public void InputTwoPiDivSix()
         {
-            tanExp = new TangentExp(new Number(TwoPiDivSix));
-            dif = new Difference((SqrtThree), tanExp.Evaluate());
+            tanExp = new TangentExp(new Number(Constants.TwoPiDivSix));
+            dif = new Difference(Constants.SqrtThree, tanExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
         [TestMethod]
         public void InputZero()
         {
-            tanExp = new TangentExp(new Number(Zero));
-            dif = new Difference((Zero), tanExp.Evaluate());
+            tanExp = new TangentExp(new Number(Constants.Zero));
+            dif = new Difference(Constants.Zero, tanExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
         }
 
