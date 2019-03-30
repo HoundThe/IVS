@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace MathLibrary
 {
-    public class SineExp : TrigonoValues, IExpression
+    public class SineExp : IExpression
     {
         private SimplifyArgument sim;
         private IExpression argument;
@@ -71,42 +71,42 @@ namespace MathLibrary
         /// </summary>
         public bool BaseValue()
         {
-            dif1 = new Difference(simplifiedArgument, -Pi);
-            dif2 = new Difference(simplifiedArgument, Pi);
+            dif1 = new Difference(simplifiedArgument, -Constants.Pi);
+            dif2 = new Difference(simplifiedArgument, Constants.Pi);
             if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = 0; return true; }
 
-            dif1 = new Difference(simplifiedArgument, -FivePiDivSix);
-            dif2 = new Difference(simplifiedArgument, -PiDivSix);
-            if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = -OneDivTwo; return true; }
+            dif1 = new Difference(simplifiedArgument, -Constants.FivePiDivSix);
+            dif2 = new Difference(simplifiedArgument, -Constants.PiDivSix);
+            if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = -Constants.OneDivTwo; return true; }
 
-            dif1 = new Difference(simplifiedArgument, -ThreePiDivFour);
-            dif2 = new Difference(simplifiedArgument, -PiDivFour);
-            if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = -SqrtTwoDivTwo; return true; }
+            dif1 = new Difference(simplifiedArgument, -Constants.ThreePiDivFour);
+            dif2 = new Difference(simplifiedArgument, -Constants.PiDivFour);
+            if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = -Constants.SqrtTwoDivTwo; return true; }
 
-            dif1 = new Difference(simplifiedArgument, -FourPiDivSix);
-            dif2 = new Difference(simplifiedArgument, -TwoPiDivSix);
-            if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = -SqrtThreeDivTwo; return true; }
+            dif1 = new Difference(simplifiedArgument, -Constants.FourPiDivSix);
+            dif2 = new Difference(simplifiedArgument, -Constants.TwoPiDivSix);
+            if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = -Constants.SqrtThreeDivTwo; return true; }
 
-            dif1 = new Difference(simplifiedArgument, PiDivSix);
-            dif2 = new Difference(simplifiedArgument, FivePiDivSix);
-            if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = OneDivTwo; return true; }
+            dif1 = new Difference(simplifiedArgument, Constants.PiDivSix);
+            dif2 = new Difference(simplifiedArgument, Constants.FivePiDivSix);
+            if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = Constants.OneDivTwo; return true; }
 
-            dif2 = new Difference(simplifiedArgument, PiDivFour);
-            dif1 = new Difference(simplifiedArgument, ThreePiDivFour);
-            if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = SqrtTwoDivTwo; return true; }
+            dif2 = new Difference(simplifiedArgument, Constants.PiDivFour);
+            dif1 = new Difference(simplifiedArgument, Constants.ThreePiDivFour);
+            if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = Constants.SqrtTwoDivTwo; return true; }
 
-            dif1 = new Difference(simplifiedArgument, TwoPiDivSix);
-            dif2 = new Difference(simplifiedArgument, FourPiDivSix);
-            if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = SqrtThreeDivTwo; return true; }
+            dif1 = new Difference(simplifiedArgument, Constants.TwoPiDivSix);
+            dif2 = new Difference(simplifiedArgument, Constants.FourPiDivSix);
+            if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = Constants.SqrtThreeDivTwo; return true; }
 
-            dif1 = new Difference(simplifiedArgument, -PiDivTwo);
-            if (dif1.IsAlmostSame()) { result = -One; return true; }
+            dif1 = new Difference(simplifiedArgument, -Constants.PiDivTwo);
+            if (dif1.IsAlmostSame()) { result = -Constants.One; return true; }
 
             dif1 = new Difference(simplifiedArgument, 0);
             if (dif1.IsAlmostSame()) { result = 0; return true; }
 
-            dif1 = new Difference(simplifiedArgument, PiDivTwo);
-            if (dif1.IsAlmostSame()) { result = One; return true; }
+            dif1 = new Difference(simplifiedArgument, Constants.PiDivTwo);
+            if (dif1.IsAlmostSame()) { result = Constants.One; return true; }
 
             return false;
         }

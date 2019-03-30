@@ -2,17 +2,16 @@
  *      ROZSIVAL MICHAL                                         *
  *      IVS - project 2                                         *
  *      FEB/MAR 2019                                            *
- *      Class containing values for trigonometric functions     *
+ *      Class containing constants                              *
  *      Version 1.0                                             *
  ****************************************************************/
 
-using System;
 namespace MathLibrary
 {
     /// <summary>
-    /// Auxiliary class containging values for Trigonometric functions with 20digits accuracy cut off
+    /// Auxiliary class containing value of some constants with 20digits accuracy cut off
     /// </summary>
-    public class TrigonoValues
+    static public class Constants
     {
         public const double Zero                = 0.0;
                
@@ -44,6 +43,5 @@ namespace MathLibrary
         public const double One                 = 1.0;
         public const double SqrtThree           = 1.732050807568877293527;
         public const double SqrtThreeDivThree   = 0.577350269189625764509;
-
     }
 }

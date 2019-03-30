@@ -22,12 +22,12 @@ namespace GUICalculator.Model
                 if (element == "π")
                 {
                     isNumber = true;
-                    number = TrigonoValues.Pi;
+                    number = Constants.Pi;
                 }
                 else if (element == "e")
                 {
                     isNumber = true;
-                    number = TrigonoValues.E; // TODO from math lib
+                    number = Constants.E; // TODO from math lib
                 }
                 if (isNumber == true)
                 {

@@ -55,7 +55,7 @@
     <Compile Include="SineExp.cs" />
     <Compile Include="SubtractionExp.cs" />
     <Compile Include="TangentExp.cs" />
-    <Compile Include="TrigonoValues.cs" />
+    <Compile Include="Constants.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
