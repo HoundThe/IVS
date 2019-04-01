@@ -69,7 +69,8 @@
 
 
         <UserControl Grid.Row="0" Background="#FFFFFF">
-            <Grid x:Name="CustomTextBoxContainer">
+            <Grid x:Name="CustomTextBoxContainer" PreviewMouseLeftButtonUp="TextBoxClick" 
+                  HorizontalAlignment="Stretch" Background="White">
                 <local:CustomTextBox Style="{StaticResource CustomTextBox}" 
                                      Content="{Binding Expression}" 
                                      MinHeight="70" FontSize="17" Height="Auto" />
