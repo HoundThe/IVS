@@ -37,18 +37,18 @@ public class NLogarithmExp :IExpression
 
         /// <summary>
         /// Changing the value of argument for better aproximation using basic logarithm formulas
-        /// Set the argument value in interval <-10;100>
+        /// Set the argument value in interval <1;10>
         /// </summary>
         private void ParseArgument()
         {
             double mantis = argument.Evaluate();
-            while(mantis > 100)
+            while(mantis > 10)
             {
                 mantis /= 10;
                 parametr++;
             }
 
-            while(mantis < 10)
+            while(mantis < 1)
             {
                 mantis *= 10;
                 parametr--;
