@@ -23,7 +23,7 @@ namespace GUICalculator.ViewModel
     public sealed class MainWindowVM : ViewModelBase
     {
         public Expression _expression;
-        public string _result;
+        public string _resultString;
         public ICommand _characterInputCommand;
         public ICommand _multiplicationCommand;
         public ICommand _powerCommand;
@@ -38,12 +38,12 @@ namespace GUICalculator.ViewModel
         public ICommand _cosineCommand;
         public ICommand _tangentCommand;
 
+        private Result result = new Result(0);
         private InfixToPostfixConverter converter = new InfixToPostfixConverter();
 
         public MainWindowVM()
         {
-            ClearExpressions();
-            Result = 0.ToString();
+            Clear();
         }
 
         public ICommand CharacterInputCommand => _characterInputCommand ?? (_characterInputCommand = new RelayCommand<string>(AddCharacterExpression));
@@ -52,8 +52,8 @@ namespace GUICalculator.ViewModel
         public ICommand RootCommand => _rootCommand ?? (_rootCommand = new RelayCommand(AddRootExpression));
         public ICommand SquareRootCommand => _squareRootCommand ?? (_squareRootCommand = new RelayCommand(AddSquareRootExpression));
         public ICommand FractionCommand => _fractionCommand ?? (_fractionCommand = new RelayCommand(AddFractionExpression));
-        public ICommand AnsCommand => _ansCommand ?? (_ansCommand = new RelayCommand(PerformAns));
-        public ICommand ClearCommand => _clearCommand ?? (_clearCommand = new RelayCommand(ClearExpressions));
+        public ICommand AnsCommand => _ansCommand ?? (_ansCommand = new RelayCommand(AddAns));
+        public ICommand ClearCommand => _clearCommand ?? (_clearCommand = new RelayCommand(Clear));
         public ICommand DeleteCommand => _deleteCommand ?? (_deleteCommand = new RelayCommand(() => DeleteExpression(Direction.Left)));
         public ICommand EvaluateCommand => _evaluateCommand ?? (_evaluateCommand = new RelayCommand(EvaluateExpression));
         public ICommand SineCommand => _sineCommand ?? (_sineCommand = new RelayCommand(() => AddTrigonometricExpression(TrigonometricFunctionType.Sine)));
@@ -70,14 +70,26 @@ namespace GUICalculator.ViewModel
             }
         }
 
-        public string Result
+        public string ResultString
         {
-            get => _result;
+            get => _resultString;
             set
             {
-                _result = value;
-                OnPropertyChanged(nameof(Result));
+                _resultString = value;
+                OnPropertyChanged(nameof(ResultString));
             }
+        }
+
+        private void SetResult(double value)
+        {
+            result.Value = value;
+            ResultString = value.ToString();
+        }
+
+        private void SetResult(string message)
+        {
+            result.Value = 0;
+            ResultString = message;
         }
         
         private void EvaluateExpression()
@@ -89,99 +101,107 @@ namespace GUICalculator.ViewModel
             try
             {
                 string postfix = converter.Convert(infix);
-                Console.WriteLine(postfix);
-                Result = parser.EvaluatePostfixExp(postfix).ToString();
+                // no input to process
+                if (postfix == "()" || postfix == string.Empty)
+                    return;
+                SetResult(parser.EvaluatePostfixExp(postfix));
             }
             catch
             {
-                Result = "Error";
+                SetResult("Error");
             }
+        }
+
+        private void Clear()
+        {
+            ClearExpressions();
+            ResultString = "0";
         }
 
         private void ClearExpressions()
         {
             Expression = new Basic();
             Expression.VerticalAlignment = System.Windows.VerticalAlignment.Center;
-            Expression.FirstChild().Background = Brushes.Transparent;
+            Expression.FirstChild().Background = Brushes.White;
             Caret.Instance.SetActiveExpression(Expression.FirstChild());
         }
-
-        private void PerformAns()
-        {
-            throw new NotImplementedException();
-        }
-
-        private Expression FindExpression<T>(Expression currentExpression, Direction direction)
-        {
-            if (currentExpression == null || currentExpression.ParentExpression == null)
-                return null;
+        
+        //private Expression FindExpression<T>(Expression currentExpression, Direction direction)
+        //{
+        //    if (currentExpression == null || currentExpression.ParentExpression == null)
+        //        return null;
             
-            while (currentExpression != null && currentExpression.GetType() != typeof(T))
-            {
-                if (direction == Direction.Left)
-                    currentExpression = currentExpression.ParentExpression.PreviousChild(currentExpression);
-                else
-                    currentExpression = currentExpression.ParentExpression.NextChild(currentExpression);
-            }
-            return currentExpression;
-        }
+        //    while (currentExpression != null && currentExpression.GetType() != typeof(T))
+        //    {
+        //        if (direction == Direction.Left)
+        //            currentExpression = currentExpression.ParentExpression.PreviousChild(currentExpression);
+        //        else
+        //            currentExpression = currentExpression.ParentExpression.NextChild(currentExpression);
+        //    }
+        //    return currentExpression;
+        //}
 
-        // Returns an expression. If it a parentheses, finds the other one and returns all
-        // the expressions in between 
-        private List<Expression> GetExpressionUnit(Direction direction, Expression activeExp)
+        //// Returns an expression. If it is a parentheses, finds the other one and returns all
+        //// the expressions in between 
+        //private List<Expression> GetExpressionUnit(Direction direction, Expression activeExp)
+        //{
+        //    var unit = new List<Expression>();
+        //    if (activeExp == null)
+        //        return unit;
+        //    if (direction == Direction.Left)
+        //    {
+        //        if (Caret.Instance.ExpressionSide == ExpressionSide.Left)
+        //            activeExp = activeExp.ParentExpression.PreviousChild(activeExp);
+        //        if (activeExp == null)
+        //            return unit;
+
+        //        if (activeExp is RightParenthesis)
+        //        {
+        //            Expression leftParenthesis = FindExpression<LeftParenthesis>(activeExp, Direction.Left);
+        //            if (leftParenthesis == null)
+        //                return unit;
+
+        //            while (leftParenthesis != activeExp)
+        //            {
+        //                unit.Add(leftParenthesis);
+        //                leftParenthesis = leftParenthesis.ParentExpression.NextChild(leftParenthesis);
+        //            }
+        //            unit.Add(activeExp);
+        //            return unit;
+        //        }
+        //        else if (activeExp is LeftParenthesis)
+        //        {
+        //            return unit; // empty
+        //        }
+        //        else
+        //        {
+        //            unit.Add(activeExp);
+        //            return unit;
+        //        }
+        //    }
+        //    return unit;
+        //} 
+
+        //private void AddCollectionToFraction(Fraction fraction, List<Expression> unit)
+        //{
+        //    Expression activeExp = fraction.FirstChild();
+        //    foreach (Expression exp in unit)
+        //    {
+        //        fraction.AddExpression(activeExp, exp);
+        //        activeExp = exp;
+        //    }
+        //}
+
+        private void AddAns()
         {
-            var unit = new List<Expression>();
-            if (activeExp == null)
-                return unit;
-            if (direction == Direction.Left)
-            {
-                if (Caret.Instance.ExpressionSide == ExpressionSide.Left)
-                    activeExp = activeExp.ParentExpression.PreviousChild(activeExp);
-                if (activeExp == null)
-                    return unit;
-
-                if (activeExp is RightParenthesis)
-                {
-                    Expression leftParenthesis = FindExpression<LeftParenthesis>(activeExp, Direction.Left);
-                    if (leftParenthesis == null)
-                        return unit;
-
-                    while (leftParenthesis != activeExp)
-                    {
-                        unit.Add(leftParenthesis);
-                        leftParenthesis = leftParenthesis.ParentExpression.NextChild(leftParenthesis);
-                    }
-                    unit.Add(activeExp);
-                    return unit;
-                }
-                else if (activeExp is LeftParenthesis)
-                {
-                    return unit; // empty
-                }
-                else
-                {
-                    unit.Add(activeExp);
-                    return unit;
-                }
-            }
-            return unit;
-        } 
-
-        private void AddCollectionToFraction(Fraction fraction, List<Expression> unit)
-        {
-            Expression activeExp = fraction.FirstChild();
-            foreach (Expression exp in unit)
-            {
-                fraction.AddExpression(activeExp, exp);
-                activeExp = exp;
-            }
+            Ans ans = new Ans(result);
+            AddNewExpression(Caret.Instance.ActiveExpression, ans);
+            Caret.Instance.SetActiveExpression(ans);
         }
 
         private void AddFractionExpression()
         {
             Fraction fraction = new Fraction();
-            //List<Expression> leftUnit = GetExpressionUnit(Direction.Left, Caret.Instance.ActiveExpression);
-            //AddCollectionToFraction(fraction, leftUnit);
             AddNewExpression(Caret.Instance.ActiveExpression, fraction);
             Caret.Instance.SetActiveExpression(fraction.FirstChild(), ExpressionSide.Left);
         }
@@ -290,7 +310,6 @@ namespace GUICalculator.ViewModel
 
             caret.SetActiveExpression(exp);
             caret.RestartBlinking();
-            //Console.WriteLine("Caret side: {0}", Caret.Instance.ExpressionSide);
         }
 
         public void DeleteExpression(Direction direction)
@@ -348,12 +367,10 @@ namespace GUICalculator.ViewModel
 
             if (toBeRemoved != null)
             {
-                //Console.WriteLine("ExpSide {0}, Active value: {1}", Caret.Instance.ExpressionSide, ((Character)Caret.Instance.ActiveExpression).Value);
                 parentExp.DeleteChild(toBeRemoved);
                 parentExp.UpdateLayout();
                 Caret.Instance.SetActiveExpression(nextActive);
                 Caret.Instance.UpdateActiveExpression();
-                //Console.WriteLine("ExpSide {0}, Active value: {1}", Caret.Instance.ExpressionSide, ((Character)Caret.Instance.ActiveExpression).Value);
             }
         }
 

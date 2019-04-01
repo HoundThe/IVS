@@ -35,6 +35,8 @@ namespace GUICalculator.ViewModel.Expressions.Base
                 // remove auxiliary
                 if (activeExpression is Auxiliary)
                     Items.Remove(activeExpression);
+
+                UpdateChildrensBottomMargin();
                 return;
             }
             throw new KeyNotFoundException("Active expression wasn't found therefore a new expression couldn't be added.");
@@ -101,6 +103,11 @@ namespace GUICalculator.ViewModel.Expressions.Base
                 return aux;
             }
             return null;
+        }
+
+        public override void UpdateChildrensBottomMargin()
+        {
+            base.UpdateChildrensBottomMargin(Items);
         }
     }
 }

@@ -83,5 +83,26 @@ namespace GUICalculator.View
             Caret.Instance.UpdateActiveExpression();
         }
 
+        /// <summary>
+        ///     When the TextBox is clicked and if it was clicked behind the expression, 
+        ///     set the caret position at the the end of the last expression.
+        /// </summary>
+        private void TextBoxClick(object sender, MouseButtonEventArgs e)
+        {
+            TextBox control = sender as TextBox;
+            MainWindowVM vm = Application.Current.MainWindow.DataContext as MainWindowVM;
+
+            Point relativePoint = e.GetPosition(Application.Current.MainWindow);
+            var lastExpression = vm.Expression.LastChild();
+            if (lastExpression == null)
+                return;
+            Point rightPositionOfExp = lastExpression.RightPositionOf();
+
+            if (relativePoint.X >= rightPositionOfExp.X)
+            {
+                Caret.Instance.ExpressionSide = ExpressionSide.Right;
+                Caret.Instance.SetActiveExpression(vm.Expression.LastChild());
+            }
+        }
     }
 }

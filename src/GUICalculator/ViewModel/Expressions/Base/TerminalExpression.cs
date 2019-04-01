@@ -49,6 +49,10 @@ namespace GUICalculator.ViewModel.Expressions.Base
         {
             throw new NotSupportedException("Not supported operation.");
         }
-        
+
+        public override void UpdateChildrensBottomMargin()
+        {
+            
+        }
     }
 }

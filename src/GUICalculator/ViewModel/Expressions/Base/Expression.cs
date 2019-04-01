@@ -35,11 +35,27 @@ namespace GUICalculator.ViewModel.Expressions.Base
             }
         }
 
+        /// <summary>
+        ///     Adds Auxiliary expression if the items count is 0.
+        /// </summary>
+        /// <returns>Returns the instance of Auxiliary expression class. 
+        /// Returns null if no expression was added.</returns>
+        public abstract Expression AddAuxiliary();
+        public abstract void AddExpression(Expression activeExpression, Expression expressionToBeAdded);
+        public abstract Expression PreviousChild(Expression currentChild);
+        public abstract Expression NextChild(Expression currentChild);
+        public abstract Expression LastChild();
+        public abstract Expression FirstChild();
+        public abstract bool DeleteChild(Expression child);
+        public abstract void UpdateChildrensBottomMargin();
+        public abstract string ConvertToString();
+
+
         protected virtual void OnParentExpressionSet(Expression parent)
         {
 
         }
-
+        
         protected virtual void OnMouseClick(object sender, MouseButtonEventArgs e)
         {
             //Console.WriteLine("Type of sender: {0}", sender.GetType());
@@ -70,21 +86,7 @@ namespace GUICalculator.ViewModel.Expressions.Base
             caret.RestartBlinking();
             e.Handled = true;
         }
-
-        public abstract void AddExpression(Expression activeExpression, Expression expressionToBeAdded);
-        /// <summary>
-        ///     Adds Auxiliary expression if the items count is 0.
-        /// </summary>
-        /// <returns>Returns the instance of Auxiliary expression class. 
-        /// Returns null if no expression was added.</returns>
-        public abstract Expression AddAuxiliary();
-        public abstract Expression PreviousChild(Expression currentChild);
-        public abstract Expression NextChild(Expression currentChild);
-        public abstract Expression LastChild();
-        public abstract Expression FirstChild();
-        public abstract bool DeleteChild(Expression child);
-        public abstract string ConvertToString();
-
+        
         public virtual Expression MoveLeft(Expression child, bool jumpIn)
         {
             if (Caret.Instance.ExpressionSide == ExpressionSide.Left)
@@ -188,6 +190,60 @@ namespace GUICalculator.ViewModel.Expressions.Base
                 }
             }
             return LastChild();
+        }
+
+
+        protected void UpdateChildrensBottomMargin(Collection<Expression> collection)
+        {
+            // Make sure that the layout is updated. 
+            // Otherwise the size of newly added components would be 0.
+            this.UpdateLayout();
+
+            int highestBottomMargin = GetHighestBottomMargin(collection);
+            if (highestBottomMargin != 0)
+            {
+                foreach (Expression exp in collection)
+                {
+                    //double expHeight = exp.ActualHeight;
+                    Thickness margin = exp.Margin;
+                    if (exp is Fraction)
+                    {
+                        double fractionHeight = ((Fraction)exp).SecondExpression.Max(e => e.ActualHeight);
+                        margin.Bottom = highestBottomMargin - fractionHeight;
+                    }
+                    else
+                    {
+                        // Caution! if the font size changes, the number 13 won't be right.
+                        int halfFontSize = 13;
+                        margin.Bottom = highestBottomMargin - halfFontSize; // - expHeight / 2
+                    }
+                    exp.Margin = margin;
+                }
+            }
+
+            if (ParentExpression != null)
+            {
+                ParentExpression.UpdateChildrensBottomMargin();
+            }
+        }
+
+        private int GetHighestBottomMargin(Collection<Expression> collection)
+        {
+            int highestBottomMargin = 0;
+            // only denominator of fraction counts
+            foreach (Expression expression in collection)
+            {
+                Fraction fraction = expression as Fraction;
+                if (fraction != null)
+                {
+                    int height = (int) fraction.SecondExpression.Max(exp => exp.ActualHeight);
+                    if (height > highestBottomMargin)
+                    {
+                        highestBottomMargin = height;
+                    }
+                }
+            }
+            return highestBottomMargin;
         }
 
     }

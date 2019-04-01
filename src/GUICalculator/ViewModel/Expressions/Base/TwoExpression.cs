@@ -36,6 +36,8 @@ namespace GUICalculator.ViewModel.Expressions.Base
                 // remove auxiliary
                 if (activeExpression is Auxiliary)
                     SecondExpression.Remove(activeExpression);
+
+                base.UpdateChildrensBottomMargin(SecondExpression);
                 return;
             }
 
@@ -49,6 +51,8 @@ namespace GUICalculator.ViewModel.Expressions.Base
                 // remove auxiliary
                 if (activeExpression is Auxiliary)
                     FirstExpression.Remove(activeExpression);
+
+                base.UpdateChildrensBottomMargin(FirstExpression);
                 return;
             }
             throw new KeyNotFoundException("Active expression wasn't found therefore a new expression couldn't be added.");
@@ -159,6 +163,12 @@ namespace GUICalculator.ViewModel.Expressions.Base
                 return aux;
             }
             return null;
+        }
+
+        public override void UpdateChildrensBottomMargin()
+        {
+            base.UpdateChildrensBottomMargin(FirstExpression);
+            base.UpdateChildrensBottomMargin(SecondExpression);
         }
 
     }

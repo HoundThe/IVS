@@ -69,14 +69,15 @@
 
 
         <UserControl Grid.Row="0" Background="#FFFFFF">
-            <Grid x:Name="CustomTextBoxContainer">
+            <Grid x:Name="CustomTextBoxContainer" PreviewMouseLeftButtonUp="TextBoxClick" 
+                  HorizontalAlignment="Stretch" Background="White">
                 <local:CustomTextBox Style="{StaticResource CustomTextBox}" 
                                      Content="{Binding Expression}" 
                                      MinHeight="70" FontSize="17" Height="Auto" />
             </Grid>
         </UserControl>
         <Grid Grid.Row="1" Background="#FFFFFF">
-            <TextBlock Text="{Binding Result}" FontSize="22" 
+            <TextBlock Text="{Binding ResultString}" FontSize="22" 
                    VerticalAlignment="Center" HorizontalAlignment="Right"
                    Margin="5,0,5,0"/>
         </Grid>
@@ -115,7 +116,7 @@
             <Button Grid.Row="2" Grid.Column="2" Command="{Binding CharacterInputCommand}" CommandParameter="3" Content="3"/>
             <Button Grid.Row="3" Grid.Column="0" Command="{Binding CharacterInputCommand}" CommandParameter="0" Content="0"/>
             <Button Grid.Row="3" Grid.Column="1" Command="{Binding CharacterInputCommand}" CommandParameter="." Content="."/>
-            <Button Grid.Row="2" Grid.Column="7" Command="{Binding AnsCommand}" Content="ANS" Style="{StaticResource TextButtonStyle}"/>
+            <Button Grid.Row="2" Grid.Column="7" Command="{Binding AnsCommand}" Content="Ans" Style="{StaticResource TextButtonStyle}"/>
             <Button Grid.Row="0" Grid.Column="3" Command="{Binding CharacterInputCommand}" CommandParameter="/" Content="÷"/>
             <Button Grid.Row="1" Grid.Column="3" Command="{Binding MultiplicationCommand}" Content="×"/>
             <Button Grid.Row="2" Grid.Column="3" Command="{Binding CharacterInputCommand}" CommandParameter="+" Content="+"/>
@@ -231,7 +232,7 @@
             <Button Grid.Row="1" Grid.Column="5" Command="{Binding CosineCommand}" Content="cos" Style="{StaticResource TextButtonStyle}"/>
             <Button Grid.Row="2" Grid.Column="5" Command="{Binding TangentCommand}" Content="tan" Style="{StaticResource TextButtonStyle}"/>
             <Button Grid.Row="3" Grid.Column="5" Command="{Binding CharacterInputCommand}" CommandParameter="!" Content="x!" Style="{StaticResource TextButtonStyle}"/>
-            <Button Grid.Row="1" Grid.Column="7" Command="{Binding DeleteCommand}" Content="DEL" Style="{StaticResource TextButtonStyle}"/>
+            <Button Grid.Row="1" Grid.Column="7" Command="{Binding DeleteCommand}" Content="Del" Style="{StaticResource TextButtonStyle}"/>
             <Button Grid.Row="0" Grid.Column="7" Command="{Binding ClearCommand}" Content="C" Style="{StaticResource TextButtonStyle}"/>
             <Button Grid.Row="3" Grid.Column="7" Command="{Binding EvaluateCommand}" Content="=" Background="#316EAC"/>
         </Grid>
