@@ -72,7 +72,7 @@
     <Compile Include="MultiplicationExpTest.cs" />
     <Compile Include="DivisionExpTest.cs" />
     <Compile Include="TangentExpTest.cs" />
-    <Compile Include="NLogharitmExpTest.cs" />
+    <Compile Include="NLogarithmExpTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

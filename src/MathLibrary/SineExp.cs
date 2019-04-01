@@ -19,7 +19,7 @@ namespace MathLibrary
         private SimplifyArgument sim;
         private IExpression argument;
         private double simplifiedArgument;
-        private const int iteration = 20; //number of iteration to compute sin value.
+        private const int iteration = 1000000; //number of iteration to compute sin value.
         private double result = 0;
         private Difference dif1;
         private Difference dif2;

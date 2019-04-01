@@ -16,11 +16,14 @@ namespace MathLibrary
 {
     public class RootExp : IExpression
     {
+        private NLogarithmExp logExp;
+        private Difference dif;
+        private PowerExp powExp;
         private IExpression mantis;
         private IExpression root;
-        private double result = 0;
         private int naturalRoot;
-        private readonly int iteration = 1000;
+        private const int iteration = 1000000;
+        private double parametr = 0;
 
         /// <summary>
         /// Contructor inicializing arguments
@@ -65,29 +68,48 @@ namespace MathLibrary
         }
 
         /// <summary>
+        /// Changing the value of argument for better aproximation using basic exponential formulas
+        /// Set the exponent value in interval <-10;10>
+        /// </summary>
+        private double ParseArgument(double y)
+        {
+            while(y > 10)
+            {
+                y -= 2;
+                parametr++;
+
+            }
+            while(y < -10)
+            {
+                y += 2;
+                parametr--;
+            }
+            return y;
+        }
+        /// <summary>
         /// Comptuting nth root of number using formula: n root of x ~ x ^ (1/n) ~ e^((1/n)*ln(x))
         /// </summary>
-        private void Root()
+        private double Root()
         {
-            double z; //auxiliary value for continued fraction computing 
-            bool negativeInput = (mantis.Evaluate() < 0 ? true : false); //keeping the sign for the negative input and odd rooth
-            //---Computing ln(x)
-            double lnX = 0;
+            double result = 0;
+            bool negativeMantis = (mantis.Evaluate() < 0 ? true : false); //keeping the sign for the negative input and odd root
             double absMantis = (mantis.Evaluate() >= 0 ? mantis.Evaluate() : -mantis.Evaluate());
-            z = (absMantis - 1) / (absMantis + 1);
-            for (int i = iteration; i > 0; i--)
-            {
-                lnX = (i * i * z * z) / (2.0 * i + 1.0 - lnX);
-            }
-            lnX = 2 * z / (1 - lnX);
+            //---Computing ln(x)
+            logExp = new NLogarithmExp(new Number(absMantis));
             //---Computing e^(alfa), where alfa = (1/n)*ln(x)
-            z = (1.0 / naturalRoot) * lnX;
+            double alfa = (1.0 / naturalRoot) * logExp.Evaluate();
+            alfa = ParseArgument(alfa);
             for(int i = iteration; i > 0; i--)
             {
-                result = (i * z) / ((i + 1.0 + z - result));
+                result = (i * alfa) / ((i + 1.0 + alfa - result));
             }
-            result = 1.0 / (1.0 - z / (1.0 + z - result));
-            result = (negativeInput && !EvenRoot()) ? -result: result;
+            result = 1.0 / (1.0 - alfa / (1.0 + alfa - result));
+
+            powExp = new PowerExp(new Number(Constants.E), new Number(parametr >= 0 ? 2*parametr : -2*parametr));
+            result = result * (parametr >= 0 ? powExp.Evaluate() : (1 / powExp.Evaluate()));
+
+            result = (negativeMantis && !EvenRoot()) ? -result: result; //changing the sign to original 
+            return result;
         }
 
         /// <summary>
@@ -101,7 +123,9 @@ namespace MathLibrary
                 throw new ArgumentException("Can only calculate natural root of number!");
             }
             naturalRoot = (int)root.Evaluate();
-            if(naturalRoot == 0) //if root is zero
+
+            dif = new Difference(naturalRoot, 0.0);
+            if (dif.IsAlmostSame()) //if root is zero
             {
                 throw new ArgumentException("Root cannot be zero!");
             }
@@ -109,19 +133,17 @@ namespace MathLibrary
             {
                 throw new ArgumentException("Cant compute even root of negative value!");
             }
-            if (mantis.Evaluate() == 0.0) //nth root of zero is zero
+            dif = new Difference(mantis.Evaluate(), 0.0);
+            if (dif.IsAlmostSame()) //nth root of zero is zero
             {
-                result = 0;
+                return 0.0;
             }
-            else if(naturalRoot == 1) //first root of any number is same number
+            dif = new Difference(naturalRoot, 1.0);
+            if(dif.IsAlmostSame()) //first root of any number is same number
             {
-                result = mantis.Evaluate();
+                return mantis.Evaluate();
             }
-            else
-            {
-                Root();
-            }
-            return result;
+            return Root();
         }
     }
 }
