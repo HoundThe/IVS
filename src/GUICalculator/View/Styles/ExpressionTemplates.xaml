@@ -13,7 +13,7 @@
 
     <ControlTemplate x:Key="MultiplicationSignExpressionTemplate" TargetType="{x:Type ContentControl}">
         <Grid>
-            <TextBlock Text="×" VerticalAlignment="Center" Margin="2,0,2,4" FontWeight="SemiBold"/>
+            <TextBlock Text="×" VerticalAlignment="Center" Margin="0,0,0,4"/>
         </Grid>
     </ControlTemplate>
 

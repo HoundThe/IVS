@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUICalculator.View"
         xmlns:vm="clr-namespace:GUICalculator.ViewModel"
+        xmlns:converters="clr-namespace:GUICalculator.View.Converter"
         mc:Ignorable="d"
         ResizeMode="CanMinimize"
         SizeToContent="WidthAndHeight"
@@ -16,6 +17,7 @@
         <vm:MainWindowVM/>
     </Window.DataContext>
     <Window.Resources>
+        <converters:RoundValueConverter x:Key="RoundValueConverter"/>
         <SolidColorBrush x:Key="PathColor" Color="White"/>
 
         <Style TargetType="{x:Type TextBox}" x:Key="InputTextBoxStyle">
@@ -77,7 +79,7 @@
             </Grid>
         </UserControl>
         <Grid Grid.Row="1" Background="#FFFFFF">
-            <TextBlock Text="{Binding ResultString}" FontSize="22" 
+            <TextBlock Text="{Binding ResultString, Converter={StaticResource RoundValueConverter}}" FontSize="22" 
                    VerticalAlignment="Center" HorizontalAlignment="Right"
                    Margin="5,0,5,0"/>
         </Grid>

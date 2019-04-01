@@ -76,6 +76,7 @@
     <Compile Include="ViewModel\Expressions\TrigonometricFunction.cs" />
     <Compile Include="ViewModel\Result.cs" />
     <Compile Include="ViewModel\TrigonometricFunctionType.cs" />
+    <Compile Include="View\Converter\RoundValueConverter.cs" />
     <Compile Include="View\CustomControls\Caret.cs" />
     <Compile Include="ViewModel\Expressions\ExpressionSide.cs" />
     <Compile Include="View\FrameworkElementExtension.cs" />
@@ -138,7 +139,6 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="View\Behaviour\" />
-    <Folder Include="View\Converter\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ViewModel\Expressions\SquareRoot.cs" />
