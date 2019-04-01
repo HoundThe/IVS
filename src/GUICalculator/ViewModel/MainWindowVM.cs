@@ -23,7 +23,7 @@ namespace GUICalculator.ViewModel
     public sealed class MainWindowVM : ViewModelBase
     {
         public Expression _expression;
-        public string _result;
+        public string _resultString;
         public ICommand _characterInputCommand;
         public ICommand _multiplicationCommand;
         public ICommand _powerCommand;
@@ -38,6 +38,7 @@ namespace GUICalculator.ViewModel
         public ICommand _cosineCommand;
         public ICommand _tangentCommand;
 
+        private Result result = new Result(0);
         private InfixToPostfixConverter converter = new InfixToPostfixConverter();
 
         public MainWindowVM()
@@ -51,7 +52,7 @@ namespace GUICalculator.ViewModel
         public ICommand RootCommand => _rootCommand ?? (_rootCommand = new RelayCommand(AddRootExpression));
         public ICommand SquareRootCommand => _squareRootCommand ?? (_squareRootCommand = new RelayCommand(AddSquareRootExpression));
         public ICommand FractionCommand => _fractionCommand ?? (_fractionCommand = new RelayCommand(AddFractionExpression));
-        public ICommand AnsCommand => _ansCommand ?? (_ansCommand = new RelayCommand(PerformAns));
+        public ICommand AnsCommand => _ansCommand ?? (_ansCommand = new RelayCommand(AddAns));
         public ICommand ClearCommand => _clearCommand ?? (_clearCommand = new RelayCommand(Clear));
         public ICommand DeleteCommand => _deleteCommand ?? (_deleteCommand = new RelayCommand(() => DeleteExpression(Direction.Left)));
         public ICommand EvaluateCommand => _evaluateCommand ?? (_evaluateCommand = new RelayCommand(EvaluateExpression));
@@ -69,14 +70,26 @@ namespace GUICalculator.ViewModel
             }
         }
 
-        public string Result
+        public string ResultString
         {
-            get => _result;
+            get => _resultString;
             set
             {
-                _result = value;
-                OnPropertyChanged(nameof(Result));
+                _resultString = value;
+                OnPropertyChanged(nameof(ResultString));
             }
+        }
+
+        private void SetResult(double value)
+        {
+            result.Value = value;
+            ResultString = value.ToString();
+        }
+
+        private void SetResult(string message)
+        {
+            result.Value = 0;
+            ResultString = message;
         }
         
         private void EvaluateExpression()
@@ -88,19 +101,21 @@ namespace GUICalculator.ViewModel
             try
             {
                 string postfix = converter.Convert(infix);
-                Console.WriteLine(postfix);
-                Result = parser.EvaluatePostfixExp(postfix).ToString();
+                // no input to process
+                if (postfix == "()" || postfix == string.Empty)
+                    return;
+                SetResult(parser.EvaluatePostfixExp(postfix));
             }
             catch
             {
-                Result = "Error";
+                SetResult("Error");
             }
         }
 
         private void Clear()
         {
             ClearExpressions();
-            Result = 0.ToString();
+            ResultString = "0";
         }
 
         private void ClearExpressions()
@@ -111,11 +126,6 @@ namespace GUICalculator.ViewModel
             Caret.Instance.SetActiveExpression(Expression.FirstChild());
         }
         
-        private void PerformAns()
-        {
-            throw new NotImplementedException();
-        }
-
         //private Expression FindExpression<T>(Expression currentExpression, Direction direction)
         //{
         //    if (currentExpression == null || currentExpression.ParentExpression == null)
@@ -181,6 +191,13 @@ namespace GUICalculator.ViewModel
         //        activeExp = exp;
         //    }
         //}
+
+        private void AddAns()
+        {
+            Ans ans = new Ans(result);
+            AddNewExpression(Caret.Instance.ActiveExpression, ans);
+            Caret.Instance.SetActiveExpression(ans);
+        }
 
         private void AddFractionExpression()
         {

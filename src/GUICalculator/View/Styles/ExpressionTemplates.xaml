@@ -36,6 +36,12 @@
         </Grid>
     </ControlTemplate>
 
+    <ControlTemplate x:Key="AnsExpressionTemplate" TargetType="{x:Type ContentControl}">
+        <Grid>
+            <TextBlock Text="Ans" VerticalAlignment="Center" Margin="2,0,2,4"/>
+        </Grid>
+    </ControlTemplate>
+
     <ControlTemplate x:Key="BasicExpressionTemplate" TargetType="{x:Type ContentControl}">
         <Grid>
             <ItemsControl ItemsSource="{Binding Items}">

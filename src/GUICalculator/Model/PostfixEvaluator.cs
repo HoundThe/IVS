@@ -18,6 +18,8 @@ namespace GUICalculator.Model
 
             foreach (string element in postfixExpression.Split(' '))
             {
+                if (element == string.Empty)
+                    continue;
                 isNumber = Double.TryParse(element, out number);
                 if (element == "π")
                 {
@@ -41,7 +43,8 @@ namespace GUICalculator.Model
                     else operandStack.Push(GetOperation(element, new Number(operandStack.Pop()), new Number(operandStack.Pop())).Evaluate());
                 }
             }
-            return operandStack.Pop();
+            
+            return operandStack.Count > 0 ? operandStack.Pop() : 0;
         }
 
         private IExpression GetOperation(string op, IExpression rightOperand, IExpression leftOperand)
