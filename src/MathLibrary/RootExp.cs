@@ -69,17 +69,17 @@ namespace MathLibrary
 
         /// <summary>
         /// Changing the value of argument for better aproximation using basic exponential formulas
-        /// Set the exponent value in interval <-10;10>
+        /// Set the exponent value in interval <-1;1>
         /// </summary>
         private double ParseArgument(double y)
         {
-            while(y > 10)
+            while(y > 1)
             {
                 y -= 2;
                 parametr++;
 
             }
-            while(y < -10)
+            while(y < -1)
             {
                 y += 2;
                 parametr--;
