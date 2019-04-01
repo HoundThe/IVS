@@ -114,6 +114,8 @@ namespace GUICalculator.View
             if (exp == null)
                 return;
             ActiveExpression = exp;
+            if (exp is Auxiliary)
+                ExpressionSide = ExpressionSide.Left;
             UpdateActiveExpression();
             RestartBlinking();
         }
