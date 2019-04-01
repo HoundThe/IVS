@@ -74,19 +74,19 @@ namespace MathLibraryTests
             rootExp = new RootExp(new Number(25.0), new Number(2.0));
             dif = new Difference(5.0, rootExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
-
+            
             rootExp = new RootExp(new Number(-125.0), new Number(3.0));
             dif = new Difference(-5.0, rootExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
-
+            
             rootExp = new RootExp(new Number(4235.2155), new Number(7.0));
             dif = new Difference(3.29704650811265609406, rootExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
-
+            
             rootExp = new RootExp(new Number(0.0), new Number(241.0));
             dif = new Difference(0.0, rootExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());
-
+            
             rootExp = new RootExp(new Number(-6541.765432465), new Number(13));
             dif = new Difference(-1.96568986065280504252, rootExp.Evaluate());
             Assert.IsTrue(dif.IsAlmostSame());

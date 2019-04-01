@@ -42,6 +42,15 @@ namespace MathLibrary
         }
 
         /// <summary>
+        /// Method return number of itteration for iterration computing
+        /// </summary>
+        /// <returns></returns>
+        public int Iterration ()
+        {
+            return 1000000;
+        }
+
+        /// <summary>
         /// Check the absolut value of difference between 'value1' and 'value2'
         /// </summary>
         /// <returns>true if difference is \< preccision</returns>

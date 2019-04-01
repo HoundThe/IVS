@@ -47,7 +47,7 @@
     <Compile Include="FactorialExp.cs" />
     <Compile Include="IExpression.cs" />
     <Compile Include="MultiplicationExp.cs" />
-    <Compile Include="NLogharitmExp.cs" />
+    <Compile Include="NLogarithmExp.cs" />
     <Compile Include="Number.cs" />
     <Compile Include="PowerExp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
