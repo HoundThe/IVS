@@ -4,12 +4,26 @@ using MathLibrary;
 using System.Linq;
 namespace GUICalculator.Model
 {
-    // Parses the expressions into one line form for better processing later
-    class InputParser
+    /// <summary>
+    /// PostfixEvaluator is used to evaluate (compute) mathematical expressions 
+    /// in the form of a postfix expression. 
+    /// </summary>
+    /// <remarks>
+    /// The mathematical expression (infix expression) can be converted to postfix expression
+    /// with InfixToPostfixConverter class.
+    /// </remarks>
+    class PostfixEvaluator
     {
         private static readonly string[] oneParamOperators = { "sin", "cos", "tg", "!", "sqrt" };
-        public InputParser() { }
 
+        /// <summary>
+        /// Evaluates postfix expression.
+        /// </summary>
+        /// <param name="postfixExpression">
+        ///     Postfix expression to be evaluated. 
+        ///     Postfix expressions look like this "2 5 6 ^ 25 2 20 sin * / * +".
+        /// </param>
+        /// <returns>Returns evaluated given postfix expression.</returns>
         public double EvaluatePostfixExp(string postfixExpression)
         {
             Stack<double> operandStack = new Stack<double>();
@@ -65,6 +79,8 @@ namespace GUICalculator.Model
                     return new CosineExp(rightOperand);
                 case "sin":
                     return new SineExp(rightOperand);
+                case "tg":
+                    return new TangentExp(rightOperand);
                 case "!":
                     return new FactorialExp(rightOperand);
                 case "sqrt":

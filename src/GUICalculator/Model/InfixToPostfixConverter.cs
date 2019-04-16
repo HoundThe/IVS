@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 namespace GUICalculator.Model
 {
+    /// <summary>
+    /// InfixToPostfixConverter is converter that converts an infix expression 
+    /// to postfix expression. 
+    /// </summary>
+    /// <remarks>
+    /// Postfix expression is easier computed than the infix one.
+    /// </remarks>
     class InfixToPostfixConverter
     {
         private string operators = "+-*/!^";
@@ -35,8 +42,14 @@ namespace GUICalculator.Model
             return precedences[index];
         }
 
+        /// <summary>
+        /// Given an infix expression it converts to a postfix expression.
+        /// </summary>
+        /// <param name="infix">Expression that looks like "(2+5^(6)*(25)/(2)*sin(20))".</param>
+        /// <returns>Returns a postfix expression that looks like the following expresion "2 5 6 ^ 25 2 20 sin * / * +".</returns>
         public string Convert(string infix)
         {
+            Console.WriteLine(infix);
             StringBuilder postfix = new StringBuilder();
             Stack<string> stack = new Stack<string>();
 
@@ -99,6 +112,8 @@ namespace GUICalculator.Model
                 if (stack.Count != 0)
                     postfix.Append(" ");
             }
+
+            Console.WriteLine(postfix.ToString().TrimEnd());
             return postfix.ToString().TrimEnd();
         }
     }

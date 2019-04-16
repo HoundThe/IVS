@@ -138,7 +138,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
-    <Folder Include="View\Behaviour\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ViewModel\Expressions\SquareRoot.cs" />

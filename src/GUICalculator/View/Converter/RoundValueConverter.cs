@@ -10,6 +10,17 @@ namespace GUICalculator.View.Converter
 {
     class RoundValueConverter : IValueConverter
     {
+        /// <summary>
+        /// Rounds a double value to a certain number of fractional digits.
+        /// </summary>
+        /// <param name="value">Double value to be converted.</param>
+        /// <param name="targetType">This parameter is not used.</param>
+        /// <param name="parameter">This parameter is not used.</param>
+        /// <param name="culture">This parameter is not used.</param>
+        /// <returns>
+        /// Returns the converted value.
+        /// If type of the <paramref name="value"/> is not double, the value given is returned.
+        /// </returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string val = value as string;
@@ -35,7 +46,10 @@ namespace GUICalculator.View.Converter
                 return value;
             }
         }
-
+        /// <summary>
+        /// Not supported operation.
+        /// Shouldn't be executed, otherwise NotSupportedException is thrown.
+        /// </summary>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotSupportedException();

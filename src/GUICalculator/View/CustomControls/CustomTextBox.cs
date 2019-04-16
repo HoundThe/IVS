@@ -11,6 +11,11 @@ using System.Windows.Markup;
 
 namespace GUICalculator.View
 {
+    /// <summary>
+    /// A textbox extended by Content dependency property to hold any content.
+    /// The TextBox provided by the framework can contain only text.
+    /// Here we need the TextBox to hold different objects.
+    /// </summary>
     [ContentProperty("Content")]
     internal sealed class CustomTextBox : TextBox
     {

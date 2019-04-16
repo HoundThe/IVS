@@ -57,7 +57,7 @@ namespace MathLibrary
         {
             sim = new SimplifyArgument(argument.Evaluate());
             simplifiedArgument = sim.SimplifyOfTwoPi();
-            if (!BaseValue()) 
+            if (!BaseValue())
             {
                 Tan();
             }
@@ -72,38 +72,66 @@ namespace MathLibrary
         {
             dif1 = new Difference(simplifiedArgument, -Constants.Pi);
             dif2 = new Difference(simplifiedArgument, Constants.Pi);
-            if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = 0; return true; }
+            if (dif1.IsAlmostSame() || dif2.IsAlmostSame())
+            {
+                result = 0;
+                return true;
+            }
 
             dif1 = new Difference(simplifiedArgument, -Constants.FivePiDivSix);
             dif2 = new Difference(simplifiedArgument, Constants.PiDivSix);
-            if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = Constants.SqrtThreeDivThree; return true; }
+            if (dif1.IsAlmostSame() || dif2.IsAlmostSame())
+            {
+                result = Constants.SqrtThreeDivThree;
+                return true;
+            }
 
             dif1 = new Difference(simplifiedArgument, -Constants.ThreePiDivFour);
             dif2 = new Difference(simplifiedArgument, Constants.PiDivFour);
-            if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = 1; return true; }
+            if (dif1.IsAlmostSame() || dif2.IsAlmostSame())
+            {
+                result = 1;
+                return true;
+            }
 
             dif1 = new Difference(simplifiedArgument, -Constants.FourPiDivSix);
             dif2 = new Difference(simplifiedArgument, Constants.TwoPiDivSix);
-            if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = Constants.SqrtThree; return true; }
+            if (dif1.IsAlmostSame() || dif2.IsAlmostSame())
+            {
+                result = Constants.SqrtThree; return true;
+            }
 
             dif1 = new Difference(simplifiedArgument, -Constants.TwoPiDivSix);
             dif2 = new Difference(simplifiedArgument, Constants.FourPiDivSix);
-            if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = -Constants.SqrtThree; return true; }
+            if (dif1.IsAlmostSame() || dif2.IsAlmostSame())
+            {
+                result = -Constants.SqrtThree; return true;
+            }
 
             dif2 = new Difference(simplifiedArgument, -Constants.PiDivFour);
             dif1 = new Difference(simplifiedArgument, Constants.ThreePiDivFour);
-            if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = -1; return true; }
+            if (dif1.IsAlmostSame() || dif2.IsAlmostSame())
+            {
+                result = -1; return true;
+            }
 
             dif1 = new Difference(simplifiedArgument, -Constants.PiDivSix);
             dif2 = new Difference(simplifiedArgument, Constants.FivePiDivSix);
-            if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = -Constants.SqrtThreeDivThree; return true; }
+            if (dif1.IsAlmostSame() || dif2.IsAlmostSame())
+            {
+                result = -Constants.SqrtThreeDivThree; return true;
+            }
 
             dif1 = new Difference(simplifiedArgument, 0);
             if (dif1.IsAlmostSame()) { result = 0; return true; }
 
             dif1 = new Difference(simplifiedArgument, -Constants.PiDivTwo);
             dif2 = new Difference(simplifiedArgument, Constants.PiDivTwo);
-            if (dif1.IsAlmostSame() || dif2.IsAlmostSame()) { result = -Constants.One; throw new ArgumentException("Wrong argument of tan(x) function!"); }
+            if (dif1.IsAlmostSame() || dif2.IsAlmostSame())
+            {
+                result = -Constants.One;
+                throw new ArgumentException("Wrong argument of tan(x) function!");
+            }
 
             return false;
 

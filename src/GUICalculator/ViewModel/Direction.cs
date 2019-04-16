@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace GUICalculator.ViewModel
 {
+    /// <summary>
+    /// The Direction enum defines Left and Right direction values.
+    /// Those values can be used to determine the direction of deleting expressions.
+    /// </summary>
     public enum Direction
     {
         Left, Right

@@ -95,7 +95,7 @@ namespace GUICalculator.ViewModel
         private void EvaluateExpression()
         {
             //string test = "56+sin(89*sqrt(26^(4)+26*5))*((25)/(p)+12!-cos(p*e))+2e^(5+4)";
-            InputParser parser = new InputParser();
+            PostfixEvaluator parser = new PostfixEvaluator();
             string infix = Expression.ConvertToString();
             Console.WriteLine(infix);
             try

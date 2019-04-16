@@ -9,13 +9,41 @@ using System.Windows.Media;
 
 namespace GUICalculator.View
 {
+    /// <summary>
+    /// A caret is a blinking cursor usually used in textboxes.
+    /// The Caret class is implemented as a singleton, so only once instance can exist.
+    /// 
+    /// The caret is always displayed for a particular expression. Either on the left side of 
+    /// the particular expression or on the right side.
+    /// The expression by which the caret is displayed is usually being changed, since the caret should 
+    /// be able to move around in the textbox. 
+    /// 
+    /// In order to move the caret, call the SetActiveExpression method. 
+    /// Sometimes also calling the UpdateActiveExpression method might be needed.
+    /// </summary>
+    /// <remarks>
+    /// Sometimes it is desired to have more than one instance of the caret class.
+    /// If such case occurs, a modification of the Caret class will probably be needed.
+    /// </remarks>
     public class Caret : FrameworkElement
     {
+        /// <summary>
+        /// The timer is responsible for making the caret blink after every blinkPeriod.
+        /// </summary>
         private readonly Timer timer;
+        /// <summary>
+        /// The caret blinks every blinkPeriod.
+        /// </summary>
         private readonly int blinkPeriod = 500;
+        /// <summary>
+        /// The current location of the caret.
+        /// </summary>
         private Point location;
+        /// <summary>
+        /// The pen is used for drawing the caret.
+        /// </summary>
         private Pen pen = new Pen(Brushes.Black, 1);
-
+        
         public static readonly DependencyProperty VisibleProperty =
             DependencyProperty.Register("Visible", typeof(bool),
             typeof(Caret), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.AffectsRender));
@@ -32,6 +60,10 @@ namespace GUICalculator.View
 
         public static Caret Instance { get; } = new Caret();
         public double CaretHeight { get; set; }
+        /// <summary>
+        /// The caret keeps track of which expression it is displayed for.
+        /// For theses purposes the ActiveExpression property is used.
+        /// </summary>
         public ViewModel.Expressions.Base.Expression ActiveExpression { get; private set; }
         public ExpressionSide ExpressionSide { get; set; } // defines on which side of the ActiveExpression the Caret lies
         public Point DefaultPosition { get; } = new Point(0, 10);
@@ -44,7 +76,7 @@ namespace GUICalculator.View
                 dc.DrawLine(pen, location, new Point(Left, location.Y + CaretHeight));
             }
         }
-
+        
         public bool Visible
         {
             get

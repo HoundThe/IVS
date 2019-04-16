@@ -13,6 +13,12 @@ namespace GUICalculator.View
 {
     internal class Auxiliary : TerminalExpression
     {
+        /// <summary>
+        /// Auxiliary expression is an expression that doesn't hold any value and 
+        /// its only purpose is to temporarily fill components that doesn't contain
+        /// any value yet. For example root doesn't contain any value when inserted, so 
+        /// auxiliary expression is inserted instead until a real value is inserted.
+        /// </summary>
         public Auxiliary()
             : base("AuxiliaryExpressionTemplate")
         {
@@ -21,9 +27,6 @@ namespace GUICalculator.View
 
         protected override void OnParentExpressionSet(Expression parent)
         {
-            //Size size = GetSize(parent);
-            //Width = size.Width;
-            //Height = size.Height;
             base.OnParentExpressionSet(parent);
         }
 
