@@ -12,3 +12,5 @@ src/MathLibrary/obj/
 
 src/MathLibraryTests/bin/
 src/MathLibraryTests/obj/
+/src/StandDeviation/obj
+/src/StandDeviation/bin/Debug
