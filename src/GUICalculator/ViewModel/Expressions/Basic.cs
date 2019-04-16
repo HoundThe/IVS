@@ -15,6 +15,7 @@ namespace GUICalculator.View
         public Basic()
             : base("BasicExpressionTemplate")
         {
+            AddAuxiliary();
         }
         
         public override Expression MoveLeft(Expression child, bool jumpIn)

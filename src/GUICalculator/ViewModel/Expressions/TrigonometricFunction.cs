@@ -38,11 +38,12 @@ namespace GUICalculator.ViewModel.Expressions
         public override string ConvertToString()
         {
             StringBuilder sb = new StringBuilder();
+            sb.Append("(");
             sb.Append(Value);
             sb.Append("(");
             foreach (Expression expression in Items)
                 sb.Append(expression.ConvertToString());
-            sb.Append(")");
+            sb.Append("))");
             return sb.ToString();
         }
     }

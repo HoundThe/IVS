@@ -106,9 +106,12 @@ namespace GUICalculator.ViewModel
                     return;
                 SetResult(parser.EvaluatePostfixExp(postfix));
             }
-            catch
+            catch (Exception e)
             {
-                SetResult("Error");
+                if (string.Equals(e.Message, "Stack empty.", StringComparison.Ordinal))
+                    SetResult("Syntax error");
+                else
+                    SetResult(e.Message);
             }
         }
 
@@ -124,6 +127,8 @@ namespace GUICalculator.ViewModel
             Expression.VerticalAlignment = System.Windows.VerticalAlignment.Center;
             Expression.FirstChild().Background = Brushes.White;
             Caret.Instance.SetActiveExpression(Expression.FirstChild());
+            Expression.UpdateLayout();
+            Caret.Instance.UpdateActiveExpression();
         }
         
         //private Expression FindExpression<T>(Expression currentExpression, Direction direction)

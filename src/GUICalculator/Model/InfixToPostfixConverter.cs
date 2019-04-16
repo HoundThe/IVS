@@ -15,9 +15,11 @@ namespace GUICalculator.Model
     /// </remarks>
     class InfixToPostfixConverter
     {
+        private string unaryOperators = "+-";
+        private string binaryOperators = "+-*/";
         private string operators = "+-*/!^";
         private int[] precedences = { 1, 1, 2, 2, 3, 4 };
-        private string[] functions = { "sqrt", "rt", "sin", "cos", "tg" };
+        private string[] functions = { "sqrt", "rt", "sin", "cos", "tg", "neg" };
 
         private bool IsDigit(char ch)
         {
@@ -40,6 +42,43 @@ namespace GUICalculator.Model
             if (index < 0)
                 throw new FormatException("Unrecognized operator.");
             return precedences[index];
+        }
+
+        /// <param name="index">
+        ///     Index of the current character which is to be determined 
+        ///     whether it is a binary negation operator or not.
+        /// </param>
+        /// <returns></returns>
+        private bool IsBinaryNegation(string infix, int index)
+        {
+            if (!unaryOperators.Contains(infix[index]))
+                return false;
+
+            if (IsBinaryNegationFunction(infix, index))
+                return false;
+
+            if (index == 0)
+                return true;
+
+            if (index > 0)
+            {
+                if (binaryOperators.Contains(infix[index - 1]) || infix[index - 1] == '(')
+                    return true;
+            }
+            return false;
+        }
+
+        private bool IsBinaryNegationFunction(string infix, int index)
+        {
+            if (!unaryOperators.Contains(infix[index]))
+                return false;
+
+            if (index != 0 && 
+                !binaryOperators.Contains(infix[index - 1]) &&
+                infix[index - 1] != '(')
+                return false;
+
+            return index < infix.Length - 1 && infix[index + 1] == '(';
         }
 
         /// <summary>
@@ -80,9 +119,17 @@ namespace GUICalculator.Model
                         postfix.Append(" ");
                     }
                 }
+                else if (IsBinaryNegationFunction(infix, i))
+                {
+                    stack.Push("neg");
+                }
+                else if (IsBinaryNegation(infix, i))
+                {
+                    postfix.Append(infix[i]);
+                }
                 else if (IsOperator(infix[i]))
                 {
-                    while (stack.Count > 0 && 
+                    while (stack.Count > 0 &&
                         IsOperator(stack.Peek()[0]) &&
                         GetPrecedence(stack.Peek()[0]) > GetPrecedence(infix[i]))
                     {

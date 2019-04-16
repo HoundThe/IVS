@@ -20,10 +20,10 @@ namespace GUICalculator.View
         
         public override string ConvertToString()
         {
-            StringBuilder sb = new StringBuilder("sqrt(");
+            StringBuilder sb = new StringBuilder("(sqrt(");
             foreach (Expression expression in Items)
                 sb.Append(expression.ConvertToString());
-            sb.Append(")");
+            sb.Append("))");
             return sb.ToString();
         }
     }

@@ -14,7 +14,7 @@ namespace GUICalculator.Model
     /// </remarks>
     class PostfixEvaluator
     {
-        private static readonly string[] oneParamOperators = { "sin", "cos", "tg", "!", "sqrt" };
+        private static readonly string[] oneParamOperators = { "sin", "cos", "tg", "!", "sqrt", "neg" };
 
         /// <summary>
         /// Evaluates postfix expression.
@@ -87,6 +87,8 @@ namespace GUICalculator.Model
                     return new RootExp(rightOperand, new Number(2));
                 case "rt":
                     return new RootExp(rightOperand, leftOperand);
+                case "neg":
+                    return new MultiplicationExp(rightOperand, new Number(-1));
 
                 default: throw new Exception("Illegal operation");
             }

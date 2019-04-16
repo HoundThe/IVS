@@ -20,13 +20,13 @@ namespace GUICalculator.View
 
         public override string ConvertToString()
         {
-            StringBuilder sb = new StringBuilder("(");
+            StringBuilder sb = new StringBuilder("((");
             foreach (Expression expression in FirstExpression)
                 sb.Append(expression.ConvertToString());
             sb.Append(")rt(");
             foreach (Expression expression in SecondExpression)
                 sb.Append(expression.ConvertToString());
-            sb.Append(")");
+            sb.Append("))");
             return sb.ToString();
         }
     }

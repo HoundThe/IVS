@@ -19,13 +19,13 @@ namespace GUICalculator.ViewModel.Expressions
         public override string ConvertToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("(");
+            sb.Append("((");
             foreach (Expression expression in FirstExpression)
                 sb.Append(expression.ConvertToString());
             sb.Append(")/(");
             foreach (Expression expresssion in SecondExpression)
                 sb.Append(expresssion.ConvertToString());
-            sb.Append(")");
+            sb.Append("))");
             return sb.ToString();
         }
     }
