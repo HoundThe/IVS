@@ -12,7 +12,8 @@
         MinWidth="515"
         Title="Kalkulačka"
         FontFamily="Segoe UI"
-        FontSize="24">
+        FontSize="24"
+        Icon="/GUICalculator;component/icon.png">
     <Window.DataContext>
         <vm:MainWindowVM/>
     </Window.DataContext>
@@ -66,7 +67,7 @@
     <Grid>
         <Button Click="ShowHelp"  Content="?" Panel.ZIndex="1" ToolTip="Nápověda"
             HorizontalAlignment="Right" VerticalAlignment="Top"
-            Background="Transparent" Foreground="Black" Margin="0,0,5,0">
+            Background="Transparent" Foreground="#4E005D" Margin="0,0,5,0">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="Transparent"/>

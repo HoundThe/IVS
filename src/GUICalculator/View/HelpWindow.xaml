@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUICalculator.View"
         mc:Ignorable="d"
+        Icon="/GUICalculator;component/icon.png"
         Title="Nápověda" Height="500" Width="510">
     <Grid>
         <RichTextBox x:Name="richTextBox" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
