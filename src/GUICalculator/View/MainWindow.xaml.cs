@@ -22,7 +22,7 @@ namespace GUICalculator.View
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly Regex regex = new Regex("^[0123456789+\\-()!.]+$");
+        private readonly Regex regex = new Regex("^[0123456789+\\-()!./e]+$");
         private readonly MainWindowVM dataContext;
 
         public MainWindow()
@@ -37,26 +37,44 @@ namespace GUICalculator.View
 
         private void WhenKeyDown(object sender, KeyEventArgs e)
         {
+            e.Handled = true;
+
             if (e.Key == Key.Left || e.Key == Key.Right)
             {
                 Direction direction = e.Key == Key.Left ? Direction.Left : Direction.Right;
                 dataContext.MoveCaret(direction);
-                e.Handled = true;
             }
             else if (e.Key == Key.Back)
             {
                 dataContext.DeleteExpression(Direction.Left);
-                e.Handled = true;
             }
             else if (e.Key == Key.Delete)
             {
                 dataContext.DeleteExpression(Direction.Right);
-                e.Handled = true;
             }
             else if (e.Key == Key.Multiply)
             {
                 dataContext.AddMultiplicationExpression();
-                e.Handled = true;
+            }
+            else if (e.Key == Key.P)
+            {
+                dataContext.AddCharacterExpression('π');
+            }
+            else if (e.Key == Key.S)
+            {
+                dataContext.AddTrigonometricExpression(TrigonometricFunctionType.Sine);
+            }
+            else if (e.Key == Key.C)
+            {
+                dataContext.AddTrigonometricExpression(TrigonometricFunctionType.Cosine);
+            }
+            else if (e.Key == Key.T)
+            {
+                dataContext.AddTrigonometricExpression(TrigonometricFunctionType.Tangent);
+            }
+            else
+            {
+                e.Handled = false;
             }
         }
         
@@ -103,6 +121,14 @@ namespace GUICalculator.View
                 Caret.Instance.ExpressionSide = ExpressionSide.Right;
                 Caret.Instance.SetActiveExpression(vm.Expression.LastChild());
             }
+        }
+
+        private void ShowHelp(object sender, RoutedEventArgs e)
+        {
+            HelpWindow helpWindow = new HelpWindow();
+            helpWindow.Owner = this;
+            helpWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            helpWindow.ShowDialog();
         }
     }
 }
