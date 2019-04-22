@@ -72,6 +72,10 @@ namespace GUICalculator.View
             {
                 dataContext.AddTrigonometricExpression(TrigonometricFunctionType.Tangent);
             }
+            else if (e.Key == Key.Enter)
+            {
+                dataContext.EvaluateExpression();
+            }
             else
             {
                 e.Handled = false;

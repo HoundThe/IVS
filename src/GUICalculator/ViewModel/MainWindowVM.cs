@@ -92,7 +92,7 @@ namespace GUICalculator.ViewModel
             ResultString = message;
         }
         
-        private void EvaluateExpression()
+        internal void EvaluateExpression()
         {
             //string test = "56+sin(89*sqrt(26^(4)+26*5))*((25)/(p)+12!-cos(p*e))+2e^(5+4)";
             PostfixEvaluator parser = new PostfixEvaluator();
