@@ -1,1 +1,2 @@
-tento soubor bude obsahovat rozdil mezi planem projektu a skutecnosti
+﻿1. Neodhadli jsme plně náročnost jednotlivých úkolů. Některé nám zabraly více času než se při plánování předpokládalo, což způsobilo zpoždění splnění některých úkolů oproti stanovenému termínu.
+2. Některé drobnější úkoly jsme si v průběhu přerozdělili, aby nám to více sedělo jak časově, tak náročností apod.
