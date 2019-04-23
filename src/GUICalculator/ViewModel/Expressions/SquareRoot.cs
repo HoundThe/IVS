@@ -9,8 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 
 
-namespace GUICalculator.View
+namespace GUICalculator.ViewModel.Expressions
 {
+    /// <summary>
+    /// SquareRoot expression is similar to the Root expression, except
+    /// the degree is always 2. So only one list of expressions is used
+    /// as the number to calculate the square root from.
+    /// </summary>
     internal class SquareRoot : SingleExpression
     {
         public SquareRoot()

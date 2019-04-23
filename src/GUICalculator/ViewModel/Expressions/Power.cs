@@ -8,8 +8,13 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 
 
-namespace GUICalculator.View
+namespace GUICalculator.ViewModel.Expressions
 {
+    /// <summary>
+    /// Power expression is a SingleExpression which means it consists of
+    /// a single list of expressions.
+    /// As of all expressions, the look is represented by the specific template.
+    /// </summary>
     internal class Power : SingleExpression
     {
         public Power()

@@ -102,7 +102,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Model\PostfixEvaluator.cs" />
-    <Compile Include="ViewModel\Command\RelayCommand.cs" />
+    <Compile Include="Command\RelayCommand.cs" />
     <Compile Include="ViewModel\MainWindowVM.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\Expressions\Basic.cs" />

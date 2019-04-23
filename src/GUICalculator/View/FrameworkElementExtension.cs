@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
+/// <summary>
+/// Contains all view related files (classes, styles, templates, converters, etc).
+/// </summary>
 namespace GUICalculator.View
 {
     static class FrameworkElementExtension

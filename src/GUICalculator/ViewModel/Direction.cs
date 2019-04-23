@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Contains logic for the view.
+/// </summary>
 namespace GUICalculator.ViewModel
 {
     /// <summary>

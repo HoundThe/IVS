@@ -6,6 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Contains a program for calculating standard deviation.
+/// </summary>
 namespace StandDeviation
 {
     internal sealed class StandardDeviation

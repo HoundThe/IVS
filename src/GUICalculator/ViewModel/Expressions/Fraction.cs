@@ -9,6 +9,11 @@ using System.Threading.Tasks;
 
 namespace GUICalculator.ViewModel.Expressions
 {
+    /// <summary>
+    /// Fraction expression is a TwoExpression which means it consists of 
+    /// two lists of expressions. One list is the numerator and the second one
+    /// is the denominator.
+    /// </summary>
     class Fraction : TwoExpression
     {
         public Fraction() 

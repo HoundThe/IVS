@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace GUICalculator.View
+namespace GUICalculator.ViewModel.Expressions
 {
+    /// <summary>
+    /// Character expression is a terminal expression which
+    /// holds a single character.
+    /// </summary>
     class Character : TerminalExpression
     {
 

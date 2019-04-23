@@ -9,8 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 
 
-namespace GUICalculator.View
+namespace GUICalculator.ViewModel.Expressions
 {
+    /// <summary>
+    /// Root expression is a TwoExpression which means it consists of
+    /// two lists of expressions. One list serves as the degree of the root
+    /// and the second list serves as the number to calculate the root from.
+    /// </summary>
     internal class Root : TwoExpression
     {
         public Root()

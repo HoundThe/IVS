@@ -9,6 +9,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
+/// <summary>
+/// Provides base classes for expressions and their default behaviour.
+/// </summary>
 namespace GUICalculator.ViewModel.Expressions.Base
 {
     public abstract class Expression : ContentControl

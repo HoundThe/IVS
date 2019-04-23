@@ -7,6 +7,11 @@ using GUICalculator.ViewModel.Expressions.Base;
 
 namespace GUICalculator.ViewModel.Expressions
 {
+    /// <summary>
+    /// LeftParenthesis expression is a TerminalExpression which displays
+    /// only the '(' character. One can think of the LeftParenthesis as Character
+    /// with specific template.
+    /// </summary>
     class LeftParenthesis : TerminalExpression
     {
         public LeftParenthesis() 

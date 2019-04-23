@@ -8,6 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+/// <summary>
+/// Contains global properties defined for the GUI calculator.
+/// </summary>
 namespace GUICalculator.Properties {
     using System;
     

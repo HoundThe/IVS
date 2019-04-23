@@ -9,6 +9,11 @@ using System.Threading.Tasks;
 
 namespace GUICalculator.ViewModel.Expressions
 {
+    /// <summary>
+    /// TrigonometricFunction expression is a SingleExpression which means
+    /// it consists of a single list of expressions. The trigonometric function
+    /// can be sin, cos or tg defined by TrigonometricFunctionType enum.
+    /// </summary>
     class TrigonometricFunction : SingleExpression
     {
         private TrigonometricFunctionType type;

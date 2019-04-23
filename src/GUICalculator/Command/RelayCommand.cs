@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Windows.Input;
 
+/// <summary>
+/// Contains Command related classes.
+/// </summary>
 namespace GUICalculator.Command
 {
     /// <summary>

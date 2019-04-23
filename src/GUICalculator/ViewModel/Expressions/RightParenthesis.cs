@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace GUICalculator.ViewModel.Expressions
 {
+    /// <summary>
+    /// RightParenthesis expression is a TerminalExpression which displays
+    /// only the ')' character. One can think of the RightParenthesis as Character
+    /// with specific template.
+    /// </summary>
     class RightParenthesis : TerminalExpression
     {
         public RightParenthesis()

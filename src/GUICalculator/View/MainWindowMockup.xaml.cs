@@ -18,7 +18,10 @@ using System.Windows.Shapes;
 namespace GUICalculator.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// MainWindowMockup doesn't contain any logic because it serves as 
+    /// a code behind of a mockup. In the future the logic might be put in
+    /// and the mockup would become a new functioning version. Until then, the
+    /// mockup has no behaviour.
     /// </summary>
     public partial class MainWindowMockup : Window
     {

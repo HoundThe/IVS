@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Contains logic that is not GUI related. It usually contains indpendent algorithms,
+/// calculations and classes representing data.
+/// </summary>
 namespace GUICalculator.Model
 {
     /// <summary>

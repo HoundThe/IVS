@@ -1,4 +1,5 @@
 ﻿using GUICalculator.View;
+using GUICalculator.ViewModel.Expressions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

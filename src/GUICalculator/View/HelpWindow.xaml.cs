@@ -17,7 +17,8 @@ using GUICalculator.Properties;
 namespace GUICalculator.View
 {
     /// <summary>
-    /// Interaction logic for HelpWindow.xaml
+    /// HelpWindow class contains interaction logic for HelpWindow.xaml.
+    /// Loads a manual and displays it as an RTF document.
     /// </summary>
     public partial class HelpWindow : Window
     {
@@ -27,6 +28,7 @@ namespace GUICalculator.View
 
             LoadRTFContent();
         }
+
         private void LoadRTFContent()
         {
             try

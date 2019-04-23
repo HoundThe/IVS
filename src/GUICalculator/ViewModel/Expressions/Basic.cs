@@ -1,4 +1,5 @@
-﻿using GUICalculator.ViewModel.Expressions.Base;
+﻿using GUICalculator.View;
+using GUICalculator.ViewModel.Expressions.Base;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,8 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace GUICalculator.View
+namespace GUICalculator.ViewModel.Expressions
 {
+    /// <summary>
+    /// Basic (Base expression) is an expression which contains all other expressions.
+    /// Its specific behavior is when moving the caret inside the Basic expression.
+    /// When it encounters a border (last element) on the right side (or the left),
+    /// the Caret doesn't jump out of the Basic expression and stays within 
+    /// (which makes the Basic expression a parent for all other).
+    /// </summary>
     class Basic : SingleExpression
     {
 

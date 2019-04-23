@@ -1,4 +1,5 @@
 ﻿using GUICalculator.ViewModel;
+using GUICalculator.ViewModel.Expressions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,9 @@ using System.Windows.Shapes;
 namespace GUICalculator.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// MainWindow class contains interaction logic for MainWindow.xaml.
+    /// It captures key strokes and performs appropriate actions for some of them,
+    /// restrains from inputting disallowed symbols, opens help window.
     /// </summary>
     public partial class MainWindow : Window
     {

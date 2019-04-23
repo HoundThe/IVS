@@ -6,6 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
+/// <summary>
+/// Contains converters that are used by the view to convert data 
+/// from view model to a representable form.
+/// </summary>
 namespace GUICalculator.View.Converter
 {
     class RoundValueConverter : IValueConverter
