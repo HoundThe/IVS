@@ -1,4 +1,4 @@
-xlogin01 100 (základ GUI a základní mat. operace)
-xlogin02 100 (pokročilé mat. operace)
-xlogin03 90 (profiling, instalátor)
-xlogin04 110 (testy, dokumentace)
+xondri07 100 (GUI, převod z infix na postfix výraz, mockup)
+xrosin00 100 (profiling, uživatelská dokumentace, nápověda)
+xhajek48 100 (instalátor, zpracování postfix výrazu, makefile)
+xrozsi06 100 (matematická knihovna, testy, programová dokumentace)
