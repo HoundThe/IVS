@@ -1,6 +1,7 @@
 var searchData=
 [
   ['assemblyinfo_2ecs',['AssemblyInfo.cs',['../_math_library_2_properties_2_assembly_info_8cs.html',1,'(Global Namespace)'],['../_math_library_tests_2_properties_2_assembly_info_8cs.html',1,'(Global Namespace)']]],
+  ['mainpage_2emd',['mainPage.md',['../main_page_8md.html',1,'']]],
   ['mainwindow',['MainWindow',['../class_g_u_i_calculator_1_1_view_1_1_main_window.html',1,'GUICalculator.View.MainWindow'],['../class_g_u_i_calculator_1_1_view_1_1_main_window.html#a817262a867d8573797c60596d0815eed',1,'GUICalculator.View.MainWindow.MainWindow()']]],
   ['mainwindow_2examl',['MainWindow.xaml',['../_main_window_8xaml.html',1,'']]],
   ['mainwindow_2examl_2ecs',['MainWindow.xaml.cs',['../_main_window_8xaml_8cs.html',1,'']]],

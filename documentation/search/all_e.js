@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['prostredi',['Prostredi',['../md__r_e_a_d_m_e.html',1,'']]],
   ['parentexpression',['ParentExpression',['../class_g_u_i_calculator_1_1_view_model_1_1_expressions_1_1_base_1_1_expression.html#afcfd3351279a257fd31604ae5e0ba562',1,'GUICalculator::ViewModel::Expressions::Base::Expression']]],
   ['postfixevaluator',['PostfixEvaluator',['../class_g_u_i_calculator_1_1_model_1_1_postfix_evaluator.html',1,'GUICalculator::Model']]],
   ['postfixevaluator_2ecs',['PostfixEvaluator.cs',['../_postfix_evaluator_8cs.html',1,'']]],
