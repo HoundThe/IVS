@@ -1,19 +1,18 @@
 Prostredi
 ---------
 
-Ubuntu 64bit
-Windows 64bit
+Windows 10 64bit
 
 Autori
 ------
 
 Nazev tymu
 - xhajek48 Karel Hajek 
-- xlogin02 jmeno prijmeni 
-- xlogin03 jmeno prijmeni 
-- xlogin04 jmeno prijmeni 
+- xondri07 Ladislav Ondris
+- xrosin00 Monika Rosinska
+- xrozsi06 Michal Rozsival
 
 Licence
 -------
 
-Tento program je poskytovan...
+This project is licensed under the GNU GPL v.3 License.
