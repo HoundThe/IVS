@@ -16,6 +16,7 @@ pack:
 	@xcopy "$(PATH_BASE)/documentation" "$(PATH_DOC)" /e /i /h
 
 	@copy "GUICalculator\bin\Debug\mysetup.exe" "$(PATH_INSTALL)"
+	cd "$(PATH_BASE_PACK)\.." & zip -r "xhajek48_xondri07_xrosin00_xrozsi06" "xhajek48_xondri07_xrosin00_xrozsi06"
 run:
 	@cd "GUICalculator\bin\Debug\" & GUICalculator.exe
 doc: Doxyfile
