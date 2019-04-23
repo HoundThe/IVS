@@ -36,7 +36,7 @@ public class NLogarithmExp :IExpression
         }
 
         /// <summary>
-        /// Changing the value of argument for better aproximation using basic logarithm formulas
+        /// Class implementing function, which compute natural logarithm of the given number
         /// Set the argument value in interval <1;10>
         /// </summary>
         private void ParseArgument()

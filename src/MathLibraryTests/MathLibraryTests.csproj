@@ -56,7 +56,6 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="CompleteTest.cs" />
     <Compile Include="CosineExpTest.cs" />
     <Compile Include="DifferenceTest.cs" />
     <Compile Include="FactorialExpTest.cs" />

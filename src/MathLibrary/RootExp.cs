@@ -14,6 +14,9 @@ using System.Threading.Tasks;
 
 namespace MathLibrary
 {
+    /// <summary>
+    /// Class implementing function, which compute Nth root of the given number
+    /// </summary>
     public class RootExp : IExpression
     {
         private NLogarithmExp logExp;

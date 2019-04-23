@@ -14,6 +14,9 @@ using System.Threading.Tasks;
 
 namespace MathLibrary
 {
+    /// <summary>
+    /// Class implementing function, which compute division of 2 numbers
+    /// </summary>
     public class DivisionExp : IExpression
     {
         private IExpression divident;

@@ -16,6 +16,9 @@ namespace MathLibrary
 {
     public class CosineExp : IExpression
     {
+        /// <summary>
+        /// Class implementing function, which compute cosine of the given argument
+        /// </summary>
         private IExpression argument;
 
 

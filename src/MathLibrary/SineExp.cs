@@ -14,6 +14,9 @@ using System.Threading.Tasks;
 
 namespace MathLibrary
 {
+    /// <summary>
+    /// Class implementing function, which compute sine of the given argument
+    /// </summary>
     public class SineExp : IExpression
     {
         private SimplifyArgument sim;

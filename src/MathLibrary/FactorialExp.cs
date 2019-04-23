@@ -14,6 +14,9 @@ using System.Threading.Tasks;
 
 namespace MathLibrary
 {
+    /// <summary>
+    /// Class implementing function, which compute factorial of the given number
+    /// </summary>
     public class FactorialExp : IExpression
     {
         private IExpression argument;

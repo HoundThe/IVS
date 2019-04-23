@@ -15,6 +15,9 @@ using System.Threading.Tasks;
 namespace MathLibrary
 {
 
+    /// <summary>
+    /// Class implementing function, which compute result of the 'a' ^ 'b' 
+    /// </summary>
     public class PowerExp : IExpression
     {
         private IExpression mantis;

@@ -14,6 +14,9 @@ using System.Threading.Tasks;
 
 namespace MathLibrary
 {
+    /// <summary>
+    /// Class implementing function, which compute diference of the 2 numbers
+    /// </summary>
     public class SubtractionExp : IExpression
     {
         private IExpression minuend;

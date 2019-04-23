@@ -14,6 +14,9 @@ using System.Threading.Tasks;
 
 namespace MathLibrary
 {
+    /// <summary>
+    /// Class implementing function, which compute product of the 2 numbers
+    /// </summary>
     public class MultiplicationExp : IExpression
     {
         private IExpression multiplicant;

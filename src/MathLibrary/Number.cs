@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace MathLibrary
 {
+    /// <summary>
+    /// Class converting abstracted interface to comptutable numbers
+    /// </summary>
     public class Number : IExpression
     {
         private readonly double value;

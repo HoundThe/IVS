@@ -14,6 +14,9 @@ using System.Threading.Tasks;
 
 namespace MathLibrary
 {
+    /// <summary>
+    /// Class implementing function, which compute tg of the fiven argument
+    /// </summary>
     public class TangentExp : IExpression
     {
 

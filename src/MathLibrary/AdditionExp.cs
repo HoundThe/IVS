@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 
 namespace MathLibrary
 {
+    /// <summary>
+    /// Class implementing function, which compute sum of the 2 numbers
+    /// </summary>
     public class AdditionExp : IExpression
     {
         private IExpression addend1;
