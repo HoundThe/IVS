@@ -1,12 +1,12 @@
-Prostredi
+Platforms
 ---------
 
 Windows 10 64bit
 
-Autori
+Authors
 ------
 
-Nazev tymu
+PepeHands
 - xhajek48 Karel Hajek 
 - xondri07 Ladislav Ondris
 - xrosin00 Monika Rosinska
