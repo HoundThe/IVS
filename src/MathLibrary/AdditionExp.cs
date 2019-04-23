@@ -11,6 +11,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Containing basic+ math algorithms
+/// </summary>
 namespace MathLibrary
 {
     /// <summary>

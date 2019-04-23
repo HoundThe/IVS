@@ -12,13 +12,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace MathLibrary
 {
+
+    /// <summary>
+    /// Class implementing function, which compute cosine of the given argument
+    /// </summary>
     public class CosineExp : IExpression
     {
-        /// <summary>
-        /// Class implementing function, which compute cosine of the given argument
-        /// </summary>
         private IExpression argument;
 
 

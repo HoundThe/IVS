@@ -11,11 +11,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MathLibrary;
 
 
-/// <summary>
-///  Class containing methods for NLogharitm class' Evaulate method testing
-/// </summary>
+
 namespace MathLibraryTests
 {
+    /// <summary>
+    /// Class containing methods for NLogharitm class' Evaulate method testing
+    /// </summary>
     [TestClass]
     public class NLogarithmExpTest
     {

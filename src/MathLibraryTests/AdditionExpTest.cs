@@ -6,6 +6,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MathLibrary;
 using System.Collections.Generic;
 
+/// <summary>
+/// Containing tests for  basic+ math algorithms
+/// </summary>
 namespace MathLibraryTests
 {
 
