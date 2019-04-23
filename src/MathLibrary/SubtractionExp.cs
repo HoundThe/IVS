@@ -22,8 +22,8 @@ namespace MathLibrary
         /// <summary>
         /// Inicializing the minuend and subtrahend
         /// </summary>
-        /// <param name="Minuend"></param>
-        /// <param name="Subtrahend"></param>
+        /// <param name="minuend"></param>
+        /// <param name="subtrahend"></param>
         public SubtractionExp(IExpression minuend, IExpression subtrahend)
         {
             this.minuend = minuend;

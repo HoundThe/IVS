@@ -18,10 +18,11 @@ namespace MathLibrary
     {
         private IExpression argument;
 
+
         /// <summary>
-        /// Inicializing the argument
+        ///  Inicializing the argument
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="argument"></param>
         public CosineExp(IExpression argument)
         {
             this.argument = argument;
