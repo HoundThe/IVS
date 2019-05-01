@@ -1,3 +1,10 @@
+<h1 align="center">Calculator</h1>
+
+![screenshot](screenshot.png)
+
+<h2>IVS Project 2</h2>
+A basic calculator with GUI, including math library, installer, docs, tests and other details
+
 Platforms
 ---------
 
